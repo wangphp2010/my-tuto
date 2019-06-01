@@ -1,0 +1,101 @@
+
+    <script src="js/jquery.min.js"></script>
+
+
+
+
+ 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+
+
+    <title>meterializ</title>
+
+<script type="text/javascript">
+
+function showListH(id){
+
+var time = 0;
+
+  $("#"+id).find('li').each(function() {
+      $(this).animate({'margin-left':'-40px','opacity':'0'},0);
+
+   });
+
+
+  $("#"+id).find('li').each(function() {
+      $(this).delay(time).animate({'margin-left':'0px','opacity':'1'},1000);
+ time+=100;
+   });
+}
+
+
+function showListW(id){
+
+var time = 0;
+
+  $("#"+id).find('li').each(function() {
+      $(this).animate({'margin-top':'40px','opacity':'0'},0);
+
+   });
+
+
+  $("#"+id).find('li').each(function() {
+      $(this).delay(time).animate({'margin-top':'0px','opacity':'1'},1000);
+ time+=100;
+   });
+}
+
+
+
+
+function yu()
+{
+
+  showListH('w');
+  showListW('w2');
+
+
+}
+
+
+</script>
+
+<style>
+    #w li {
+        background-color: red;
+        background-color: red;
+        opacity: 0;
+    }
+    
+    #w2 {}
+    
+    #w2 li {
+        background-color: red;
+        float: left;
+        margin-left: 2px;
+        list-style-type: none;
+        opacity: 0;
+    }
+</style>
+
+ <button type="button" name="button" onclick="yu()" style=" " >clique</button>
+
+<ul id="w">
+  <li>枯</li>
+  <li>夺</li>
+  <li>一</li>
+  <li>要</li>
+  <li>了</li>
+</ul>
+<div>------------------------------------</div>
+<div>
+    <ul id="w2" style="  background-color: #" >
+        <li>枯</li>
+        <li>夺</li>
+        <li>一</li>
+        <li>要</li>
+        <li>了</li>
+    </ul>
+</div>
+<div>------------------------------------</div>

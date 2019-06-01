@@ -1,0 +1,23 @@
+function GrabImage($url,$filename="") { 
+  if($url==""):return false;endif; 
+
+  if($filename=="") { 
+    $ext=strrchr($url,"."); 
+    if($ext!=".gif" && $ext!=".jpg"):return false;endif; 
+    $filename=date("dMYHis").$ext; 
+  } 
+
+  ob_start(); 
+  readfile($url); 
+  $img = ob_get_contents(); 
+  ob_end_clean(); 
+  $size = strlen($img); 
+
+  $fp2=@fopen($filename, "a"); 
+  fwrite($fp2,$img); 
+  fclose($fp2); 
+
+  return $filename; 
+} 
+
+GrabImage("http://monpub.com/image/Motoscooter-890752-664c06c400f3e6e66e0105a9adace722.jpg","im/1.jpg");

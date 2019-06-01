@@ -1,0 +1,98 @@
+<script type="text/javascript" src="jquery.min.js"></script>
+
+<style>
+.img_p img{
+	margin-right:5px; width:60px; height:60px; margin-top:10px;
+	
+	 }
+	 
+.img_p img:hover{
+	  border:1px solid #999; }
+	  .overflow_hidded{overflow: hidden;}
+	  
+#detail_im{ width:420px; height:580px;  position:relative;}
+  #detail_im img{ width:420px; height:580px;   left:0px;/*position:absolute;*/
+ 
+ }
+ 
+ 
+ </style><div  id="container2"  >
+	
+	
+	 
+<div  class="container"    >
+
+  
+  <script>
+  $(function(){
+	  $('#detail_im img').attr("src",$('#img_p').children().eq(1).attr('src'));
+	  
+//	var s=$('#img_p').children().eq(0).attr('src'); img_p 里面第三个子元素
+	$('#img_p').find('img').click(function(){
+			var src =$(this).attr('src');
+			var d=90;
+		var src2 = $('#detail_im img').attr('src');
+		 
+			  $('#detail_im > div').css({'width':'840px','position':'absolute'});
+        
+		$('#detail_im > div').append('<img src="'+src+'">');
+       $('#detail_im > div ').animate({'left':'-420px' },500,function(){
+		   
+		    $('#detail_im > div ').css({'left':'0px'}); 
+$('#detail_im > div').html('<img src="'+src+'">');
+		   
+		   }); 
+		 
+
+
+		 
+		// $('#detail_im img').css('top',"-50px");
+			  // $('#detail_im img').attr("src",src);
+
+		
+		});
+	
+ 	  });
+    /*  function set_img(id)
+	  { 
+	  var src = $(id).attr('src')	;  
+	   $('#detail_im img').attr("src",src);
+		  }*/
+      </script>
+ <div class="row" >
+     <div class="col-lg-6 col-md-6  col-sm-12  "  > <div id="detail_im"  class="overflow_hidded"     ><div><img   ></div></div>
+     
+     <div class="img_p" id="img_p">
+     <img src="logo/1.jpg"    />
+     <img src="logo/2.jpg"   />
+     <img src="logo/3.jpg"   />
+     <img src="logo/4.jpg"   />
+     <img src="logo/5.jpg"   />
+     <img src="logo/6.jpg"   />
+     <br>
+<img src="logo/1.jpg"    />
+     <img src="logo/2.jpg"   />
+     <img src="logo/3.jpg"   />
+     <img src="logo/4.jpg"   />
+     <img src="logo/5.jpg"   />
+     <img src="logo/6.jpg"   />
+     
+     
+      </div>
+      
+     
+     </div> 
+     
+     
+     
+     
+     <div class="col-lg-6 col-md-6  col-sm-12  "  > </div> 
+
+</div>
+
+  </div>  
+  
+  
+  
+  
+  </div>

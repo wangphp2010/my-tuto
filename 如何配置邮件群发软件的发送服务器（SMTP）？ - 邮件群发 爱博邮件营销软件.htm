@@ -1,0 +1,306 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Language" content="zh-CN">
+<title>如何配置邮件群发软件的发送服务器（SMTP）？ - 邮件群发 爱博邮件营销软件</title>
+<meta name="keywords" content="邮件群发,邮件群发知识,电子邮件,邮件群发个人版,邮件群发专业版,免费SMTP,邮件群发软件,Gmail">
+<meta name="description" content="最新申请的新浪邮箱，除了网页激活POP3 / SMTP选项外，至少还要在网页邮箱中发送一封Email，然后才可以再客户端使用SMTP服务。126、163、yeah虽然域名不同，但属于同一个邮箱服务器，对于群发垃圾邮件的拦截是相通的。QQ邮箱的SMTP服务器也已经支持SSL连接了，因此配置QQ邮箱时候">
+<link rel="stylesheet" rev="stylesheet" href="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/Vista.css" type="text/css" media="screen">
+<link rel="alternate" type="application/rss+xml" href="http://qunfa.abot.cn/feed.asp?cmt=11" title="Comments Feed for 如何配置邮件群发软件的发送服务器（SMTP）？">
+<script language="JavaScript" src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/common.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+		var str00="http://qunfa.abot.cn/";
+		var str01="名称或邮箱不能为空";
+		var str02="名称或邮箱格式不对";
+		var str03="留言不能为空或过长";
+		var str06="显示UBB表情>>";
+		var intMaxLen="1000";
+		var strFaceName="Haha|Hehe|Love|Misdoubt|Music|Nothing_to_say|Sad|Shame|Sleep|Smile|Stop|What|Adore|After_boom|Angry|Cool|Cry|Effort|Faint|Grimace";
+		var strFaceSize="48";
+		var strBatchView="";
+		var strBatchInculde="";
+		var strBatchCount="";
+	</script>
+</head>
+<body class="single">
+<div id="divAll">
+  <div id="divPage">
+    <div id="divMiddle">
+      <div id="divTop">
+        <div id="divTop1">
+        <script language="JavaScript" type="text/javascript">
+		document.write('<img src="/images/logo.gif" align="left" style="margin-right:2px; margin-top:15px;" title="邮件群发" />');
+        document.write('<h1 id=\"BlogTitle\"><a href=\"http://qunfa.abot.cn/\">爱博邮件群发系统</a></h1>');
+        document.write('<h2 id=\"BlogSubTitle\">邮件营销与群发软件，Email地址搜索与采集，QQ邮件群发套装</h2>');
+        </script><img src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/logo.gif" style="margin-right:2px; margin-top:15px;" title="邮件群发" align="left"><h1 id="BlogTitle"><a href="http://qunfa.abot.cn/">爱博邮件群发系统</a></h1><h2 id="BlogSubTitle">邮件营销与群发软件，Email地址搜索与采集，QQ邮件群发套装</h2>
+    	</div>
+    	<div id="divTop2"><!--<script src="/a/head_search.js" type="text/javascript" language="javascript"></script>--></div>                
+      </div>
+      <div id="divNavBar">
+        <h3>导航</h3>
+        <ul>
+          <li><a href="http://qunfa.abot.cn/">首页</a></li>
+<li><a href="http://qunfa.abot.cn/post/GroupMailPro.html">邮件群发软件</a></li>
+<li><a href="http://qunfa.abot.cn/post/EmailSearch.html">Email搜索圣手</a></li>
+<li><a href="http://qunfa.abot.cn/post/QQ-Mail-Search.html">QQ邮箱搜索</a></li>
+<li><a href="http://qunfa.abot.cn/post/EDMSender.html">EDM邮件直投</a></li>
+<li><a href="http://qunfa.abot.cn/post/download.html">软件下载</a></li>
+<li><a href="http://qunfa.abot.cn/post/buy.html">注册购买</a></li>
+<li><a href="http://qunfa.abot.cn/post/Contact.html">联系我们</a></li>
+
+        </ul>
+      </div>
+      <div id="divMain"> <div class="post cate6 auth1">  
+  <h4 class="post-date">2012-2-21 10:28:4</h4>
+  <h2 class="post-title">如何配置邮件群发软件的发送服务器（SMTP）？</h2>
+  <div class="post-body">
+<script language="JavaScript" src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/goog_468_60.js" type="text/javascript"></script><script type="text/javascript"><!--
+google_ad_client = "pub-4194196199198439";
+/* 468x60, 创建于 10-9-13 */
+google_ad_slot = "9598685064";
+google_ad_width = 468;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript" src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/show_ads.js">
+</script>	
+ 
+<br>
+  	<p>&nbsp;</p><p><span style="font-size: xx-large;"><span style="color: rgb(255, 0, 0);">快速访问本页面，在浏览器中输入</span></span></p><p><span style="font-size: xx-large;color: rgb(255, 0, 0);"><span style="background-color: rgb(0, 0, 128);">&nbsp; xgo.cc/smtp&nbsp;&nbsp; <br></span></span></p><p><span style="font-size: xx-large;"><span style="color: rgb(255, 0, 0);">完整地址是<a href="http://xgo.cc/smtp" target="_blank">http://xgo.cc/smtp</a></span></span></p><p>&nbsp;</p><p>如何配置<strong>邮件群发软件</strong>的发送服务器呢？这是摆在使用者面前要解决的第一个问题。<br>我们这里只举例部分大家熟知的<strong>免费SMTP服务器</strong>列表，收费邮箱和企业邮箱因为类型众多，这里不一一例举，注册用户如需这方面配置请直接联系我们。<br><br>【以下常见问题的答案直接链接入官方网址的帮助文档，请直接点击进入查看即可】<br>【注：以下推荐的常用邮件发送服务器，如果没有特殊说明，都是不需要SSL支持的】<br>【<span style="color: rgb(51, 153, 102);">我们会不定期更新这些列表，随时调整排列顺序，越是排在前面的，综合性能越好！</span>】<br><br><strong>QQ邮箱</strong> mail.qq.com <br><img alt="" src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/config_smtp_qq.gif"><br>国内用QQ邮箱速度稳定，限制是新的QQ邮箱要激活后14天可用SMTP服务。<br>QQ邮箱的SMTP服务器也已经支持SSL连接了，因此配置<strong>QQ邮箱</strong>时候SSL也是可以选择的。<a target="_blank" href="http://service.mail.qq.com/cgi-bin/help?subtype=1&amp;&amp;id=28&amp;&amp;no=166"><br>QQ邮箱（8888888@qq.com）要支持SMTP，需要简单的设置，点击这里查看如何设置！（注：新激活邮箱的QQ用户要14天之后才能使用SMTP）</a><br><strong>QQ企业邮箱的配置</strong><br>Email：your@yourdomain<br>服务器：smtp.exmail.qq.com<br>用户名：your@yourdomain<br>密码：your password<br><br><strong>Gmail </strong><a href="http://qunfa.abot.cn/post/youjianqunfa-gmail.html" target="_blank">申请和使用 http://www.gmail.com</a> [<a href="http://qunfa.abot.cn/catalog.asp?tags=Gmail" target="_blank">Gmail</a>] 【SSL】<br><img alt="" src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/config_smtp_gmail.gif"><br><a target="_blank" href="http://mail.google.com/support/bin/answer.py?answer=13273&amp;topic=13293">Gmail（xxxx@gmail.com）需要先Web登录开通POP3才可使用，如何操作？</a><br><a href="http://qunfa.abot.cn/post/37.html" target="_blank">Gmail帐号被禁止了怎么办？</a><br>遇到客户端不接受用户名密码的情况请参考这里的帮助<a href="http://mail.google.com/support/bin/answer.py?answer=14257" target="_blank">http://mail.google.com/support/bin/answer.py?answer=14257</a><br>出现这种情况一般都是由于Google账户被锁定造成的（备注：是Google账户，而非只是Gmail账户），需要到这里解锁<a href="https://www.google.com/accounts/DisplayUnlockCaptcha" target="_blank">https://www.google.com/accounts/DisplayUnlockCaptcha</a>。之后客户端基本可以正常收发Email了。<br><br><strong>雅虎邮箱</strong> Yahoo.com<br>雅虎邮箱（包括Yahoo.cn，Yahoo.com.cn）要开通SMTP功能（是收费服务），需要先定制来电提醒服务（待定）。<br>Yahoo.com的免费邮箱是现在已经是开通SMTP服务的，可以发送邮件，但是收邮件还是要登录到他们网页上，对应的SMTP信息如下：<br>服务器：smtp.mail.yahoo.com<br>用户名：@前面部分，或者整个Email地址。<br>建议使用SSL支持。<br>雅虎邮箱其他可用邮箱还包括：<strong>yahoo.co.jp、yahoo.ca、yahoo.co.uk、yahoo.com.hk</strong>等，他们都是相互独立的邮件服务器，具体SMTP服务器设置见他们网站上提供的帮助文档，<a href="http://qunfa.abot.cn/post/yahoo-mail-smtp.html" target="_blank">本站收集的部分仅供参考</a>。</p><p><a target="_blank" href="http://ema.abot.cn/"><img alt="" src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/ema_tuiguang_702px.gif" title="邮件营销分析系统-群发邮件统计"></a></p><p><br><strong>AOL电子邮箱</strong> <a target="_blank" href="http://mail.aol.com/">http://mail.aol.com</a> <br>【备注：AOL邮箱服务器在国外，软件配置界面上的“测试”按钮有时候会显示超时，不影响正常使用。】<br>英文版的，不过还是比较稳定的。<br><img alt="" src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/config_smtp_aol_no_ssl.gif"><br><br><br><strong>新浪邮箱 @sina.com<br><script language="JavaScript" src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/goog_468_60.js" type="text/javascript"></script><script type="text/javascript"><!--
+google_ad_client = "pub-4194196199198439";
+/* 468x60, 创建于 10-9-13 */
+google_ad_slot = "9598685064";
+google_ad_width = 468;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript" src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/show_ads.js">
+</script>	
+</strong><br>【最新：最近sina邮箱调整过的，单次连接发送数建议设置为1；新浪邮箱发QQ邮箱最近经常出现丢失或者拒绝投递现象，因此成功率较低，使用sina邮箱发QQ邮箱需要注意。】<br><a target="_blank" href="http://mail.sina.com.cn/help2/client01.html">Sina邮箱（sina.com）请先在web页面登录邮箱，确认邮箱设置的“POP/SMTP设置”开启；新浪VIP邮箱不需要此操作。</a><br>最新申请的新浪邮箱，除了网页激活POP3 / SMTP选项外，至少还要在网页邮箱中发送一封Email，然后才可以再客户端使用SMTP服务，省略这个步骤发出去的邮件一般都是被新浪服务器自动丢弃的（在没有退信的情况下）。<br>密码设置不要过于简单，不要是123456以及111111之类的密码，相对复杂一些。<br><img alt="" src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/config_smtp_sina.gif"><br>-------------------------------<br><strong>新浪CN邮箱 @sina.cn</strong><br>服务器 smtp.sina.cn<br>用户名 @前面部分<br>Sina.cn邮箱需要网页登陆，在右上角Email地址下面，选择“设置”，进入“账户”这个选项页，找到“POP3/SMTP服务”，将状态设置为“开启”，保存并退出。<br><br>Mail邮箱（英文）<br>申请地址为：<a href="http://www.mail.com/" target="_blank">http://www.mail.com</a><br>配置的SMTP信息如下：<br>服务器：smtp.mail.com<br>用户名：@前面部分，或者整个Email地址。<br>建议使用SSL支持。<br><br><strong>GMX邮箱</strong> <a href="http://www.gmx.com/" target="_blank">http://www.gmx.com</a> （最新推荐） <br>【备注：GMX新版本服务器目前是同时支持SSL，因此不一定要选择SSL连接】<br>为英文邮箱，很稳定，可以到主页注册。注册后，在我们软件中输入的信息为：<br>SMTP服务器地址是：mail.gmx.com，用户名为 xxxx@gmx.com。<br><img alt="" src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/config_smtp_gmx.gif"><br><br><strong>中国移动139邮箱</strong> <a target="_blank" href="http://www.139.com/">http://www.139.com</a><br><a target="_blank" href="http://www.139.com/">139邮箱（中国移动）不需要激活SMTP，手机注册登录之后即可使用。</a><br><img alt="" src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/config_smtp_139.gif"><br><br><br><strong>网易邮箱，包括163.com 126.com yeah.net</strong><br>（1）网易邮箱已经重新开发SMTP服务，有的账号申请后 还是需要先Web网页登录激活SMTP/POP服务，但并不是所有账号都需要，因此建议每个都检查。<br>（2）重新开放的网易邮箱SMTP服务，对大批量邮件群发的 限制更加严格，性能一般。<br>（3）网易系列邮箱，包括126、163、yeah以及域名邮箱，对邮件内容的限制过于苛刻，比如邮件内容中出现商业敏感词汇以及HTML代码、http://等内容，都是投递不出去的；同时，包含这些内容的邮件也很难投递进去。<br>（4）126、163、yeah虽然域名不同，但属于同一个邮箱服务器，对于群发垃圾邮件的拦截是相通的。<br>（5）激活SMTP之后，至少在网页上发送一封Email给其他邮箱，内容不限，不然客户端直接发送出去的邮件很容易丢失。<br>（6）密码设置不要过于简单，不要是123456以及111111之类的密码，相对复杂一些。<br><img src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/config_smtp_163.gif" alt="网易邮箱163"><br><br><img src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/config_smtp_126.gif" alt="网易126邮箱"><br><br><img src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/config_smtp_yeah.gif" alt="网易Yeah邮箱"><br><br><strong>台湾PCHome邮箱</strong> <a target="_blank" href="http://mail.pchome.com.tw/">http://mail.pchome.com.tw</a><br>【最新：台湾邮箱投递大陆的邮箱邮件丢失比较大，其他地区暂时没发现有异常】<br>SMTP服务器：smtp.pchome.com.tw 用户名是@前面的部分。<br><img alt="" src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/config_smtp_pchome.gif"><br><br><br><strong>天涯邮箱 tianya.cn</strong><br>申请地址：<a name="天涯邮局" target="_blank" href="http://mail.tianya.cn/">http://mail.tianya.cn/</a><br>SMTP服务器：smtp.tianya.cn<br>用户名：yourid@tianya.cn<br><br><strong>GaWab</strong>&nbsp; 申请地址 <a href="http://www.gawab.com/" target="_blank">http://www.gawab.com</a><br>SMTP地址是：smtp.gawab.com&nbsp; 用户名是@前面的部分。<br><br><strong>Foxmail.com</strong> <a target="_blank" href="http://www.foxmail.com/">http://www.foxmail.com</a> 【最新的服务器不支持申请新账号】<br>Foxmail.com邮箱和QQ.COM邮箱是同一个服务器的不同域名邮箱。<br><a title="Foxmail账户被锁定的解除步骤" href="http://qunfa.abot.cn/post/39.html">Foxmail账户被锁定的解除步骤</a><br><img alt="" src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/config_smtp_foxmail.gif"><br><br><strong>中国经济网</strong> <a target="_blank" href="http://freemail.ce.cn/">http://freemail.ce.cn</a><br>SMTP：freemail.ce.cn<br>用户名：xxxx@ce.cn （带@后面的部分）<br><br><strong>Hainan.net</strong><br>可以直接申请并使用SMTP服务，<a target="_blank" href="http://mail.hainan.net/webmailhainan/register1.jsp">申请页面点击这里</a>；<a target="_blank" href="http://mail.hainan.net/webmailsea/help_foxmail.htm">SMTP配置帮助点击这里</a>。<br>SMTP服务器：smtp.hainan.net<br>用户名：yourid@hainan.net<br><br><strong>3126免费邮箱</strong> <a target="_blank" href="http://www.3126.com/">http://www.3126.com</a><br>POP及SMTP地址分别为pop3.3126.com、smtp.3126.com<br><br>===========参考内容：客户端投递性能一般的服务器=========================<br>部
+分邮箱服务器的帮助文档虽然说明提供SMTP/POP3服务，但是由于过于严格的病毒扫描、垃圾邮件监控等机制，导致从客户端投递Email的功能形态虚
+设，因此总体性能表现较差，比如tom、sohu、21cn等。这类服务器可以适当使用，建议适当配置一些进去比例不要太大，单次连接发送数设置为1~2
+ 。<br><br><strong>搜狐邮箱</strong><br>Sohu邮箱是支持SMTP的，但是很不稳定，包括sogou邮箱，和21cn以及tom一样，不推荐使用。<br>这几个服务器邮箱最大的问题在于基于SMTP连接时候用户身份认证的等待时间很长，需要增大爱博邮件群发系统中的发送间隔微调的值，比如设置为2000，而这样会大大降低了邮件群发的效率。<br>通过这些邮件服务器发送邮件基本都被他们kbsj杀毒软件阻止下来了。<br>如果您发送失败，可<a target="_blank" href="http://mail.sohu.com/info/queryip/">到这里查询IP地址是否被封掉</a>；<a target="_blank" href="http://mail.sohu.com/info/querysender/">到这里查询你的帐户是否在黑名单中</a>。<br>搜狐的VIP邮箱基本都是可以免费试用的（是试用卡），可以到<a target="_blank" href="http://mail.sohu.com/">SOHU闪电邮主页</a>申请。<br><br><br><strong>K65免费邮箱</strong> <a target="_blank" href="http://www.k65.net/">http://www.k65.net<br></a>SMTP服务器为www.k65.net<br><br><strong>和讯免费邮箱</strong> <a target="_blank" href="http://mail.hexun.com/">http://mail.hexun.com</a><br>SMTP服务器为smtp.hexun.com<br><br>【常见问题集锦，更多FAQ请参考 <a href="http://qunfa.abot.cn/post/FAQ.html">http://qunfa.abot.cn/post/FAQ.html</a>】<br><br><img alt="邮件群发" src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/config_smtp_1.gif"> - <img alt="免费下载邮件群发" src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/config_smtp_4.gif"><br><img alt="邮件群发软件" src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/config_smtp_2.gif">&nbsp; - <img alt="邮件群发工具" src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/config_smtp_3.gif"><br><br>=======邮箱注册的说明，不要急于求成============<br>不建议用一些自动工具短时间内申请大批量邮箱帐号，目前的邮件服务器，不单单发送过程中防垃圾，Email申请过程中同样有垃圾邮件预防机制，并且直接影响到申请的Email帐号将来的发送。<br>常规情况下，维持50个左右可用的SMTP账号，每天可以正常发送一万封左右；参考常见问题（FAQ）和使用手册（Manual）的要求配置，这些账号第二天大部分还是可以继续使用的，因此可以适量增加新的SMTP账号，而不需要每天大批量增加。<br><br>=======部分SMTP提供记录客户端发送邮件的问题==============<br>不要使用邮件服务器网站自动的记录SMTP邮件发送记录的功能，这类功能为发送服务器判断该帐号是否大量发送邮件提供了直接证据。<br>另，这些记录的过程与现实的过程也不是同步，特别是短时间内大批发送的时候，投递队列堵塞，延迟很大，甚至直接丢弃。<br><br>====支持外链的网络相册===<br>发送多媒体邮件的时候如果邮件中包含图片，如果没有自己的网站或空间，那么需要支持外链的网络相册。<br><a href="http://www.photobucket.com/">http://www.photobucket.com</a><br>比较稳定的相册&nbsp;（英文）</p><p>&nbsp;</p>
+<br>
+
+<div>
+<script src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/baidu_share_button_utf8.js" type="text/javascript" language="javascript"></script>
+<br><br>
+<script language="JavaScript" type="text/javascript">
+		//document.write('<a href="http://www.tk8.co" target="_blank"><img id="tk8.co" src="http://img.aboter.com/pictures/tk8-heng-1000x60.png" width="900" border="0" title="一分钟建立淘宝客推广网站" /></a>');
+</script>		
+</div>
+<!-- <div id="divTop3"><script src="/a/head_recommend.js" type="text/javascript" language="javascript"></script></div> -->
+<!--<script language="javascript" src="/js/kaoren8.js"></script> -->
+<br>
+
+  </div>  
+<ul class="msg mutuality">
+  <li class="tbname">相关文章:</li>
+  <li class="msgarticle"><p><a href="http://qunfa.abot.cn/post/GroupMailPro.html">爱博邮件群发系统专业版 Version 10.0.1 最新版下载</a>&nbsp;&nbsp;(2012-12-15 17:1:1)</p>
+<p><a href="http://qunfa.abot.cn/post/youjianqunfaruanjian.html">爱博邮件群发系统最新版本</a>&nbsp;&nbsp;(2009-4-21 10:15:27)</p>
+<p><a href="http://qunfa.abot.cn/post/GroupMailPsl.html">爱博邮件群发系统个人版 产品主页</a>&nbsp;&nbsp;(2008-12-10 10:20:45)</p>
+<p><a href="http://qunfa.abot.cn/post/FAQ.html">邮件群发软件使用说明和常见问题（FAQ）</a>&nbsp;&nbsp;(2008-9-9 9:53:9)</p>
+<p><a href="http://qunfa.abot.cn/post/pojie.html">爱博邮件群发系统破解版crack出的问题</a>&nbsp;&nbsp;(2008-7-16 12:36:14)</p>
+<p><a href="http://qunfa.abot.cn/post/gongfuxiongmao.html">功夫熊猫看邮件群发营销要点</a>&nbsp;&nbsp;(2008-7-15 11:36:33)</p>
+<p><a href="http://qunfa.abot.cn/post/download.html">邮件群发软件下载</a>&nbsp;&nbsp;(2008-7-10 11:19:30)</p>
+<p><a href="http://qunfa.abot.cn/post/buy.html">注册购买邮件群发软件</a>&nbsp;&nbsp;(2008-7-10 11:8:42)</p>
+<p><a href="http://qunfa.abot.cn/post/2.html">爱博邮件群发系统——邮件群发软件——工作原理</a>&nbsp;&nbsp;(2008-7-9 11:35:2)</p>
+<p><a href="http://qunfa.abot.cn/post/1.html">常见免费SMTP服务器（结合邮件群发软件）的设置</a>&nbsp;&nbsp;(2008-7-9 11:32:10)</p>
+</li>
+</ul>
+
+  <h5 class="post-tags">Tags: <a href="http://qunfa.abot.cn/catalog.asp?tags=%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91">邮件群发</a>&nbsp;&nbsp;<a href="http://qunfa.abot.cn/catalog.asp?tags=%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E7%9F%A5%E8%AF%86">邮件群发知识</a>&nbsp;&nbsp;<a href="http://qunfa.abot.cn/catalog.asp?tags=%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6">电子邮件</a>&nbsp;&nbsp;<a href="http://qunfa.abot.cn/catalog.asp?tags=%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E4%B8%AA%E4%BA%BA%E7%89%88">邮件群发个人版</a>&nbsp;&nbsp;<a href="http://qunfa.abot.cn/catalog.asp?tags=%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E4%B8%93%E4%B8%9A%E7%89%88">邮件群发专业版</a>&nbsp;&nbsp;<a href="http://qunfa.abot.cn/catalog.asp?tags=%E5%85%8D%E8%B4%B9SMTP">免费SMTP</a>&nbsp;&nbsp;<a href="http://qunfa.abot.cn/catalog.asp?tags=%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6">邮件群发软件</a>&nbsp;&nbsp;<a href="http://qunfa.abot.cn/catalog.asp?tags=Gmail">Gmail</a>&nbsp;&nbsp;</h5>
+  <div class="post-nav"><a class="l" href="http://qunfa.abot.cn/post/36.html">« 如何追踪统计邮件群发的营销效果</a><a class="r" href="http://qunfa.abot.cn/post/windows-duokai.html">爱博软件的Windows多开功能操作说明 »</a></div>    	
+  <h6 class="post-footer"> <!--发布:admin |--> 分类:群发服务器 | <!-- 评论:0 | 引用:0 | -->浏览:<span id="spn11">124507</span>
+    <script language="JavaScript" type="text/javascript">strBatchCount+="spn11=11,"</script>
+  </h6>
+</div>
+<div style="margin-left:15px;" id="Email,邮件,主机,服务器" align="left">
+<!--  如何配置邮件群发软件的发送服务器（SMTP）？ - <b>邮件群发</b> - <script language="javascript" type="text/javascript">document.write('<a href="'+ window.location.href +'">'+window.location.href + '</a>');</script>
+赞助商纯文字推广<br />
+<script language="JavaScript" type="text/javascript">
+		document.write('<img id="a_1_gif" src="/a/a_1.gif" border="0" title="用手机访问http://wap.abot.cn" />');
+		document.write('<img id="a_2_gif" src="/a/a_3.gif" border="0" title="手机小A http://wap.abot.cn" />');
+		document.write('<img id="a_3_gif" src="/a/a_4.gif" border="0" title="手机访问http://wap.abot.cn" />');
+</script>
+
+<a href="http://www.aboter.com/games" target="_blank" title="Flash小游戏在线玩">
+	<script language="JavaScript" type="text/javascript">
+		document.write('<img src="http://www.aboter.com/images/icon_8.gif" height="60" border="0" title="在线试穿比基尼泳衣" />');
+	</script>
+</a>
+  <br /><br />
+-->
+<!-- AddThis Button BEGIN -->
+<!--
+<a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=aboter"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a><script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=aboter"></script>
+-->
+<!-- AddThis Button END -->
+</div>
+<ul class="msg trackback">
+  <li class="tbname"><a href="http://qunfa.abot.cn/cmd.asp?act=gettburl&amp;id=11" target="_blank">点击这里获取该日志的TrackBack引用地址</a></li>
+</ul>
+
+
+<!--
+<div style="display:none;" id="divAjaxComment"></div>
+<div class="post" id="divCommentPost">
+  <p class="posttop"><a name="comment">发表评论:</a></p>
+  <form id="frmSumbit" target="_self" method="post" action="http://qunfa.abot.cn/cmd.asp?act=cmt&key=547f5ab4" >
+    <input type="hidden" name="inpId" id="inpId" value="11" />
+    <input type="hidden" name="inpArticle" id="inpArticle" value="" />
+    <input type="hidden" name="inpLocation" id="inpLocation" value="" />
+    <p>
+      <input type="text" name="inpName" id="inpName" class="text" value="" size="28" tabindex="1" />
+      <label for="inpName">名称(*)</label>
+    </p>
+    <p>
+      <input type="text" name="inpEmail" id="inpEmail" class="text" value="" size="28" tabindex="2" />
+      <label for="inpEmail">邮箱</label>
+    </p>
+    <p>
+      <input type="text" name="inpHomePage" id="inpHomePage" class="text" value="" size="28" tabindex="3" />
+      <label for="inpHomePage">网站链接</label>
+    </p>
+    
+<p>
+  <input type="text" name="inpVerify" id="inpVerify" class="text" value="" size="28" tabindex="4" />
+  <label for="inpVerify">验证(*)</label>
+  <img style="border:1px solid black" src="http://qunfa.abot.cn/function/c_validcode.asp?name=commentvalid" alt="" title=""/></p>
+
+    <p>
+      <label for="txaArticle">正文(*)(留言最长字数:1000)</label>
+    </p>
+    <p>
+      <textarea name="txaArticle" id="txaArticle" onchange="GetActiveText(this.id);" onclick="GetActiveText(this.id);" onfocus="GetActiveText(this.id);" class="text" cols="50" rows="4" tabindex="5" ></textarea>
+    </p>
+    <p>
+      <input name="btnSumbit" type="submit" tabindex="6" value="提交" onclick="JavaScript:return VerifyMessage()" class="button" />
+      <input type="checkbox" name="chkRemember" value="1" id="chkRemember" />
+      <label for="chkRemember">记住我,下次回复时不用重新输入个人信息</label>
+    </p>
+    <script language="JavaScript" type="text/javascript">objActive="txaArticle";ExportUbbFrame();</script>
+  </form>
+  <p class="postbottom">◎欢迎参与讨论，请在这里发表您的看法、交流您的观点。</p>
+  <script language="JavaScript" type="text/javascript">LoadRememberInfo();</script>
+</div>
+
+--> </div>
+      <div id="divSidebar">
+        <div class="function" id="divPrevious">
+          <h3>推荐阅读</h3>
+          <ul>
+            <li><a href="http://qunfa.abot.cn/post/GroupMailPsl.html" title="爱博邮件群发系统个人版 产品主页" target="_blank">爱博邮件群发系统个人版 产品主页</a></li>
+<li><a href="http://qunfa.abot.cn/post/download.html" title="邮件群发软件下载" target="_blank">邮件群发软件下载</a></li>
+<li><a href="http://qunfa.abot.cn/post/youjianqunfaruanjian.html" title="爱博邮件群发系统最新版本" target="_blank">爱博邮件群发系统最新版本</a></li>
+<li><a href="http://qunfa.abot.cn/post/FAQ.html" title="邮件群发软件使用说明和常见问题（FAQ）" target="_blank">邮件群发软件使用说明和常见问题（FAQ）</a></li>
+<li><a href="http://qunfa.abot.cn/post/xuyaoqunfaruanjian.html" title="为什么需要邮件群发软件？" target="_blank">为什么需要邮件群发软件？</a></li>
+<li><a href="http://qunfa.abot.cn/post/youjianqunfa-gmail.html" title="Gmail申请和使用全攻略（邮件群发推荐）" target="_blank">Gmail申请和使用全攻略（邮件群发推荐）</a></li>
+<li><a href="http://qunfa.abot.cn/post/Video-GroupMail.html" title="爱博邮件群发系统视频演示及教程" target="_blank">爱博邮件群发系统视频演示及教程</a></li>
+<li><a href="http://qunfa.abot.cn/post/Video-EmailSearch.html" title="爱博Email搜索圣手视频演示及教程" target="_blank">爱博Email搜索圣手视频演示及教程</a></li>
+<li><a href="http://qunfa.abot.cn/post/17.html" title="免责声明 - 爱博邮件群发系统" target="_blank">免责声明 - 爱博邮件群发系统</a></li>
+<li><a href="http://qunfa.abot.cn/post/youjianqunfa-zhuanye-smtp.html" title="邮件群发软件专业版设置SMTP服务器的问题" target="_blank">邮件群发软件专业版设置SMTP服务器的问题</a></li>
+<li><a href="http://qunfa.abot.cn/post/19.html" title="使用本机SMTP服务的解决方案——用Win2003架设邮件服务器" target="_blank">使用本机SMTP服务的解决方案——用Win2003架设邮件服务器</a></li>
+<li><a href="http://qunfa.abot.cn/post/20.html" title="QQ邮件群发的误区——群发QQ邮箱退信之恼" target="_blank">QQ邮件群发的误区——群发QQ邮箱退信之恼</a></li>
+<li><a href="http://qunfa.abot.cn/post/21.html" title="淘宝网店推广方式支招——邮件群发" target="_blank">淘宝网店推广方式支招——邮件群发</a></li>
+<li><a href="http://qunfa.abot.cn/post/22.html" title="邮件群发常见问题集锦（FAQ）" target="_blank">邮件群发常见问题集锦（FAQ）</a></li>
+<li><a href="http://qunfa.abot.cn/post/24.html" title="如果换了电脑怎么办？注册码是不是就不能用了？" target="_blank">如果换了电脑怎么办？注册码是不是就不能用了？</a></li>
+<li><a href="http://qunfa.abot.cn/post/25.html" title="用邮件群发做网站推广的技巧和注意事项" target="_blank">用邮件群发做网站推广的技巧和注意事项</a></li>
+
+          </ul>
+        </div>
+        <div class="function" id="divPrevious">
+          <h3>最近更新</h3>
+          <ul>
+            <li><a href="http://qunfa.abot.cn/post/peizhi-smtp.html" title="如何配置邮件群发软件的发送服务器（SMTP）？" target="_blank">如何配置邮件群发软件的发送服务器（SMTP）？</a></li>
+<li><a href="http://qunfa.abot.cn/post/103.html" title="关于自设域名邮箱的SPF问题" target="_blank">关于自设域名邮箱的SPF问题</a></li>
+<li><a href="http://qunfa.abot.cn/post/70.html" title="遇到(512)错误信息：Unexpected SMTP Login response信息怎么办？" target="_blank">遇到(512)错误信息：Unexpected SMTP Login response信息怎么办？</a></li>
+<li><a href="http://qunfa.abot.cn/post/youjianqunfa-aol.html" title="AOL邮箱@aol.com申请使用全攻略" target="_blank">AOL邮箱@aol.com申请使用全攻略</a></li>
+<li><a href="http://qunfa.abot.cn/post/37.html" title="Gmail帐号被禁止了怎么办？" target="_blank">Gmail帐号被禁止了怎么办？</a></li>
+<li><a href="http://qunfa.abot.cn/post/19.html" title="使用本机SMTP服务的解决方案——用Win2003架设邮件服务器" target="_blank">使用本机SMTP服务的解决方案——用Win2003架设邮件服务器</a></li>
+<li><a href="http://qunfa.abot.cn/post/39.html" title="Foxmail账户被锁定的解除步骤" target="_blank">Foxmail账户被锁定的解除步骤</a></li>
+<li><a href="http://qunfa.abot.cn/post/youjianqunfa-gmail.html" title="Gmail申请和使用全攻略（邮件群发推荐）" target="_blank">Gmail申请和使用全攻略（邮件群发推荐）</a></li>
+
+          </ul>
+        </div>
+        <div class="function" id="divPrevious">
+          <h3>阅读排行</h3>
+          <ul>
+            <li><a href="http://qunfa.abot.cn/post/peizhi-smtp.html" title="如何配置邮件群发软件的发送服务器（SMTP）？" target="_blank">如何配置邮件群发软件的发送服务器（SMTP）？</a></li>
+<li><a href="http://qunfa.abot.cn/post/youjianqunfa-gmail.html" title="Gmail申请和使用全攻略（邮件群发推荐）" target="_blank">Gmail申请和使用全攻略（邮件群发推荐）</a></li>
+<li><a href="http://qunfa.abot.cn/post/19.html" title="使用本机SMTP服务的解决方案——用Win2003架设邮件服务器" target="_blank">使用本机SMTP服务的解决方案——用Win2003架设邮件服务器</a></li>
+<li><a href="http://qunfa.abot.cn/post/youjianqunfa-aol.html" title="AOL邮箱@aol.com申请使用全攻略" target="_blank">AOL邮箱@aol.com申请使用全攻略</a></li>
+<li><a href="http://qunfa.abot.cn/post/37.html" title="Gmail帐号被禁止了怎么办？" target="_blank">Gmail帐号被禁止了怎么办？</a></li>
+<li><a href="http://qunfa.abot.cn/post/39.html" title="Foxmail账户被锁定的解除步骤" target="_blank">Foxmail账户被锁定的解除步骤</a></li>
+<li><a href="http://qunfa.abot.cn/post/103.html" title="关于自设域名邮箱的SPF问题" target="_blank">关于自设域名邮箱的SPF问题</a></li>
+<li><a href="http://qunfa.abot.cn/post/70.html" title="遇到(512)错误信息：Unexpected SMTP Login response信息怎么办？" target="_blank">遇到(512)错误信息：Unexpected SMTP Login response信息怎么办？</a></li>
+
+          </ul>
+        </div> 
+		
+		<div class="function" id="divCatalog">
+          <h3>产品导航</h3>
+          <ul>
+            <li><img alt="邮件群发" src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/download.gif" height="18" width="18"> <a href="http://qunfa.abot.cn/post/GroupMailPro.html">爱博邮件群发系统专业版</a></li>
+			<li><img alt="邮件群发工具" src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/download.gif" height="18" width="18"> <a href="http://qunfa.abot.cn/post/EmailSearch.html">邮址搜索-Email搜索圣手</a></li>
+			<li><img alt="QQ邮箱搜索机" src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/download.gif" height="18" width="18"> <a href="http://qunfa.abot.cn/post/QQ-Mail-Search.html">爱博QQ邮箱搜索机</a></li>
+			<li><img alt="EDM邮件直投专家" src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/download.gif" height="18" width="18"> <a href="http://qunfa.abot.cn/post/EDMSender.html">EDM邮件直投专家</a></li>
+			<li><img alt="邮件搜索与群发" src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/download.gif" height="18" width="18"> <a href="http://qunfa.abot.cn/post/EmailMgr.html">Email管理专家-过滤Email</a></li>
+          </ul>
+        </div>
+		
+        <div class="function" id="divCatalog">
+          <h3>网站分类</h3>
+          <ul>
+            <li><span class="feed-icon"><a href="http://qunfa.abot.cn/feed.asp?cate=5" target="_blank"><img title="rss" src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/rss.png" alt="rss" height="12" border="0" width="20"></a>&nbsp;</span><a href="http://qunfa.abot.cn/post/cat_5.html">Email搜索<span class="article-nums"> (8)</span></a></li><li><span class="feed-icon"><a href="http://qunfa.abot.cn/feed.asp?cate=6" target="_blank"><img title="rss" src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/rss.png" alt="rss" height="12" border="0" width="20"></a>&nbsp;</span><a href="http://qunfa.abot.cn/post/cat_6.html">群发服务器<span class="article-nums"> (8)</span></a></li><li><span class="feed-icon"><a href="http://qunfa.abot.cn/feed.asp?cate=1" target="_blank"><img title="rss" src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/rss.png" alt="rss" height="12" border="0" width="20"></a>&nbsp;</span><a href="http://qunfa.abot.cn/post/cat_1.html">邮件群发<span class="article-nums"> (61)</span></a></li><li><span class="feed-icon"><a href="http://qunfa.abot.cn/feed.asp?cate=3" target="_blank"><img title="rss" src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/rss.png" alt="rss" height="12" border="0" width="20"></a>&nbsp;</span><a href="http://qunfa.abot.cn/post/cat_3.html">网络营销<span class="article-nums"> (22)</span></a></li><li><span class="feed-icon"><a href="http://qunfa.abot.cn/feed.asp?cate=2" target="_blank"><img title="rss" src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/rss.png" alt="rss" height="12" border="0" width="20"></a>&nbsp;</span><a href="http://qunfa.abot.cn/post/cat_2.html">网站动态<span class="article-nums"> (21)</span></a></li><li><span class="feed-icon"><a href="http://qunfa.abot.cn/feed.asp?cate=4" target="_blank"><img title="rss" src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/rss.png" alt="rss" height="12" border="0" width="20"></a>&nbsp;</span><a href="http://qunfa.abot.cn/post/cat_4.html">电子邮箱<span class="article-nums"> (10)</span></a></li>
+          </ul>
+        </div>
+        <!--
+		<div class="function" id="divPrevious">
+          <h3>最近发表</h3>
+          <ul id="ulPrevious">
+            <script language="JavaScript" type="text/javascript">strBatchInculde+="ulPrevious=previous,"</script>
+          </ul>
+        </div>
+		-->
+      	<div class="function" id="邮件群发网络营销">
+      	<!--google ad-->
+
+      	<!--google ad-->
+      	</div>       
+        	
+      </div>
+      <div id="divBottom">
+        <h2 id="BlogCopyRight">Copyright 2005-2012 <a href="http://www.abot.cn/" target="_blank" title="上海延誉信息技术有限公司">延誉信息</a>. All Rights Reserved. <!-- <a href="http://www.miibeian.gov.cn" target="_blank" target="_blank">沪ICP备06047233号</a> --> <br> <a href="http://www.fmbot.com/" target="_blank" title="Abot Email Marketing">英文版</a> <a href="http://www.abot.cn/agent/" target="_blank" style="font-weight:bold;">代理商专区</a> <a href="http://qunfa.abot.cn/mylist1.html" target="_blank">网站地图</a> <a href="http://qunfa.abot.cn/tags.asp" target="_blank">常用标签</a> <a href="http://qunfa.abot.cn/post/17.html">免责声明</a> <a href="http://qunfa.abot.cn/post/Contact.html">联系我们</a> <br><span style="display:none"><script src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/counter_1.js" type="text/javascript" language="javascript"></script><span style="display:none"><script type="text/javascript" src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/tongji.js"></script><img src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/tongji.gif" height="1" border="0" width="1"><a href="#" onclick="javascript:window.open ('http://tongji.linezing.com/note.html?unit_id=361920&amp;url=http%3A//qunfa.abot.cn/post/peizhi-smtp.html', 'newwindow', 'height=500, width=600, top=100, left=100, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');">给我留言</a><noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/361920/tongji.php"/></a></noscript><script language="javascript" type="text/javascript" src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/1966974.js"></script><a href="http://www.51.la/?1966974" target="_blank"><img alt="51.la 专业、免费、强健的访问统计" src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/icon_10.gif" style="border:none"></a>
+<img style="width:0px;height:0px" src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/go.htm"></span> 站点导航：群发邮件软件 爱博邮件群发系统 Email搜索 <a href="http://qunfa.abot.cn/" title="邮件群发"><b>邮件群发</b></a></span></h2>
+      </div>
+    </div>
+  </div>
+</div>
+<script language="JavaScript" type="text/javascript">
+
+/*		jQuery 1.1 API used		*/
+var RevertID=0;
+$(document).ready(function(){ 
+
+try{
+	var elScript = document.createElement("script");
+	elScript.setAttribute("language", "JavaScript");
+	elScript.setAttribute("src", "http://qunfa.abot.cn/function/c_html_js.asp?act=batch"+unescape("%26")+"view=" + escape(strBatchView)+unescape("%26")+"inculde=" + escape(strBatchInculde)+unescape("%26")+"count=" + escape(strBatchCount));
+	document.getElementsByTagName("body")[0].appendChild(elScript);
+	}
+catch(e){};
+
+	if(document.getElementById("inpVerify")){
+		var objImageValid=$("img[@src^='"+str00+"function/c_validcode.asp?name=commentvalid']");
+		objImageValid.css("cursor","pointer");
+		objImageValid.click( function() {
+				objImageValid.attr("src",str00+"function/c_validcode.asp?name=commentvalid"+"&random="+Math.random());
+		} );
+	}
+});
+</script>
+
+
+<script src="%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88SMTP%EF%BC%89%EF%BC%9F%20-%20%E9%82%AE%E4%BB%B6%E7%BE%A4%E5%8F%91%20%E7%88%B1%E5%8D%9A%E9%82%AE%E4%BB%B6%E8%90%A5%E9%94%80%E8%BD%AF%E4%BB%B6_files/c_html_js.js" language="JavaScript"></script></body></html>
+<!-- 2013-5-4 6:58:20 -->

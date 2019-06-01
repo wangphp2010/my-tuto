@@ -1,0 +1,89 @@
+php实现伪静态化页面的两种方法  天狼星 发布于：2010-09-21     [评:0] 
+方法一： 
+在你的程序初始化时使用如下代码： 
+<?php 
+$Php2Html_FileUrl = $_SERVER["REQUEST_URI"]; 
+$Php2Html_UrlString = str_replace("/", "", strrchr($Php2Html_FileUrl, "/")); 
+$Php2Html_UrlQueryStrList = explode("@", $Php2Html_UrlString); 
+foreach($Php2Html_UrlQueryStrList as $Php2Html_UrlQueryStr) 
+{ 
+$Php2Html_TmpArray = explode("|", $Php2Html_UrlQueryStr); 
+$_GET[$Php2Html_TmpArray[0]] = $Php2Html_TmpArray[1]; 
+} 
+echo '假静态：$_GET变量<br />'; 
+print_r($_GET); 
+?> 
+然后php中调用$_GET变量就像平常一样了。 
+连接使用方式： 
+****.php/param1|1234@param2|4321 
+和****.php?param1=1234&param2=4321一样。 
+
+方法二：通过URL Rewrite实现链接静态化 
+
+我们知道搜索引擎对于静态页面是非常友好的，因此很多网站通过生成静态页面等手段方便爬虫抓取自己网站的内容。但是有时候一些应用并不适合全部静态化，比 如数据变化非常大的论坛/贴吧系统，这时候我们可以通过URL重写来实现链接的伪静态化，即网站对外使用静态化的链接，而内部实际上仍然使用动态页面的 URL形式。比如像这样一个链接：http://www.ci123.com/abc.php?action=a&id=1，我们可以改写成 http://www.ci123.com/abc/a/1.html的形式。这是搜索引擎优化最重要的内容之一，它还有一个额外的好处，可以使页面有一 个永久链接，即便以后网站系统内部链接有变化，通过适当改变Rewrite规则就可以保证原先的外部URL一直有效。 
+
+下面介绍2种简单的Apache+PHP下实现URL重写的方法，第一种适合有服务器配置权限的用户，第二种适合租用空间的用户，也作为我近期的学习心得的整理。 
+
+
+1、对于有服务器配置权限的用户，推荐使用Apache的mod_rewrite模块，这里假设已经安装好mod_rewrite模块。打开Apache的配置文件，找到相应主机的部分，添加以下代码： 
+
+RewriteEngine On 
+RewriteRule ^/abc/([a-z]+)/([0-9]+).html$ /abc.php?action=$1&id=$2 
+
+然后在shell里执行service httpd reload，让Apache重新载入配置就好了。现在在PHP页面里面我们可以把链接写成 abc/a/1.html的形式，Apache在解析这个 URL的时候会rewrite成abc.php?action=a&ampid=1的形式，并返回正确的页面。运用正则表达式我们可以实现几乎任 何我们想要的链接形式，mod_rewrite模块的功能异常强大，这里只是一个及其简单的应用。 
+
+2、对于租用空间的用户，一般都没有办法修改Apache的配置，这里有个变通的方法，原理是这样的：当要传递参数访问PHP 页面时，正常情况下是通过自动全局变量$_GET来获得，比如上面的链接，在页面里可以通过$_GET['action'] 和 $_GET['id'] 来获得，重写URL后就不行了。现在在每个页面里require一个url_rewrite.php文件，里面代码如下： 
+
+$filename = basename($_SERVER['SCRIPT_NAME']); 
+
+if (strtolower($filename) == "abc.php"){ 
+if (!empty($_GET[id])){ 
+$id = intval($_GET[id]); 
+$action = intval($_GET[action]); 
+} 
+else { 
+$nav = $_SERVER["REQUEST_URI"]; 
+$script = $_SERVER["SCRIPT_NAME"]; 
+$nav = ereg_replace("^$script", "", urldecode($nav)); 
+$vars = explode("/", $nav); 
+$action = intval($vars[1]); 
+$id = intval($vars[2]); 
+} 
+} 
+
+这样$action和$id也得到了，页面里链接可以写成abc.php/a/1的形式来访问相应页面。 
+需要注意的是这种方法效率较第一种低，第一种方法是在WEB服务器URL解析过程中实现的，而这里是在PHP页面解析过程里实现的，第2种方法只是变通，不得已而为之，要修改链接形式很不方便也不灵活。
+
+ 
+
+在搜索的时候也发现了另外一种“投机取巧”的方法：
+
+www.piaoping.cn http://bbs.piaoping.cn
+
+用rewrite做的静态页面实际不存在，iisewrite又不稳定经常404，于是就有了这篇文章。
+
+原理：404页面类型用PHP(Asp也可以),结合小偷，实现页面静态化
+
+用discuz!论坛archiver举例:
+404程序页面:http://bbs.pkxp.com/error.php
+演示:http://bbs.pkxp.com/archiver/
+error.php源码：
+
+<?php
+$url = $_SERVER['QUERY_STRING'];
+$url = str_replace("404;","",$url);
+if (!ereg ('archiver', $url))
+echo "404错误"; 
+//404错误页面显示内容
+else {        
+        $url = str_replace("archiver/","archiver/?",$url);
+        $str = file("$url");
+        $count = count($str);
+        for ($i=0;$i<$count;$i++){
+                   $file .= $str[$i];
+                }
+        echo $file;
+//实现archiver/?xx.html 变成archiver/xx.html
+}
+?>
+

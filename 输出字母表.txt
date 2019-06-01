@@ -1,0 +1,4 @@
+for($i=65;$i<91;$i++){ 
+$a .= strtolower(chr($i)) ;//输出小写字母  
+    //echo strtoupper(chr($i)).' ';//输出大写字母  
+}

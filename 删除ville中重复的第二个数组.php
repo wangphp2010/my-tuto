@@ -1,0 +1,87 @@
+<?php
+header("content-type:text/html;charset=utf-8");
+
+require("imoconn.php");
+$sql="SELECT * FROM db415861577.ville  ";
+
+ 
+
+  $chk_ville_result = mysql_query($sql);
+        if (!$chk_ville_result) exit('fail&nbsp;ville ' . mysql_error());
+         while ($chk_ville_array = mysql_fetch_array($chk_ville_result)) {
+			 
+			$suzu2[]=$chk_ville_array['nom']." ".$chk_ville_array['cp']."*".$chk_ville_array['id_ville'];
+			 
+			 
+			 
+			 }
+
+
+foreach($suzu2 as $key=> $val){
+	$key=str_replace("*","",strrchr($val,"*"));
+ $suzu[$key]=str_replace(strrchr($val,"*"),"",$val);
+	}
+  
+ 
+
+
+
+function sx($val)
+{   $val = strtolower($val);
+    $val = str_replace("-","",$val);
+    $val = str_replace("_","",$val);
+    $val = str_replace(" ","",$val);
+$val =strtr($val,"ÄÂÀÁÅÃÉÈËÊÒÓÔÕÖÌÍÎÏÙÚÛÜ","äâàáåãéèëêòóôõöìíîïùúûü");
+
+$val = str_replace("ä","a",$val);
+$val = str_replace("â","a",$val);
+$val = str_replace("à","a",$val);
+$val = str_replace("á","a",$val);
+$val = str_replace("å","a",$val);
+$val = str_replace("ã","a",$val);
+
+$val = str_replace("é","e",$val);
+$val = str_replace("è","e",$val);
+$val = str_replace("ë","e",$val);
+$val = str_replace("ê","e",$val);
+
+$val = str_replace("ò","o",$val);
+$val = str_replace("ó","o",$val);
+$val = str_replace("ô","o",$val);
+$val = str_replace("õ","o",$val);
+$val = str_replace("ö","o",$val);
+
+$val = str_replace("ì","i",$val);
+$val = str_replace("í","i",$val);
+$val = str_replace("î","i",$val);
+$val = str_replace("ï","i",$val);
+
+$val = str_replace("ù","u",$val);
+$val = str_replace("ú","u",$val);
+$val = str_replace("û","u",$val);
+$val = str_replace("ü","u",$val);
+	return $val;
+	}
+	
+foreach ($suzu as & $val) {
+    $val = sx($val);
+
+}
+
+ 
+function FetchRepeatMemberInArray($array) {  
+    // 获取去掉重复数据的数组  
+    $unique_arr = array_unique ( $array );  
+    // 获取重复数据的数组  
+    $repeat_arr = array_diff_assoc ( $array, $unique_arr ); //把重复数据中的第二个整合成数据
+    return $repeat_arr;  
+}
+
+$suzu=FetchRepeatMemberInArray($suzu);
+
+
+
+foreach($suzu as $key=> $val){ $del="DELETE FROM db415861577.ville WHERE id_ville = '$key' LIMIT 1";
+if(mysql_query($del))echo $key,'ok<br >';else echo $key,' ',mysql_error(),"<br >";}
+
+?>

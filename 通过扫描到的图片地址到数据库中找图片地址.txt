@@ -1,0 +1,36 @@
+//通过扫描到的图片地址到数据库中找图片地址
+ $dir=$_GET['dir'];
+if ($handle = opendir($dir)) {
+while (false !== ($fileName = readdir($handle))) {
+	
+if ($fileName != "." && $fileName != "..") {
+//echo $fileName,"<br />";
+$fileName=$dir.'/'.$fileName;
+
+  
+
+$sql=" SELECT * FROM image  WHERE pathtu like '$fileName'   ";
+$result = mysql_query($sql);
+if(!$result)exit(mysql_error());
+while($gb = mysql_fetch_array($result)){
+	$id=$gb['tid'];
+	
+$sqlv=" SELECT * FROM imo  WHERE id = '$id' ";
+$resultv = mysql_query($sqlv);if(!$resultv)exit(mysql_error());
+
+$gbv = mysql_fetch_array($resultv);
+if(!$gbv){
+	$del_sql = "DELETE FROM image    WHERE tid ='$id' ";
+mysql_query($del_sql);
+echo "delete $fileName is ok <br />";
+	}else echo " $fileName is exist <br />";
+
+	
+	
+	
+	}
+
+}
+}
+}
+//先通过扫描到的图片到数据库中找图片地

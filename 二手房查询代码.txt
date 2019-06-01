@@ -1,0 +1,61 @@
+<?
+$conn=mysql_connect("localhost","root","");
+$db=mysql_select_db("lingyun");
+$query="select * from message where tradetype='".$tradetype."'"; //交易类型，如出租，出售
+$SQL=$SQL . "wuye='" . $wuye . "'";
+if($housetype!="不限"){
+$query.=" && housetype='".$housetype."'"; //房屋类型，如二室一厅，三室二厅
+}
+if($degree!="不限"){
+$query.=" && degree='".$degree."'"; //新旧程度
+}
+if($wuye!="不限"){
+$query.=" && wuye='".$wuye."'"; //物业类型 如住房，商铺
+}
+if($price2!=""){
+switch($price1){
+case "大于":
+$query.=" && price>'".$price2."'"; //价格
+break;
+case "等于":
+$query.=" && price='".$price2."'";
+break;
+case "小于":
+$query.=" && price<'".$price2."'";
+break;
+}
+}
+if($area2!=""){
+switch($area1){
+case "大于":
+$query.=" && area>'".$area2."'"; //面积
+break;
+case "等于":
+$query.=" && area='".$area2."'";
+break;
+case "小于":
+$query.=" && area<'".$area2."'";
+break;
+}
+}
+switch($pubdate){ //发布日期
+case "本星期内":
+$query.=" && TO_DAYS(NOW()) - TO_DAYS(date)<=7";
+break;
+case "一个月内":
+$query.=" && TO_DAYS(NOW()) - TO_DAYS(date)<=30";
+break;
+case "三个月内":
+$query.=" && TO_DAYS(NOW()) - TO_DAYS(date)<=91";
+break;
+case "六个月内":
+$query.=" && TO_DAYS(NOW()) - TO_DAYS(date)<=183";
+break;
+}
+if($address!=""){
+$query.=" && address like '%$address%'"; //地址
+}
+if(!$page){
+$page=1;
+}
+?> 

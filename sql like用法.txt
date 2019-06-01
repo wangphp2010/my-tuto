@@ -1,0 +1,35 @@
+SQL LIKE 通配符的用法
+_    与任意单字符匹配
+ 
+%    与包含一个或多个字符的字符串匹配
+ 
+[ ]  与特定范围（例如，[a-f]）或特定集（例如，[abcdef]）中的任意单字符匹配。
+ 
+[^]  与特定范围（例如，[^a-f]）或特定集（例如，[^abcdef]）之外的任意单字符匹配。
+ 使用like比较字，加上SQL里的通配符，请参考以下：
+a.. LIKE 'Mc%' 将搜索以字母 Mc 开头的所有字符串（如 McBadden）。
+b.. LIKE '%inger' 将搜索以字母 inger 结尾的所有字符串（如 Ringer、
+Stringer）。
+c.. LIKE '%en%' 将搜索在任何位置包含字母 en 的所有字符串（如 Bennet、
+Green、McBadden）。
+d.. LIKE '_heryl' 将搜索以字母 heryl 结尾的所有六个字母的名称（如 Cheryl、
+Sheryl）。
+e.. LIKE '[CK]ars[eo]n' 将搜索下列字符串：Carsen、Karsen、Carson 和 Karson
+（如 Carson）。
+f.. LIKE '[M-Z]inger' 将搜索以字符串 inger 结尾、以从 M 到 Z 的任何单个字
+母开头的所有名称（如 Ringer）。
+g.. LIKE 'M[^c]%' 将搜索以字母 M 开头，并且第二个字母不是 c 的所有名称（如
+MacFeather）。
+
+ 
+ 
+例子:
+? WHERE FirstName LIKE '_im' 可以找到所有三个字母的、以 im 结尾的名字（例如，Jim、Tim）。 
+ 
+? WHERE LastName LIKE '%stein' 可以找到姓以 stein 结尾的所有员工。 
+ 
+? WHERE LastName LIKE '%stein%' 可以找到姓中任意位置包括 stein 的所有员工。 
+ 
+? WHERE FirstName LIKE '[JT]im' 可以找到三个字母的、以 im 结尾并以 J 或 T 开始的名字（即仅有 Jim 和 Tim） 
+ 
+? WHERE LastName LIKE 'm[^c]%' 可以找到以 m 开始的、后面的（第二个）字母不为 c 的所有姓。

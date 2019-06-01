@@ -1,0 +1,63 @@
+只能在本地使用
+<?php
+    $stream = file_get_contents('1.jpg');//上传1.jpg 这里不能是临时地址
+    $len = strlen($stream);
+ 
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, "http://localhost/monpub/2.php");
+    curl_setopt($ch, CURLOPT_POST, 1);//启用POST提交
+    curl_setopt($ch, CURLOPT_PORT, 80); //设置端口
+    curl_setopt($ch,CURLOPT_POSTFIELDS,$stream);
+    curl_exec($ch);
+    curl_close($ch);
+	
+?>
+<img name="" src="wowo.jpg" width="50" height="50" alt="" />
+ 
+ <?php
+  /*2.php代码
+    $str = file_get_contents("php://input");
+    file_put_contents("wowo.jpg",$str);//上传到这里
+
+*/
+
+?>
+
+
+第二种方法-----------------------------------------------------------------------------
+
+<?php
+header('content-type:text/html;charset=utf8');
+
+ 
+$ch = curl_init();
+
+//加@符号curl就会把它当成是文件上传处理
+$data = array('img'=>'@'. dirname(__FILE__).'/1.jpg');
+curl_setopt($ch,CURLOPT_URL,"http://localhost/monpub/2.php");
+curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+curl_setopt($ch,CURLOPT_POST,true);
+curl_setopt($ch,CURLOPT_POSTFIELDS,$data);
+$result = curl_exec($ch);
+curl_close($ch);
+echo json_decode($result);
+ 
+?>
+
+
+2.php
+
+<?php
+if($_FILES){
+ $filename = $_FILES['img']['name'];
+ $tmpname = $_FILES['img']['tmp_name'];
+ if(move_uploaded_file($tmpname,dirname(__FILE__).'/im/'.$filename)){
+  echo json_encode('上传成功');
+ }else{
+  $data = json_encode($_FILES);
+  echo $data;
+ }
+}
+
+?>
+

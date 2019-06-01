@@ -1,0 +1,8 @@
+﻿$mot=trim($mot);
+$maj=$mot[0];
+$maj = strtr($maj, "äâàáåãéèëêòóôõöøìíîïùúûüýñçþÿæœðø","ÄÂÀÁÅÃÉÈËÊÒÓÔÕÖØÌÍÎÏÙÚÛÜÝÑÇÞÝÆŒÐØ");
+$mot = substr_replace($mot,$maj,0,1);
+$mot=utf8_encode($mot);
+$mot=ucfirst($mot);
+return $mot;
+}

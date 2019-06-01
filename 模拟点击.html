@@ -1,0 +1,18 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<h3>请单击“提交”，测试提交按钮的单击事件也被触发了。</h3>  
+<button id="btn">提交</button>  
+<form action="" method="get" id="form">  
+  <input type="text" name="site" value="www.woiweb.net" readonly/>  
+  <input id="subbtn" type="submit" value="先别点击此按钮提交" onclick="alert('我已经提交了');"/>  
+</form>  
+ 
+
+<script type="text/javascript">  
+  var sub = document.getElementById("subbtn");  
+  var btn = document.getElementById("btn");  
+//通用方法  
+btn.onclick = function() {  
+sub.click();  
+}  
+</script>  

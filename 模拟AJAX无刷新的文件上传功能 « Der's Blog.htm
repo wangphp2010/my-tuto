@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<!-- saved from url=(0159)http://www.ueder.net/2011/11/02/%e6%a8%a1%e6%8b%9fajax%e6%97%a0%e5%88%b7%e6%96%b0%e7%9a%84%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0%e5%8a%9f%e8%83%bd/#comment-10058 -->
+<html><head profile="http://gmpg.org/xfn/11"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="google-site-verification" content="7o0IZqtic7ut9AFnF_y3E-BZDiuK2IxeOlDrB7no5Bo">
+<title>
+模拟AJAX无刷新的文件上传功能 « Der's Blog</title>
+<meta name="description" content="Der&#39;s Blog，学无止境－专注于html、css、js等前端技术 ">
+
+<link type="text/css" rel="stylesheet" href="./模拟AJAX无刷新的文件上传功能 « Der's Blog_files/style.css">
+
+<link rel="icon" href="http://www.ueder.net/wp-content/themes/DerStyle/images/ueder_ico.ico" type="image/x-icon">
+<link rel="pingback" href="http://www.ueder.net/xmlrpc.php">
+<script type="text/javascript">
+//预加载sprite
+new Image().src = "http://www.ueder.net/wp-content/themes/DerStyle/images/sprites.png";
+</script>
+<link rel="alternate" type="application/rss+xml" title="Der&#39;s Blog » feed" href="http://www.ueder.net/feed/">
+<link rel="alternate" type="application/rss+xml" title="Der&#39;s Blog » 评论 feed" href="http://www.ueder.net/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Der&#39;s Blog » 模拟AJAX无刷新的文件上传功能 评论 feed" href="http://www.ueder.net/2011/11/02/%e6%a8%a1%e6%8b%9fajax%e6%97%a0%e5%88%b7%e6%96%b0%e7%9a%84%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0%e5%8a%9f%e8%83%bd/feed/">
+<script type="text/javascript" src="./模拟AJAX无刷新的文件上传功能 « Der's Blog_files/comment-reply.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.ueder.net/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.ueder.net/wp-includes/wlwmanifest.xml"> 
+<link rel="index" title="Der&#39;s Blog" href="http://www.ueder.net/">
+<link rel="start" title="Google Chrome不支持本地添加cookie" href="http://www.ueder.net/2010/05/11/google-chrome%e4%b8%8d%e6%94%af%e6%8c%81%e6%9c%ac%e5%9c%b0%e6%b7%bb%e5%8a%a0cookie/">
+<link rel="prev" title="正则表达式的技巧总结" href="http://www.ueder.net/2011/07/07/%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f%e7%9a%84%e6%8a%80%e5%b7%a7%e6%80%bb%e7%bb%93/">
+<link rel="next" title="关于递归在项目中的几种常用应用" href="http://www.ueder.net/2011/11/04/%e5%85%b3%e4%ba%8e%e9%80%92%e5%bd%92%e5%9c%a8%e9%a1%b9%e7%9b%ae%e4%b8%ad%e7%9a%84%e5%87%a0%e7%a7%8d%e5%b8%b8%e7%94%a8%e5%ba%94%e7%94%a8/">
+<meta name="generator" content="WordPress 3.0.1">
+<link rel="canonical" href="http://www.ueder.net/2011/11/02/%e6%a8%a1%e6%8b%9fajax%e6%97%a0%e5%88%b7%e6%96%b0%e7%9a%84%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0%e5%8a%9f%e8%83%bd/">
+<link rel="shortlink" href="http://www.ueder.net/?p=720">
+<script type="text/javascript">
+function runcode_open_new(element)
+{
+	var code = document.getElementById(element).value;
+	var win = window.open("", "", "");
+	win.opener = null;
+	win.document.write(code);
+	win.document.close();
+}
+function saveCode(obj,filename)
+{
+	if(!document.all){alert("您的浏览器不支持此方法。");	return;
+	}
+    var winname = window.open("", "", "top=10000,left=10000");
+    winname.document.open("text/html", "replace");
+    winname.document.write(document.getElementById(obj).value);
+    winname.document.execCommand("saveas", "", filename + ".htm");
+    winname.close();
+}
+function runcode_copy(element)
+{
+	var codeobj = document.getElementById(element);
+	var meintext = codeobj.value;
+	try {
+	 if (window.clipboardData)
+	   {
+	  
+	   // the IE-manier
+	   window.clipboardData.setData("Text", meintext);
+	  
+	   // waarschijnlijk niet de beste manier om Moz/NS te detecteren;
+	   // het is mij echter onbekend vanaf welke versie dit precies werkt:
+	   }
+	   else if (window.netscape)
+	   {
+	  
+	   // dit is belangrijk maar staat nergens duidelijk vermeld:
+	   // you have to sign the code to enable this, or see notes below
+	   netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+	  
+	   // maak een interface naar het clipboard
+	   var clip = Components.classes['@mozilla.org/widget/clipboard;1']
+					 .createInstance(Components.interfaces.nsIClipboard);
+	   if (!clip) return;
+	  
+	   // maak een transferable
+	   var trans = Components.classes['@mozilla.org/widget/transferable;1']
+					  .createInstance(Components.interfaces.nsITransferable);
+	   if (!trans) return;
+	  
+	   // specificeer wat voor soort data we op willen halen; text in dit geval
+	   trans.addDataFlavor('text/unicode');
+	  
+	   // om de data uit de transferable te halen hebben we 2 nieuwe objecten
+	   // nodig om het in op te slaan
+	   var str = new Object();
+	   var len = new Object();
+	  
+	   var str = Components.classes["@mozilla.org/supports-string;1"]
+					.createInstance(Components.interfaces.nsISupportsString);
+	  
+	   var copytext=meintext;
+	  
+	   str.data=copytext;
+	  
+	   trans.setTransferData("text/unicode",str,copytext.length*2);
+	  
+	   var clipid=Components.interfaces.nsIClipboard;
+	  
+	   if (!clip) return false;
+	  
+	   clip.setData(trans,null,clipid.kGlobalClipboard);
+	  
+	   }
+	} catch (e) {alert('因为安全策略的原因，此项功能已被您的浏览器禁止。关闭此窗口，然后按下“Ctrl+C”组合键完成复制。');		codeobj.focus();
+	}
+	codeobj.select();
+   return false;
+}
+</script><!--[if lte IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+</head>
+<body>
+<div id="container">
+<header id="header">
+	<h1><a href="http://www.ueder.net/"> <img alt="Der" src="./模拟AJAX无刷新的文件上传功能 « Der's Blog_files/uederico.png">
+		Der's Blog		</a></h1>
+	<p class="border"></p>
+	<h2>
+		学无止境－专注于html、css、js等前端技术	</h2>
+</header>
+<nav id="menuholder">
+	<ul class="menu">
+		<li class="index"><a href="http://www.ueder.net/">首页</a></li>
+			<li class="cat-item cat-item-49"><a href="http://www.ueder.net/category/html-css/" title="查看 html/css 下的所有文章">html/css</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://www.ueder.net/category/java-script/" title="查看 Javascript 下的所有文章">Javascript</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://www.ueder.net/category/front-optimization/" title="查看 web-performance 下的所有文章">web-performance</a>
+</li>
+	<li class="cat-item cat-item-97"><a href="http://www.ueder.net/category/%e7%a2%8e%e7%a2%8e%e5%bf%b5/" title="查看 碎碎念 下的所有文章">碎碎念</a>
+</li>
+	</ul>
+	<form method="get" id="searchform" action="http://www.ueder.net/">
+	<button type="submit" id="searchsubmit">搜 索</button><input type="search" x-webkit-speech="true" value="" placeholder="搜索" name="s" id="s">
+</form></nav>
+
+<section class="clearfix">
+	<article class="main">
+		<article id="content">
+						<div class="post-720 post type-post hentry category-java-script tag-upload tag-87" id="post-720">
+				<h2 class="singletitle">
+					模拟AJAX无刷新的文件上传功能				</h2>
+				<div class="postmetadata">
+					<p><span class="commborder ico_date">
+						2011-11-02						</span> <span class="commborder ico_cate">
+						<a href="http://www.ueder.net/category/java-script/" title="查看 Javascript 的全部文章" rel="category tag">Javascript</a>						</span><span class="commborder ico_author">
+						Der						</span><span class="commborder ico_cmt">
+						<a href="http://www.ueder.net/2011/11/02/%e6%a8%a1%e6%8b%9fajax%e6%97%a0%e5%88%b7%e6%96%b0%e7%9a%84%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0%e5%8a%9f%e8%83%bd/#comments" title="模拟AJAX无刷新的文件上传功能 上的评论">2 条评论</a>						</span> <span class="commborder">
+						Tags: <a href="http://www.ueder.net/tag/upload/" rel="tag">upload</a>, <a href="http://www.ueder.net/tag/%e6%97%a0%e5%88%b7%e6%96%b0%e4%b8%8a%e4%bc%a0/" rel="tag">无刷新上传</a>						</span> <span>
+						Views:  <span class="c_blue">1,882</span>						</span></p>
+				</div>
+				<div class="entry">
+					<p>传统的文件上传功能一般是用form包一个input:file直接提交到后端进行处理，form须指定enctype=”multipart/form-data”，代码如下：</p>
+<a href="http://www.ueder.net/2011/11/02/%e6%a8%a1%e6%8b%9fajax%e6%97%a0%e5%88%b7%e6%96%b0%e7%9a%84%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0%e5%8a%9f%e8%83%bd/#" class="fs_12">[隐藏代码]</a><pre class="prettyprint"><span class="tag">&lt;form</span><span class="pln"> </span><span class="atn">action</span><span class="pun">=</span><span class="atv">"test.php"</span><span class="pln"> </span><span class="atn">target</span><span class="pun">=</span><span class="atv">""</span><span class="pln"> </span><span class="atn">method</span><span class="pun">=</span><span class="atv">"post"</span><span class="pln"> </span><span class="atn">enctype</span><span class="pun">=</span><span class="atv">"multipart/form-data"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"file"</span><span class="pln"> </span><span class="atn">name</span><span class="pun">=</span><span class="atv">"file"</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"file"</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"submit"</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"J_submit"</span><span class="pln"> &nbsp;</span><span class="atn">value</span><span class="pun">=</span><span class="atv">"submit"</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln"><br></span><span class="tag">&lt;/form&gt;</span></pre>
+<p>在ajax盛行的现时，提交form再刷新整个页面，显得用户体验不佳，然而ajax与后端通信 只能传送字符串，是无法传递实体文件的，所以用ajax是无法实现直接文件上传的，这里提供一个解决方案就是用一个实时创建的隐藏iframe来完成上传功能， 具体的原理是，在点击提交按钮时，动态的生成一个隐藏iframe加入到页面上，并且 将form 的 target指向该隐藏iframe，服务端就接收到上传的file文件，并进行相应的操作，然后将返回结果返回到隐藏的iframe里面，这时我们可以与后端开发约定返回结果的格式，可以是json格式，便于我们前端操作，然后前端部分就可以用iframe.contentWindow.document.body.innerHTML来获取后端返回的结果，进行相应的parseJSON处理，即可像处理ajax返回的json一样，处理数据。。。直接贴源代码了(ps:代码是基于jQuery库的)：</p>
+<a href="http://www.ueder.net/2011/11/02/%e6%a8%a1%e6%8b%9fajax%e6%97%a0%e5%88%b7%e6%96%b0%e7%9a%84%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0%e5%8a%9f%e8%83%bd/#" class="fs_12">[隐藏代码]</a><pre class="prettyprint"><span class="com">/**<br>&nbsp;* 模拟ajax无刷新文件上传<br>&nbsp;*/</span><span class="pln"><br></span><span class="kwd">var</span><span class="pln"> fileUpLoad </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">config</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br><br>&nbsp; &nbsp; </span><span class="kwd">var</span><span class="pln"> ifr </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; fm </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; defConfig </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; submitBtn</span><span class="pun">:</span><span class="pln"> $</span><span class="pun">(</span><span class="str">'#J_submit'</span><span class="pun">),</span><span class="pln"> </span><span class="com">//提交按钮</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; complete</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">response</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{},</span><span class="pln"> </span><span class="com">//上传成功后回调</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; beforeUpLoad</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{},</span><span class="pln"> </span><span class="com">//点击提交未上传时回调</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; afterUpLoad</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{}</span><span class="pln"> </span><span class="com">//点击提交上传后回调</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="pun">};</span><span class="pln"><br><br>&nbsp; &nbsp; </span><span class="com">//静态变量</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">var</span><span class="pln"> IFRAME_NAME </span><span class="pun">=</span><span class="pln"> </span><span class="str">'fileUpLoadIframe'</span><span class="pun">;</span><span class="pln"><br><br>&nbsp; &nbsp; </span><span class="com">//配置</span><span class="pln"><br>&nbsp; &nbsp; config </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">.</span><span class="pln">extend</span><span class="pun">(</span><span class="pln">defConfig</span><span class="pun">,</span><span class="pln"> config</span><span class="pun">);</span><span class="pln"><br><br>&nbsp; &nbsp; </span><span class="com">//绑定submit事件</span><span class="pln"><br>&nbsp; &nbsp; config</span><span class="pun">.</span><span class="pln">submitBtn</span><span class="pun">.</span><span class="pln">bind</span><span class="pun">(</span><span class="str">'click'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">e</span><span class="pun">){</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; e</span><span class="pun">.</span><span class="pln">preventDefault</span><span class="pun">();</span><span class="pln"><br><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="com">//点击提交前触发事件, 函数返回false可阻止提交表单，用于file为空判断</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">config</span><span class="pun">.</span><span class="pln">beforeUpLoad</span><span class="pun">.</span><span class="pln">call</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">)</span><span class="pln"> </span><span class="pun">===</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="kwd">return</span><span class="pun">;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="pun">}</span><span class="pln"><br><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="com">//生成一个隐藏iframe，并设置form的target为该iframe，模拟ajax效果</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; ifr </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">(</span><span class="str">'&lt;iframe name="'</span><span class="pun">+</span><span class="pln"> IFRAME_NAME </span><span class="pun">+</span><span class="str">'" id="'</span><span class="pun">+</span><span class="pln"> IFRAME_NAME </span><span class="pun">+</span><span class="str">'" style="display:none;"&gt;&lt;/iframe&gt;'</span><span class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; fm </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">form</span><span class="pun">;</span><span class="pln"><br><br>&nbsp; &nbsp; &nbsp; &nbsp; ifr</span><span class="pun">.</span><span class="pln">appendTo</span><span class="pun">(</span><span class="pln">$</span><span class="pun">(</span><span class="str">'body'</span><span class="pun">));</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; fm</span><span class="pun">.</span><span class="pln">target </span><span class="pun">=</span><span class="pln"> IFRAME_NAME</span><span class="pun">;</span><span class="pln"> </span><span class="com">//target目标设为ifr</span><span class="pln"><br><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="com">//上传完毕iframe onload事件</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; ifr</span><span class="pun">.</span><span class="pln">load</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(){</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="kwd">var</span><span class="pln"> response </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">contentWindow</span><span class="pun">.</span><span class="pln">document</span><span class="pun">.</span><span class="pln">body</span><span class="pun">.</span><span class="pln">innerHTML</span><span class="pun">;</span><span class="pln"><br><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; config</span><span class="pun">.</span><span class="pln">complete</span><span class="pun">.</span><span class="pln">call</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">,</span><span class="pln"> response</span><span class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ifr</span><span class="pun">.</span><span class="pln">remove</span><span class="pun">();</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ifr </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">;</span><span class="pln"> </span><span class="com">//清除引用</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="pun">});</span><span class="pln"><br><br>&nbsp; &nbsp; &nbsp; &nbsp; fm</span><span class="pun">.</span><span class="pln">submit</span><span class="pun">();</span><span class="pln"> </span><span class="com">//提交表单</span><span class="pln"><br><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="com">//点击提交后触发事件</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; config</span><span class="pun">.</span><span class="pln">afterUpLoad</span><span class="pun">.</span><span class="pln">call</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">);</span><span class="pln"><br><br>&nbsp; &nbsp; </span><span class="pun">});</span><span class="pln"><br><br></span><span class="pun">};</span></pre>
+<p><span id="more-720"></span><br>
+页面调用是：</p>
+<a href="http://www.ueder.net/2011/11/02/%e6%a8%a1%e6%8b%9fajax%e6%97%a0%e5%88%b7%e6%96%b0%e7%9a%84%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0%e5%8a%9f%e8%83%bd/#" class="fs_12">[隐藏代码]</a><pre class="prettyprint"><span class="pln">fileUpLoad</span><span class="pun">({</span><span class="pln"><br>&nbsp; &nbsp; submitBtn</span><span class="pun">:</span><span class="pln"> $</span><span class="pun">(</span><span class="str">'#J_submit'</span><span class="pun">),</span><span class="pln"><br>&nbsp; &nbsp; complete</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">response</span><span class="pun">){</span><span class="pln"> </span><span class="com">//上传成功后处理回调</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="kwd">var</span><span class="pln"> d </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">.</span><span class="pln">parseJSON</span><span class="pun">(</span><span class="pln">response</span><span class="pun">);</span><span class="pln"><br><br>&nbsp; &nbsp; &nbsp; &nbsp; alert</span><span class="pun">(</span><span class="str">'返回成功'</span><span class="pun">)</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">d</span><span class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">},</span><span class="pln"><br>&nbsp; &nbsp; beforeUpLoad</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; alert</span><span class="pun">(</span><span class="str">'上传前'</span><span class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">},</span><span class="pln"><br>&nbsp; &nbsp; afterUpLoad</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; alert</span><span class="pun">(</span><span class="str">'上传后'</span><span class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">}</span><span class="pln"><br></span><span class="pun">});</span></pre>
+<p>而对于需要实时显示上传进度条的应用，则可以考虑form提交后用ajax实时轮询的方式向后端取文件上传的进度，来进行前端页面进度渲染，另一种方式则是基于flash上传，这里就不详细展开了。。</p>
+				</div>
+			</div>
+			<!-- You can start editing here. -->
+<div id="commentssection">
+		<h3 id="comments">
+		共2条评论	</h3>
+	<ol class="commentlist">
+		<li class="comment even thread-even depth-1" id="li-comment-9454">
+	<div id="comment-9454">
+		<div class="commentmetadata"> <img alt="" src="./模拟AJAX无刷新的文件上传功能 « Der's Blog_files/f5f68903e32786502311b817fd6a5cdb" class="avatar avatar-32 photo" height="32" width="32"> <span class="fb"><cite class="fn">luogang</cite> 发表于：			2012/01/10 上午 10:59			</span> <span class="rp">
+			<a rel="nofollow" class="comment-reply-link" href="http://www.ueder.net/2011/11/02/%e6%a8%a1%e6%8b%9fajax%e6%97%a0%e5%88%b7%e6%96%b0%e7%9a%84%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0%e5%8a%9f%e8%83%bd/?replytocom=9454#respond" onclick="return addComment.moveForm(&quot;comment-9454&quot;, &quot;9454&quot;, &quot;respond&quot;, &quot;720&quot;)">回复</a>						</span> </div>
+		<!-- .comment-author .vcard -->
+				<!-- .comment-meta .commentmetadata -->
+		<div class="comment-body">
+			<p>你好，在 Firefox 中 submit 后，为什么 ifr.load()，会触发两次？</p>
+		</div>
+		<!-- .reply -->
+	</div>
+	<!-- #comment-##  -->
+	</li>
+<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-10058">
+	<div id="comment-10058">
+		<div class="commentmetadata"> <img alt="" src="./模拟AJAX无刷新的文件上传功能 « Der's Blog_files/6870333529bb5c0da1b00fd4a26cea52" class="avatar avatar-32 photo" height="32" width="32"> <span class="fb"><cite class="fn"><a href="http://monpub.com/" rel="external nofollow" class="url">fonds de commerce</a></cite> 发表于：			2012/11/18 下午 7:51			</span> <span class="rp">
+			<a rel="nofollow" class="comment-reply-link" href="http://www.ueder.net/2011/11/02/%e6%a8%a1%e6%8b%9fajax%e6%97%a0%e5%88%b7%e6%96%b0%e7%9a%84%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0%e5%8a%9f%e8%83%bd/?replytocom=10058#respond" onclick="return addComment.moveForm(&quot;comment-10058&quot;, &quot;10058&quot;, &quot;respond&quot;, &quot;720&quot;)">回复</a>						</span> </div>
+		<!-- .comment-author .vcard -->
+				<!-- .comment-meta .commentmetadata -->
+		<div class="comment-body">
+			<p>你好<br>
+我见过一种是需要ｊｑｕｅｒｙ的<br>
+请问你的需要吗?因为没有测试国呢　?</p>
+		</div>
+		<!-- .reply -->
+	</div>
+	<!-- #comment-##  -->
+	</li>
+	</ol>
+				<div id="respond">
+		<h3>
+			发表评论			<a rel="nofollow" id="cancel-comment-reply-link" href="http://www.ueder.net/2011/11/02/%e6%a8%a1%e6%8b%9fajax%e6%97%a0%e5%88%b7%e6%96%b0%e7%9a%84%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0%e5%8a%9f%e8%83%bd/#respond" style="display:none;">点击这里取消回复。</a>		</h3>
+				<form action="http://www.ueder.net/wp-comments-post.php" method="post" id="commentform">
+						<p>
+				<input type="text" class="cmt_ipt" name="author" id="author" value="fonds de commerce" size="22" tabindex="1">
+				<label for="author">你的昵称(必填)
+										</label>
+			</p>
+			<p>
+				<input type="text" class="cmt_ipt" name="email" id="email" value="monpub@monpub.com" size="22" tabindex="2">
+				<label for="email">电子邮件(必填)
+										</label>
+			</p>
+			<p>
+				<input type="text" class="cmt_ipt" name="url" id="url" value="http://monpub.com/" size="22" tabindex="3">
+				<label for="url">你的网站</label>
+			</p>
+						<!--<p>你可以使用以下html标签: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></p>-->
+			<p>
+				<textarea name="comment" class="cmt_ipt" id="commentbox" cols="100%" rows="10" tabindex="4"></textarea>
+			</p>
+			
+			
+			
+			<p>
+				<input type="text" tabindex="4" id="captcha_code" value="" size="10">
+ 				<label for="captcha_code">请输入下面的验证码</label>
+			 </p>
+			
+			<p>
+				<span id="randomCode" class="randomCode">1061</span> 
+			</p>
+			
+			<p>
+				<input type="button" id="formSubmit" class="submit" tabindex="5" value="提 交">
+				<input type="hidden" name="comment_post_ID" value="720" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+			</p>
+			
+		</form>
+			</div>
+	</div>
+<script type="text/javascript">
+//验证码
+(function(){
+	//
+	var _submit = document.getElementById("formSubmit"),
+		_form = document.getElementById("commentform"),
+		_randomCode = document.getElementById("randomCode"),
+		_codeipt = document.getElementById("captcha_code"),
+		_author = document.getElementById("author"),
+		_email = document.getElementById("email"),
+		_commentbox = document.getElementById("commentbox");
+	
+	//提示语
+	var str = [
+			"你的昵称还没填呢!",
+			"你的邮箱还没填呢!",
+			"你的评论内容还没填呢!",
+			"验证码还未填写或填写错误！"
+		];
+		
+	//生成随机四位
+	function randomNum(){
+		var result = "";
+		for(var i=0; i<4; i++){
+			result += Math.floor(Math.random()*10).toString();
+		}
+		return result;
+	}
+	
+	//去前后空格
+	function trim(str){
+		return str.replace(/(^\s*)|(\s*$)/g, "");
+	}
+	
+	//填充验证码
+	_randomCode.innerHTML = randomNum();
+	_randomCode.onclick = function(){
+		this.innerHTML = randomNum();
+	}
+	
+	//提交前表单判断
+	_submit.onclick = function(){
+		
+		if(_author && trim(_author.value) === ""){
+			alert(str[0])	;
+			_author.focus();
+		}else if(_email && trim(_email.value) === ""){
+			alert(str[1]);
+			_email.focus();
+		}else if(_commentbox && trim(_commentbox.value) === ""){
+			alert(str[2]);
+			_commentbox.focus();
+		}else if(_codeipt && trim(_codeipt.value) !== _randomCode.innerHTML){
+			alert(str[3]);
+			_codeipt.focus();
+			_randomCode.innerHTML = randomNum();
+		}else if(_codeipt && trim(_codeipt.value) === _randomCode.innerHTML){
+			_form.submit();	
+		}
+	}
+})();
+</script>
+					</article>
+	</article>
+	
+<aside id="sidebar">
+	
+	<figure id="text-3" class="widget-container widget_text"><h3 class="widget-title">关于我</h3>
+			<div class="textwidget"><p class="headpic"><a class="noeffect" href="http://www.ueder.net/resume/resume.html"><img width="170" height="188" alt="Der(崇志)" src="./模拟AJAX无刷新的文件上传功能 « Der's Blog_files/headpic.jpg"></a></p>
+<p>{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name : "Der(崇志)",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;job : "前端开发@一淘UX(杭州)",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;github : "<a href="https://github.com/chongzhi" target="_blank">github.com/chongzhi</a>",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mail : "der0846@gmail.com",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;微博 : "<a href="http://weibo.com/derr" target="_blank">weibo.com/derr</a>"<br>
+} </p>
+</div>
+		</figure>
+<figure id="text-5" class="widget-container widget_text">			<div class="textwidget"><div class="d2pic">
+<a href="http://adc.taobao.com/" target="_blank"><img src="./模拟AJAX无刷新的文件上传功能 « Der's Blog_files/d2_180x250.jpg" width="180" height="250" alt="ADC·阿里技术嘉年华（7月7-8日·杭州）"></a>
+</div></div>
+		</figure>
+<figure id="archives-3" class="widget-container widget_archive"><h3 class="widget-title">归档</h3>
+		<ul>
+			<li><a href="http://www.ueder.net/2012/05/" title="2012 年 五月">2012 年 五月</a>&nbsp;(1)</li>
+	<li><a href="http://www.ueder.net/2012/04/" title="2012 年 四月">2012 年 四月</a>&nbsp;(1)</li>
+	<li><a href="http://www.ueder.net/2012/03/" title="2012 年 三月">2012 年 三月</a>&nbsp;(1)</li>
+	<li><a href="http://www.ueder.net/2012/02/" title="2012 年 二月">2012 年 二月</a>&nbsp;(1)</li>
+	<li><a href="http://www.ueder.net/2011/11/" title="2011 年 十一月">2011 年 十一月</a>&nbsp;(3)</li>
+	<li><a href="http://www.ueder.net/2011/07/" title="2011 年 七月">2011 年 七月</a>&nbsp;(1)</li>
+	<li><a href="http://www.ueder.net/2011/03/" title="2011 年 三月">2011 年 三月</a>&nbsp;(2)</li>
+	<li><a href="http://www.ueder.net/2011/01/" title="2011 年 一月">2011 年 一月</a>&nbsp;(5)</li>
+	<li><a href="http://www.ueder.net/2010/12/" title="2010 年 十二月">2010 年 十二月</a>&nbsp;(3)</li>
+	<li><a href="http://www.ueder.net/2010/11/" title="2010 年 十一月">2010 年 十一月</a>&nbsp;(3)</li>
+	<li><a href="http://www.ueder.net/2010/10/" title="2010 年 十月">2010 年 十月</a>&nbsp;(4)</li>
+	<li><a href="http://www.ueder.net/2010/09/" title="2010 年 九月">2010 年 九月</a>&nbsp;(2)</li>
+	<li><a href="http://www.ueder.net/2010/05/" title="2010 年 五月">2010 年 五月</a>&nbsp;(1)</li>
+	<li><a href="http://www.ueder.net/2010/04/" title="2010 年 四月">2010 年 四月</a>&nbsp;(2)</li>
+	<li><a href="http://www.ueder.net/2010/01/" title="2010 年 一月">2010 年 一月</a>&nbsp;(1)</li>
+	<li><a href="http://www.ueder.net/2009/06/" title="2009 年 六月">2009 年 六月</a>&nbsp;(4)</li>
+	<li><a href="http://www.ueder.net/2009/04/" title="2009 年 四月">2009 年 四月</a>&nbsp;(4)</li>
+	<li><a href="http://www.ueder.net/2009/03/" title="2009 年 三月">2009 年 三月</a>&nbsp;(9)</li>
+	<li><a href="http://www.ueder.net/2009/02/" title="2009 年 二月">2009 年 二月</a>&nbsp;(11)</li>
+		</ul>
+</figure>
+<figure id="views-3" class="widget-container widget_views"><h3 class="widget-title">最热</h3>
+<ul>
+<li><a href="http://www.ueder.net/2009/04/06/%e8%ae%a9ie8%e4%bd%bf%e7%94%a8ie7%e8%bf%9b%e8%a1%8c%e6%b8%b2%e6%9f%93/" title="让IE8使用IE7进行渲染">让IE8使用IE7进行渲染</a>[18,512]</li><li><a href="http://www.ueder.net/2010/05/11/google-chrome%e4%b8%8d%e6%94%af%e6%8c%81%e6%9c%ac%e5%9c%b0%e6%b7%bb%e5%8a%a0cookie/" title="Google Chrome不支持本地添加...">Google Chrome不支持本地添加...</a>[14,430]</li><li><a href="http://www.ueder.net/2010/04/22/%e5%9f%ba%e4%ba%8ecookie%e7%9a%84%e6%b5%8f%e8%a7%88%e8%ae%b0%e5%bd%95%e5%8a%9f%e8%83%bd/" title="基于cookie的浏览记录功能">基于cookie的浏览记录功能</a>[10,732]</li><li><a href="http://www.ueder.net/2012/03/08/%e4%bb%8enotepad-%e5%88%b0-sublime-text2/" title="从notepad++ 到 sublime...">从notepad++ 到 sublime...</a>[10,294]</li><li><a href="http://www.ueder.net/2009/04/17/javascript%e5%88%a4%e6%96%ad%e6%b5%8f%e8%a7%88%e5%99%a8%e7%b1%bb%e5%9e%8b%e5%8f%8a%e7%89%88%e6%9c%ac/" title="JavaScript判断浏览器类型及版本">JavaScript判断浏览器类型及版本</a>[7,714]</li><li><a href="http://www.ueder.net/2009/02/24/%e5%9b%be%e7%89%87%e5%9c%a8%e5%9b%ba%e5%ae%9a%e5%ae%b9%e5%99%a8%e4%b8%ad%e5%9e%82%e7%9b%b4%e5%b1%85%e4%b8%ad/" title="图片在固定容器中垂直居中">图片在固定容器中垂直居中</a>[7,579]</li></ul>
+</figure>
+<figure id="recent-comments-3" class="widget-container widget_recent_comments"><h3 class="widget-title">评论</h3>
+<ul id="recentcomments"><li class="recentcomments"><a href="http://monpub.com/" rel="external nofollow" class="url">fonds de commerce</a> 在 <a href="http://www.ueder.net/2011/11/02/%e6%a8%a1%e6%8b%9fajax%e6%97%a0%e5%88%b7%e6%96%b0%e7%9a%84%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0%e5%8a%9f%e8%83%bd/comment-page-1/#comment-10058">模拟AJAX无刷新的文件上传功能</a> 上的评论</li><li class="recentcomments"><a href="http://www.ueder.net/" rel="external nofollow" class="url">Der</a> 在 <a href="http://www.ueder.net/2012/03/08/%e4%bb%8enotepad-%e5%88%b0-sublime-text2/comment-page-1/#comment-10057">从notepad++ 到 sublime text2</a> 上的评论</li><li class="recentcomments"><a href="http://www.topn.net/" rel="external nofollow" class="url">kingmf</a> 在 <a href="http://www.ueder.net/2012/03/08/%e4%bb%8enotepad-%e5%88%b0-sublime-text2/comment-page-1/#comment-10056">从notepad++ 到 sublime text2</a> 上的评论</li><li class="recentcomments"><a href="http://shanks.my.phpcloud.com/?p=251" rel="external nofollow" class="url">sublime text2 开发必用说明 « shanks的海贼船</a> 在 <a href="http://www.ueder.net/2012/03/08/%e4%bb%8enotepad-%e5%88%b0-sublime-text2/comment-page-1/#comment-10055">从notepad++ 到 sublime text2</a> 上的评论</li><li class="recentcomments"><a href="http://sd/" rel="external nofollow" class="url">sd</a> 在 <a href="http://www.ueder.net/2012/04/02/%e7%ae%80%e6%b4%81%e7%9a%84html5-slides-show%e7%b1%bbppt/comment-page-1/#comment-10054">简洁的html5 Slides Show(类ppt)</a> 上的评论</li></ul></figure>
+<figure id="linkcat-37" class="widget-container widget_links"><h3 class="widget-title">一些学习资源</h3>
+
+	<ul class="xoxo blogroll">
+<li><a href="http://www.52css.com/" target="_blank">52CSS</a></li>
+<li><a href="http://www.javaeye.com/news/category/web" target="_blank">JavaEye前端</a></li>
+<li><a href="http://www.php100.com/" title="php100" target="_blank">php100</a></li>
+<li><a href="http://www.yslow.net/" target="_blank">yslow优化</a></li>
+<li><a href="http://www.ux265.net/" rel="co-worker" title="前端导航" target="_blank">前端导航</a></li>
+<li><a href="http://www.cnblogs.com/" title="博客园" target="_blank">博客园</a></li>
+<li><a href="http://www.51js.com/" target="_blank">无忧脚本</a></li>
+<li><a href="http://www.w3cn.org/" target="_blank">网页设计师</a></li>
+<li><a href="http://www.blueidea.com/" target="_blank">蓝色理想</a></li>
+
+	</ul>
+</figure>
+
+<figure id="linkcat-2" class="widget-container widget_links"><h3 class="widget-title">前端博客群</h3>
+
+	<ul class="xoxo blogroll">
+<li><a href="http://33ue.cn/" target="_blank">33ue</a></li>
+<li><a href="http://www.d2forum.org/" title="D2前端论坛" target="_blank">D2前端论坛</a></li>
+<li><a href="http://www.jslover.com/" title="jslover – 前端开发" target="_blank">jslover</a></li>
+<li><a href="http://iloves.org/" rel="friend colleague" title="SBB" target="_blank">SBB'blog</a></li>
+<li><a href="http://www.w3ctech.com/" title="W3C标准交流" target="_blank">W3C标准交流</a></li>
+<li><a href="http://www.trans4fun.org/" rel="colleague" title="前端翻译小站" target="_blank">前端翻译小站</a></li>
+<li><a href="http://www.qianduan.net/" title="前端观察" target="_blank">前端观察</a></li>
+<li><a href="http://blog.iblack7.com/" rel="colleague" title="呱呱叫" target="_blank">呱呱</a></li>
+<li><a href="http://www.aoao.org.cn/blog/" target="_blank">嗷嗷</a></li>
+<li><a href="http://www.planabc.net/" title="前端" target="_blank">怿飞</a></li>
+<li><a href="http://www.f2er.net/" target="_blank">情封</a></li>
+<li><a href="http://hi.baidu.com/wolongxzg/home" rel="colleague" target="_blank">文长</a></li>
+<li><a href="http://www.twinsenliang.net/" target="_blank">梁璟彪</a></li>
+<li><a href="http://www.baisohu.net/" title="白搜狐点内特" target="_blank">白搜狐点内特</a></li>
+<li><a href="http://blog.cyj.me/" rel="colleague" title="逸才" target="_blank">逸才</a></li>
+<li><a href="http://www.3yew.com/" rel="colleague" title="进福博客" target="_blank">阿福</a></li>
+
+	</ul>
+</figure>
+
+<figure id="linkcat-91" class="widget-container widget_links"><h3 class="widget-title">前端工具</h3>
+
+	<ul class="xoxo blogroll">
+<li><a href="http://caniuse.com/" target="_blank">html5-css3支持程度</a></li>
+<li><a href="http://tool.chinaz.com/Tools/JsFormat.aspx" title="js/html/css格式化" target="_blank">js/html/css格式化</a></li>
+<li><a href="http://www.w3schools.com/" title="w3school" target="_blank">w3school</a></li>
+
+	</ul>
+</figure>
+
+<figure id="linkcat-36" class="widget-container widget_links"><h3 class="widget-title">官方UED群</h3>
+
+	<ul class="xoxo blogroll">
+<li><a href="http://ued.dukuai.com/blog/" target="_blank">19Lou.com DKUED</a></li>
+<li><a href="http://fed.renren.com/" target="_blank">人人网FED</a></li>
+<li><a href="http://ued.koubei.com/" target="_blank">口碑网UED</a></li>
+<li><a href="http://ued.alipay.com/" target="_blank">支付宝UED</a></li>
+<li><a href="http://ued.taobao.com/" target="_blank">淘宝UED</a></li>
+<li><a href="http://www.baiduux.com/" target="_blank">百度泛用户体验团队</a></li>
+<li><a href="http://cdc.tencent.com/" target="_blank">腾讯CDC</a></li>
+<li><a href="http://isd.tencent.com/" target="_blank">腾讯ISD</a></li>
+<li><a href="http://china.aliued.com/" target="_blank">阿里巴巴（中文站）</a></li>
+
+	</ul>
+</figure>
+
+
+	<!-- #primary .widget-area -->
+	</aside>
+</section>
+<footer id="footer">
+	<!-- To help keep our themes 100% free, please consider leaving our credit links intact. Thanks! -->
+	<p>© 2012		Der's Blog		| Powered by <a href="http://wordpress.org/">WordPress</a> | Theme by <a href="http://www.ueder.net/" title="free collection of WordPress themes">Der</a> |
+		<script type="text/javascript">
+			var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+			document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F631be946163a6f307bc2a462d846113b' type='text/javascript'%3E%3C/script%3E"));
+		</script><script src="./模拟AJAX无刷新的文件上传功能 « Der's Blog_files/h.js" type="text/javascript"></script><a href="http://tongji.baidu.com/hm-web/welcome/ico?s=631be946163a6f307bc2a462d846113b" target="_blank">百度统计</a>
+		</p>
+</footer>
+<!-- end footer -->
+</div>
+<!-- end container -->
+<script type="text/javascript" src="./模拟AJAX无刷新的文件上传功能 « Der's Blog_files/DerStyle&f=prettify.js,jquery-1.7.2.js,DerApp.js"></script>
+<!--[if lte ie 6]>
+<script src="http://www.ueder.net/wp-content/themes/DerStyle/fuckie6/fuckie6.min.js"></script>
+<![endif]-->
+
+
+<!--toolbar-->
+<div class="toolbar" id="toolbar">
+	<div class="toolbar_arr" id="toolbar_arr" title="点击展开/收起toolbar">&gt;&gt;</div>
+	<div class="toolbar_cnt" id="toolbar_cnt"> <span>┊</span> <a href="http://www.ueder.net/wp-admin/">后台管理</a> <span>┊</span> <a href="https://github.com/chongzhi" target="_blank">github</a> <a href="http://www.ueder.net/feed/">RSS</a> <span>┊</span>  <a href="http://t.sina.com.cn/derr" target="_blank">微博</a> <a href="http://www.ueder.net/resume/resume.html">简历</a></div>
+</div>
+<!--/toolbar-->
+
+<!-- rss -->
+<div class="rss-bar">
+	<a href="http://www.ueder.net/feed/">RSS订阅</a>
+</div>
+<!-- /rss -->
+
+
+
+<div class="floathandle"><p class="gobtm" title="去底部">去底部</p><p class="gotop" title="去顶部">去顶部</p></div></body></html>

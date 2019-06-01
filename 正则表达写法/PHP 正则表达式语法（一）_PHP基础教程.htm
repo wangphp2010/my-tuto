@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0049)http://www.5idev.com/p-php_regular_syntax_1.shtml -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>PHP 正则表达式语法（一）_PHP基础教程</title><link rel="icon" href="http://www.5idev.com/favicon.ico" type="image/x-icon"><link rel="shortcut icon" href="http://www.5idev.com/favicon.ico" type="image/x-icon"><meta name="robots" content="all"><meta name="keywords" content="PHP 正则表达式,正则表达式语法,元字符"><meta name="description" content="PHP 正则表达式语法（一） 在某些应用中，往往有时候需要根据一定的规则来匹配（查找）确认一些字符串，用于描述这些规则的工具就是正则表达式。在上面的例子中，^ 、\d 及 $ 等这些符号，代表了特定的匹配意义，我们称之为元字符 ..."><meta name="copyright" content="Copyright (c) 2010 by 5idev.com"><meta name="Author" content="5idev.com"><link rel="stylesheet" type="text/css" href="./PHP 正则表达式语法（一）_PHP基础教程_files/default.css"><script type="text/javascript">
+function addCookie(){　 // 加入收藏夹
+	if (document.all){
+		window.external.addFavorite('http://www.5idev.com', 'Web开发在线教程 - 我爱开发网');
+	}else if (window.sidebar){
+		window.sidebar.addPanel('Web开发在线教程 - 我爱开发网', 'http://www.5idev.com', "");
+	}
+}
+</script></head><body><div id="container"><div id="header"><!--logo--><div id="logo"><a href="http://www.5idev.com/" title="Web开发在线教程" class="logo"><img src="./PHP 正则表达式语法（一）_PHP基础教程_files/logo.gif" alt="Web开发在线教程"></a></div><!--ad--><div class="ad-header"><script type="text/javascript">/*728*90，顶部*/ var cpro_id = 'u1063809';</script><script src="./PHP 正则表达式语法（一）_PHP基础教程_files/c.js" type="text/javascript"></script><script type="text/javascript" charset="utf-8" src="./PHP 正则表达式语法（一）_PHP基础教程_files/ecom"></script><div style="display:none">-</div> <iframe id="cproIframe1" src="./PHP 正则表达式语法（一）_PHP基础教程_files/uijs.htm" width="728" height="90" align="center,center" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" allowtransparency="true"></iframe></div></div><!--header end--><div id="top-nav"><div id="search"><form name="srcform" method="get" action="http://www.google.com.hk/search"><p><input type="hidden" name="sitesearch" value="5idev.com"></p><p><input type="hidden" name="tn" value="baiduadv"></p><p><input id="searched_content" name="as_q" type="text" title="在此输入搜索内容"><input id="submit" type="image" src="./PHP 正则表达式语法（一）_PHP基础教程_files/search_bottom.gif"></p></form></div><div id="nav-menu"><ul><li><a href="http://www.5idev.com/download">下载中心</a></li><li><a href="http://www.5idev.com/link">开发资源</a></li></ul></div></div><script type="text/javascript" src="./PHP 正则表达式语法（一）_PHP基础教程_files/jquery-1.4.2.min.js"></script><script type="text/javascript">
+$(function(){
+	$('#send').click(function(event){
+		var nickname,linkurl,postcontent,aid
+		nickname = $.trim($('#nickname').val());
+		linkurl = $.trim($('#linkurl').val());
+		postcontent = $.trim($('#postcontent').val());
+		//aid = $('#aid').val();
+		aid = 125;
+		if(nickname==""){
+			alert("您的称呼不能为空！");
+			$('#nickname').focus();
+			return false;
+		}
+		if(postcontent==""){
+			alert("评论内容不能为空！");
+			$('#postcontent').focus();
+			return false;
+		}
+		$('#result').html('<img src="/Public/Images/loading.gif" />正在发送数据……');
+		//alert(aid);
+		$.ajax({
+			type:'post',
+			url:'/Article-addComment.shtml',
+			data:'nickname='+nickname+'&linkurl='+linkurl+'&postcontent='+postcontent+'&aid='+aid,
+			dataType:'json',
+			success:function(msg){
+			//alert("test");
+				if(msg.status==1){
+					$("#result").html(msg.info).fadeOut(4000);
+					$("#form1")[0].reset();
+					//$('#send').attr("disabled","true");
+					//alert(msg.data.content);
+					$('#comment').append('<div class="comment-list"><p class="title">刚才&nbsp;<span class="time">['+msg.data.createtime+']</span>&nbsp;<span class="bold">'+msg.data.nickname+'</span></p><p class="comment-content">'+msg.data.content+'</p></div>'); 
+				} else {
+				//alert("test");
+					$("#result").html(msg.info);
+				}
+			}
+			
+		});
+		//return false;
+	})
+})
+
+</script><div id="content"><div id="sidebar"><div class="left-list"><div class="l-top-bg"></div><div class="hot-list"><p class="cat-title">PHP基础教程 列表
+</p><ul><li><a href="http://www.5idev.com/p-php_install.shtml">PHP 开发环境安装</a></li><li><a href="http://www.5idev.com/p-php_syntax.shtml">PHP 基本语法</a></li><li><a href="http://www.5idev.com/p-php_types.shtml">PHP 数据类型</a></li><li><a href="http://www.5idev.com/p-php_operators.shtml">PHP 运算符</a></li><li><a href="http://www.5idev.com/p-php_expressions.shtml">PHP 表达式</a></li><li><a href="http://www.5idev.com/p-php_while.shtml">PHP 循环控制</a></li><li><a href="http://www.5idev.com/p-php_if_else.shtml">PHP 流程控制</a></li><li><a href="http://www.5idev.com/p-php_function.shtml">PHP 函数</a></li><li><a href="http://www.5idev.com/p-php_string.shtml">PHP 字符串处理</a></li><li><a href="http://www.5idev.com/p-php_array.shtml">PHP 数组</a></li><li><a href="http://www.5idev.com/p-php_time.shtml">PHP 时间日期</a></li><li><a href="http://www.5idev.com/p-php_form.shtml">PHP 表单</a></li><li><a href="http://www.5idev.com/p-php_file.shtml">PHP 文件处理</a></li><li><a href="http://www.5idev.com/p-php_file_upload.shtml">PHP 文件上传</a></li><li><a href="http://www.5idev.com/p-php_mkdir.shtml">PHP 目录</a></li><li><a href="http://www.5idev.com/p-php_cookie.shtml">PHP Cookie</a></li><li><a href="http://www.5idev.com/p-php_session.shtml">PHP Session</a></li><li><a href="http://www.5idev.com/p-php_gd.shtml">PHP 图像处理</a></li><li><a href="http://www.5idev.com/p-php_math.shtml">PHP 数学计算</a></li><li><a href="http://www.5idev.com/p-php_include.shtml">PHP 文件包含</a></li><li><a href="http://www.5idev.com/p-php_server.shtml">PHP $_SERVER 与 $_ENV</a></li><li><a href="./PHP 正则表达式语法（一）_PHP基础教程_files/PHP 正则表达式语法（一）_PHP基础教程.htm">PHP 正则表达式</a></li><li><a href="http://www.5idev.com/p-php_class_object.shtml">PHP 类与对象</a></li></ul></div><div class="l-bottom-bg"></div></div><!--leftlist--><div class="left-menu"><img src="./PHP 正则表达式语法（一）_PHP基础教程_files/corner_top.gif" class="bg-top"><img src="./PHP 正则表达式语法（一）_PHP基础教程_files/corner_bottom.gif" class="bg-bottom"><p class="cat-title">相关参考课程</p><ul><li><a href="http://www.5idev.com/php-mysql.shtml">PHP+MySQL数据库教程</a></li><li><a href="http://www.5idev.com/php-practice.shtml">PHP实践教程</a></li><li><a href="http://www.5idev.com/thinkphp">ThinkPHP教程</a></li></ul></div><div><script type="text/javascript">/*250*250_侧边*/ var cpro_id = 'u818053';</script><script src="./PHP 正则表达式语法（一）_PHP基础教程_files/c(1).js" type="text/javascript"></script><script type="text/javascript" charset="utf-8" src="./PHP 正则表达式语法（一）_PHP基础教程_files/ecom(1)"></script><div style="display:none">-</div> <iframe id="cproIframe2" src="./PHP 正则表达式语法（一）_PHP基础教程_files/uijs(2).htm" width="250" height="250" align="center,center" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" allowtransparency="true"></iframe></div></div><!--leftsidebar--><div id="main-content"><div class="nav"><p><img src="./PHP 正则表达式语法（一）_PHP基础教程_files/home.gif"><a href="http://www.5idev.com/">5iDev</a>&nbsp;&nbsp;»&nbsp;&nbsp;<a href="http://www.5idev.com/php">PHP教程</a>&nbsp;&nbsp;»&nbsp;&nbsp;<a href="http://www.5idev.com/php-phpbase.shtml">PHP基础教程</a>&nbsp;&nbsp;»&nbsp;&nbsp;PHP 正则表达式语法（一）</p></div><div class="article"><h1>PHP 正则表达式语法（一）</h1><h2>正则表达式简介</h2>
+<p>
+在某些应用中，往往有时候需要根据一定的规则来匹配（查找）确认一些字符串，如要求用户输入的 QQ 号码为数字且至少 5 位。用于描述这些规则的工具就是正则表达式。
+</p>
+<h3>最简单的匹配</h3>
+<p>
+最简单的匹配就是直接给定字符匹配。如用字符 a 去匹配 aabab ，则会匹配出 3 个结果，分别是字符串中的第 1，2 和第 4 个字符。这种匹配是最简单的情况，但往往实际处理中会复杂得多，如下面的 “QQ号码为数字且至少5位” ，其对应的正则表达式为：
+</p>
+<pre>^\d{5,}$
+</pre>
+<p>
+该正则表达式就描述需要确定的内容为至少 5 位以上的数字。我们来具体看看该表达式是怎么描述这一规则的：
+</p>
+<ol>
+<li>^：表示匹配字符串的开始，也即该字符串是独立的开始而不是包含在某个字符串之内</li>
+<li>\d：表示匹配数字</li>
+<li>{5,}：表示至少匹配5位及以上</li>
+<li>$：表示匹配字符串的结束，也即该字符串是独立的结束</li>
+</ol>
+<p>
+现在就很清楚了，该正则表达式综合起来就是匹配 5 位以上的连续数字，且有独立的开始和结束，对于少于 5 位的数字，或者不是以数字开始和结尾的如 a123456b 这样都是无效的。
+</p>
+<p>
+从该例子可以看出，正则表达式是从左至右描述的。
+</p>
+<p>
+同样，如果要匹配移动号码的正则表达式为：
+</p>
+<pre>^1\d{10}$
+</pre>
+<h3>提示</h3>
+<p>
+由于对正则表达式的匹配结果，在很多情况下都不是那么确定，所以最好下载一些辅助工具用于测试正则表达式的匹配结果。这类工具如 Match Tracer、RegExBuilder 等，以及其他类似的工具也可。
+</p>
+<h2>元字符</h2>
+<p>
+在上面的例子中，^ 、\d 及 $ 等这些符号，代表了特定的匹配意义，我们称之为元字符，常用的元字符如下：
+</p>
+<table class="table">
+<tbody><tr>
+<th width="15%">元字符</th>
+<th>说明</th>
+</tr>
+<tr>
+<td>.</td>
+<td>匹配除换行符意外的任意字符</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>匹配字母或数字或下划线</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>匹配任意的空白符</td>
+</tr>
+<tr>
+<td>\d</td>
+<td>匹配数字</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>匹配单词的开始或结束</td>
+</tr>
+<tr>
+<td>^</td>
+<td>匹配字符串的开始</td>
+</tr>
+<tr>
+<td>$</td>
+<td>匹配字符串的结束</td>
+</tr>
+<tr>
+<td>[x]</td>
+<td>匹配x字符，如<abc>匹配字符串中的 a、b 和 c 字符</abc></td>
+</tr>
+<tr>
+<td>\W</td>
+<td>\w的反义，即匹配任意非字母，数字，下划线和汉字的字符</td>
+</tr>
+<tr>
+<td>\S</td>
+<td>\s的反义，即匹配任意非空白符的字符</td>
+</tr>
+<tr>
+<td>\D</td>
+<td>\d的反义，即匹配任意非数字的字符</td>
+</tr>
+<tr>
+<td>\B</td>
+<td>\b的反义，即不是单词开头或结束的位置</td>
+</tr>
+<tr>
+<td>[^x]</td>
+<td>匹配除了 x 意外的任意字符，如 [^abc] 匹配除了 abc 这几个字母之外的任意字符</td>
+</tr>
+</tbody></table>
+<h3>提示</h3>
+<ol>
+<li>当我们要匹配这些元字符的时候，我们需要用到字符转义功能，同样正则表达式里面用 \ 来表示转义，如要匹配 . 符号，则需要用 \. ，否则 . 会被解释成“除换行符外的任意字符”。当然，要匹配 \ ，则需要写成 \\ </li>
+<li>连续的数字或字母可以用 – 符号连接起来，如 <a-z> 匹配所有的小写字母，[1-5] 匹配 1 至 5 这 5 个数字</a-z></li>
+</ol></div><div class="article-list"><p class="bold">本章节内容共分 6 部分：</p><ol><li>1. 
+PHP 正则表达式语法（一）</li><li>2. 
+<a href="file:///C:/Inetpub/wwwroot/monpub/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%86%99%E6%B3%95/PHP%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%AD%E6%B3%95%EF%BC%88%E4%B8%80%EF%BC%89_PHP%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B.htm">PHP 正则表达式语法（二）</a></li><li>3. 
+<a href="http://www.5idev.com/p-php_preg_match.shtml">PHP 正则表达式匹配 preg_match 与 preg_match_all 函数</a></li><li>4. 
+<a href="http://www.5idev.com/p-php_preg_replace.shtml">PHP 正则表达式替换 preg_replace 函数</a></li><li>5. 
+<a href="http://www.5idev.com/p-php_preg_split.shtml">PHP 正则表达式分割 preg_split 与 split 函数</a></li><li>6. 
+<a href="http://www.5idev.com/p-php_regular_expressions.shtml">PHP 常用正则表达式整理</a></li></ol></div><div class="pn"><ul><li><a href="http://www.5idev.com/p-php_server.shtml" title="上一节 : PHP 服务器变量 $_SERVER" class="pre">上一节</a></li><li><a href="http://www.5idev.com/p-php_class_object.shtml" title="下一节 : PHP 类与对象" class="next">下一节</a></li></ul></div><div class="ad-360buy-bottom"><script type="text/javascript">/*640*60_首页底部*/ var cpro_id = 'u817898';</script><script src="./PHP 正则表达式语法（一）_PHP基础教程_files/c(1).js" type="text/javascript"></script><script type="text/javascript" charset="utf-8" src="./PHP 正则表达式语法（一）_PHP基础教程_files/ecom(2)"></script><div style="display:none">-</div> <iframe id="cproIframe3" src="./PHP 正则表达式语法（一）_PHP基础教程_files/uijs(1).htm" width="640" height="60" align="center,center" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" allowtransparency="true"></iframe></div><div id="comment"><!--评论列表--><h3 class="comment-title">查看评论</h3><div class="comment-list"><p class="title">
+#1楼&nbsp;<span class="time">[2011-10-11 18:10]</span>&nbsp;
+<span class="bold">仲达</span></p><p class="comment-content">仲达领兵十万直取成都</p><p class="title">
+#2楼&nbsp;<span class="time">[2011-10-11 18:11]</span>&nbsp;
+<span class="bold">仲达</span></p><p class="comment-content">尔的文章还不错。。。</p><p class="title">
+#3楼&nbsp;<span class="time">[2011-12-25 21:02]</span>&nbsp;
+<span class="bold">alex</span></p><p class="comment-content">很不错的文章，谢谢。</p><p class="title">
+#4楼&nbsp;<span class="time">[2012-02-23 18:28]</span>&nbsp;
+<span class="bold">hbeimf</span></p><p class="comment-content">学习了</p><p class="title">
+#5楼&nbsp;<span class="time">[2012-03-05 20:37]</span>&nbsp;
+<span class="bold">JBoy1009</span></p><p class="comment-content">很不错&nbsp;留着做个笔记</p><p class="title">
+#6楼&nbsp;<span class="time">[2012-03-05 23:19]</span>&nbsp;
+<span class="bold">jixueqi</span></p><p class="comment-content">这个正好用的上。</p><p class="title">
+#7楼&nbsp;<span class="time">[2012-03-08 13:52]</span>&nbsp;
+<span class="bold">pop</span></p><p class="comment-content">mark一下</p><p class="title">
+#8楼&nbsp;<span class="time">[2012-03-30 16:23]</span>&nbsp;
+<span class="bold">travishu</span></p><p class="comment-content">不错&nbsp;认真看了一边&nbsp;&nbsp;&nbsp;&nbsp;正在学习</p><p class="title">
+#9楼&nbsp;<span class="time">[2012-03-30 16:25]</span>&nbsp;
+<span class="bold">尉聊子</span></p><p class="comment-content">有正则表达式软件就好了</p><p class="title">
+#10楼&nbsp;<span class="time">[2012-05-12 13:50]</span>&nbsp;
+<span class="bold">xiaoziit</span></p><p class="comment-content">收藏了</p><p class="title">
+#11楼&nbsp;<span class="time">[2012-06-13 14:24]</span>&nbsp;
+<span class="bold">Harry</span></p><p class="comment-content">很清楚的表述，谢谢！</p><p class="title">
+#12楼&nbsp;<span class="time">[2012-08-24 11:24]</span>&nbsp;
+<span class="bold">test</span></p><p class="comment-content">不错我.</p><p class="title">
+#13楼&nbsp;<span class="time">[2012-08-24 11:24]</span>&nbsp;
+<span class="bold">test2</span></p><p class="comment-content">地方撒&nbsp;仿盛大</p><p class="title">
+#14楼&nbsp;<span class="time">[2012-10-19 00:17]</span>&nbsp;
+<span class="bold">mark</span></p><p class="comment-content">mark</p><p class="title">
+#15楼&nbsp;<span class="time">[2012-11-13 19:34]</span>&nbsp;
+<span class="bold">votre&nbsp;l'aderesse？</span></p><p class="comment-content">votre&nbsp;l'aderesse？votre&nbsp;l'aderesse？votre&nbsp;l'aderesse？</p></div></div><!--评论列表结束--><div class="post-comment"><h3 class="comment-title">发表评论<span id="result" style="margin-left:30px;"></span></h3><form id="form1" name="commentForm"><p><label for="name">您的称呼:</label><input id="nickname" name="nickname" type="text" class="input"><span>(必填)</span></p><p><label for="url">链接地址:</label><input id="linkurl" name="linkurl" type="text" class="input"><span>(非必填，点击您的名字可链接至该地址，不用加http://)</span></p><p><label for="postcontent">评论内容:</label><textarea id="postcontent" name="postcontent"></textarea></p><button type="button" id="send" class="submit"> 发表评论 </button><span>
+(请自觉遵守互联网相关政策法规，严禁发布色情、暴力、反动言论)
+</span></form></div></div><!--main-content--></div><!--content--><!--footer start--><div id="footer"><ul><li><a href="http://www.5idev.com/Aboutus" rel="nofollow">关于我们</a></li><li><a href="javascript:addCookie();" rel="nofollow">收藏本站</a></li><li><a href="http://www.5idev.com/Aboutus-copyright.shtml" rel="nofollow">版权声明</a></li><li><a href="http://www.5idev.com/Aboutus-sitemap.shtml">网站地图</a></li><li><a href="http://www.5idev.com/Aboutus-guestbook.shtml" rel="nofollow">请您留言</a></li><li class="last"><a href="http://www.5idev.com/Aboutus-helping.shtml" rel="nofollow">帮助5iDev</a></li></ul><div id="copyright"><p>Copyrights © 2010 <a href="http://www.5idev.com/">我爱开发网</a> all rights reserved</p><p><script src="./PHP 正则表达式语法（一）_PHP基础教程_files/stat.php" language="JavaScript"></script><script src="./PHP 正则表达式语法（一）_PHP基础教程_files/cnzz_core.php" charset="utf-8" type="text/javascript"></script><a href="http://www.cnzz.com/stat/website.php?web_id=2501508" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="./PHP 正则表达式语法（一）_PHP基础教程_files/pic.gif"></a><script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77884d98f571c6f48f828f58a8b284d9' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./PHP 正则表达式语法（一）_PHP基础教程_files/h.js" type="text/javascript"></script><a href="http://tongji.baidu.com/hm-web/welcome/ico?s=77884d98f571c6f48f828f58a8b284d9" target="_blank"><img border="0" src="./PHP 正则表达式语法（一）_PHP基础教程_files/21.gif" width="20" height="20"></a></p></div></div><!--footer end--></div><!--container--><div id="note"><p>5idev.com(我爱开发网) — 提供最好的 <a href="http://www.5idev.com/html">XHTML教程</a>、<a href="http://www.5idev.com/css">DIV+CSS教程</a>、<a href="http://www.5idev.com/js">JavaScript教程</a>、<a href="http://www.5idev.com/php">PHP教程</a> 及 <a href="http://www.5idev.com/thinkphp">ThinkPHP教程</a></p></div><iframe style="position: absolute; width: 100px; height: 1px; z-index: -10240; visibility: hidden; top: 0px; left: 0px;" src="./PHP 正则表达式语法（一）_PHP基础教程_files/e.htm"></iframe></body></html>

@@ -1,0 +1,1 @@
+try{eval("document.getElementById(\"spn11\").innerHTML=\"124507\"");}catch(e){}try{eval("document.getElementById(\"pCalendar_\"+(new Date()).getFullYear()+\"_\"+((new Date()).getMonth()+1)+\"_\"+(new Date()).getDate()).className+=\" cd\"");}catch(e){};

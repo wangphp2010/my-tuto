@@ -1,0 +1,58 @@
+﻿body{
+margin:0;padding:0;background:#D3D3D3;color:#000;
+font-size:12px;font-family:"Microsoft YaHei",SimSun,Verdana,Arial,Helvetica,sans-serif;
+}
+
+a:link,a:visited {color: #000;text-decoration:none;}
+a:hover,a:active {color: #8F1D22;text-decoration:underline;}
+div,ul,p,li,h1,h2,h3,h4,h5,h6 {margin:0px;padding:0px;list-style:none;white-space:normal;}
+img{border:0;}
+.divHeader{width:100%;padding:0 0 10px 0;border-bottom:3px double black;}
+.BlogName{font-size:24px;text-align:center;}
+.BlogIntro,.headerright,.divNavBar,#divAdb,.divSide{display:none;}
+
+.divContent{width:100%;margin-left:auto;margin-right:auto;text-align:left;overflow:hidden;clear:both;}
+.divMain{margin:20px 3% 20px 3%;padding:0;}
+.divFooter{border-top:3px double black;width:100%;margin:0 auto;padding:10px 0 0 0;}
+.footerleft{font-size:12px;}
+.footerright{font-size:12px;}
+
+.post {width:100%;margin:10px 0 10px 0;padding:0;text-align:left;}
+.prevnext{display:none;}
+.post-title{width:100%;margin:5px 0 5px 0;padding:5px 0 5px 0; text-align:center;font-size:16px;}
+.post-info{width:100%;margin:5px 0 5px 0;padding:0;font-size:12px;text-align:center;}
+.post-footer{width:100%;margin:5px 0 5px 0;padding:0;font-size:12px;text-align:right;}
+.post-body{width:100%;margin:5px 0 5px 0;padding:5px 0 5px 0;font-size:13px;word-wrap:break-word;text-align:left;border-top: 1px solid black;border-bottom: 1px solid black;}
+.post-body img.thumb {display:none;}
+.post-body img{padding:4px;border:0;clear : both;float : none;}
+.post-body p{margin:3px 0 3px 0;padding:0;}
+.post-body p.img{margin:0;padding:0;text-align:center;}
+.post-body p.code{padding:5px;border:1px dotted black;}
+.post-body h1{padding:3px 0px 3px 0px;margin:10px 0px 10px 0px;font-size:16px;}
+.post-body h2{padding:3px 0px 3px 0px;margin:10px 0px 10px 0px;font-size:14px;}
+.post-body h3{padding:3px 0px 3px 0px;margin:10px 0px 10px 0px;font-size:13px;}
+.post-body h4{padding:3px 0px 3px 0px;margin:10px 0px 10px 0px;font-size:12px;}
+.post-body h5{padding:3px 0px 3px 0px;margin:10px 0px 10px 0px;font-size:11px;}
+.post-body h6{padding:3px 0px 3px 0px;margin:10px 0px 10px 0px;font-size:10px;}
+
+.myright {text-align:center;font-size:12px;}
+.mutuality{margin:10px 15px 0px 15px;padding:0;text-align:left;}
+.mutuality h3{ height:20px; line-height:20px;padding:2px 0 2px 5px;margin:0px;border-bottom:1px solid #CCC;}
+.mutuality ul {list-style:none; margin-top:5px; line-height:20px; }
+.mutuality li{list-style:none;padding-left:15px; text-align:left; font-size:12px; color:#666;}
+.trackback{margin:10px 15px 0px 15px;padding:0;list-style-position:outside;}
+.trackback h3{height:30px; line-height:30px;padding:2px 0 2px 5px;margin:0px;text-align:left;position:relative;border-bottom:1px solid #CCC;}
+.trackback h3 span {display:none;}
+.clst{margin:6px 15px 10px 15px;padding:0;padding-bottom:6px;text-align:left;list-style-position : outside;border-bottom:1px dashed #DDD;}
+.clst_title{text-align:left;position:relative;padding:2px 2px 2px 0px;color:#2F688C;margin:0px;}
+.clst_title a {font-weight:bold;}
+.clst_title span{position:absolute;right:0px; color:#666;}
+.clst_content{list-style-position:outside;padding:6px 6px 0px 6px;margin:0;line-height:150%;font-size:13px;}
+.clst_content a {font-size:14px;}
+.clst_content blockquote {border:1px solid #999999; background-color:#FFFFEE; margin:3px; padding:0px;}
+.clst_content blockquote p { margin:6px; text-indent:0;}
+.clst_content blockquote .qtitle {line-height:16px; color:#2F688C;}
+.clst_footer {padding-bottom:6px; text-align:right; color:#666;}
+.clst_footer a {margin-left:10px;}
+.divCmtPost {display:none;}
+/*----------------------------------*/

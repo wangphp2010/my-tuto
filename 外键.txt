@@ -1,0 +1,35 @@
+保持数据一致性，完整性，主要目的是控制存储在外键表中的数据。 使两张表形成关联，外键只能引用外表中的列的值！
+
+例如：
+
+a b 两个表
+
+a表中存有客户号，客户名称
+
+b表中存有每个客户的订单
+
+有了外键后
+
+你只能在确信b 表中没有客户x的订单后，才可以在a表中删除客户x
+
+建立外键的前提： 本表的列必须与外键类型相同(外键必须是外表主键)。
+
+指定主键关键字： foreign key(列名)
+
+引用外键关键字： references <外键表名>(外键列名)
+
+事件触发限制: on delete和on update , 可设参数cascade(跟随外键改动), restrict(限制外表中的外键改动),set Null(设空值）,set Default（设默认值）,[默认]no action
+
+例如：
+
+outTable表 主键 id 类型 int
+
+创建含有外键的表：
+
+create table temp(
+
+id int,
+
+name char(20),
+
+foreign key(id) references outTable(id) on delete cascade on update cascade);

@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<!-- saved from url=(0067)http://demo.jdk5.com/javascript-chinese-personal-id-card-validation -->
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Js实现中国公民身份证号码有效性验证</title>
+
+<meta name="keywords" content="身份证号码查询,身份证号大全,身份证,身份证号码大全,身份证号码">
+<meta name="description" content="编码工具、demo utils、java、身份证号码、在线验证、online、中国公民身份证">
+<meta name="viewport" content="width=device-width">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="./Js实现中国公民身份证号码有效性验证_files/w3.css">
+<script src="./Js实现中国公民身份证号码有效性验证_files/hm.js.下载"></script><script src="./Js实现中国公民身份证号码有效性验证_files/w3codecolor.js.下载"></script>
+<script>
+if (window.addEventListener) {              
+    window.addEventListener("resize", browserResize);
+} else if (window.attachEvent) {                 
+    window.attachEvent("onresize", browserResize);
+}
+var xbeforeResize = window.innerWidth;
+
+function browserResize() {
+    var afterResize = window.innerWidth;
+    if ((xbeforeResize < (970) && afterResize >= (970)) || (xbeforeResize >= (970) && afterResize < (970)) ||
+        (xbeforeResize < (728) && afterResize >= (728)) || (xbeforeResize >= (728) && afterResize < (728)) ||
+        (xbeforeResize < (468) && afterResize >= (468)) ||(xbeforeResize >= (468) && afterResize < (468))) {
+        xbeforeResize = afterResize;
+    }
+    if (window.screen.availWidth <= 768) {
+      restack(window.innerHeight > window.innerWidth);
+    }
+    fixDragBtn();
+    showFrameSize();    
+}
+window.onload = function(){
+	setTimeout(function (){
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "//hm.baidu.com/hm.js?0f2164ddd5d3a6368cbdcde73f103784";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	}, 1000 * 3);  
+};
+</script>
+<style>
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body {
+  color:#000000;
+  margin:0px;
+  font-size:100%;
+}
+.trytopnav {
+  height:40px;
+  overflow:hidden;
+  min-width:380px;
+  position:absolute;
+  width:100%;
+  top:99px;
+}
+.w3-navbar button {
+  border:none;
+  padding:8px 16px;
+  display:block;
+}
+a.w3schoolslink {
+  padding:0 !important;
+  display:inline !important;
+}
+a.w3schoolslink:hover,a.w3schoolslink:active {
+  text-decoration:underline !important;
+  background-color:transparent !important;
+}
+#dragbar{
+  position:absolute;
+  cursor: col-resize;
+  z-index:3;
+  padding:5px;
+}
+#shield {
+  display:none;
+  top:0;
+  left:0;
+  width:100%;
+  position:absolute;
+  height:100%;
+  z-index:4;
+}
+#framesize span {
+  font-family:Consolas, monospace;
+}
+#container {
+  background-color:#f1f1f1;
+  width:100%;
+  overflow:auto;
+  position:absolute;
+  top:138px;
+  bottom:0;
+  height:auto;
+}
+#textareacontainer, #iframecontainer {
+  float:left;
+  height:100%;
+  width:50%;
+}
+#textarea, #iframe {
+  height:100%;
+  width:100%;
+  padding-bottom:10px;
+  padding-top:1px;
+}
+#textarea {
+  padding-left:10px;
+  padding-right:5px;  
+}
+#iframe {
+  padding-left:5px;
+  padding-right:10px;  
+}
+#textareawrapper {
+  width:100%;
+  height:100%;
+  background-color: #ffffff;
+  position:relative;
+  box-shadow:0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+#iframewrapper {
+  width:100%;
+  height:100%;
+  -webkit-overflow-scrolling: touch;
+  background-color: #ffffff;
+  box-shadow:0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+#textareaCode {
+  background-color: #ffffff;
+  font-family: consolas,"courier new",monospace;
+  font-size:15px;
+  height:100%;
+  width:100%;
+  padding:8px;
+  resize: none;
+  border:none;
+  line-height:normal;    
+}
+textarea.textareaCC {
+  background-color:transparent !important;
+  z-index:2;
+  position:relative;
+  -webkit-text-fill-color: transparent;
+  line-height:normal;
+}
+.codecolorCC {
+  position:absolute;
+  font-family: consolas,"courier new",monospace;
+  font-size: 15px;
+  height: 100%;
+  width: 100%;
+  padding: 8px;
+  resize: none;
+  border: none;
+  z-index: 1;
+  overflow-y:auto;
+  word-wrap: break-word;
+  line-height:normal;    
+}
+#iframeResult, #iframeSource {
+  background-color: #ffffff;
+  height:100%;
+  width:100%;  
+}
+#stackV {background-color:#999999;}
+#stackV.horizontal,#stackV.horizontal {background-color:transparent;}
+#stackV.horizontal:hover {background-color:#d3d3d3;}
+#stackH,#stackH {background-color:transparent;}
+#stackH:hover {background-color:#d3d3d3;}
+#stackH.horizontal {background-color:#999999;}
+#textareacontainer.horizontal,#iframecontainer.horizontal{
+  height:50%;
+  float:none;
+  width:100%;
+}
+#textarea.horizontal{
+  height:100%;
+  padding-left:10px;
+  padding-right:10px;
+}
+#iframe.horizontal{
+  height:100%;
+  padding-right:10px;
+  padding-bottom:10px;
+  padding-left:10px;  
+}
+#container.horizontal{
+  min-height:200px;
+  margin-left:0;
+}
+#tryitLeaderboard {
+  overflow:hidden;
+  text-align:center;
+  margin-top:5px;
+  height:90px;
+}
+@media screen and (max-width: 727px) {
+  .trytopnav {top:70px;}
+  #container {top:108px;}
+}
+@media screen and (max-width: 467px) {
+  .trytopnav {top:60px;}
+  #container {top:98px;}
+}
+@media only screen and (max-device-width: 768px) {
+  #iframewrapper {overflow: auto;}
+  #container     {min-width:320px;}
+  .stack         {display:none;}
+  #tryhome       {display:block;}
+}
+
+@font-face {
+font-family: 'fontawesome';
+src:url('http://asset.jdk5.com/public/w3c/fonts/fontawesome.eot?14663396');
+src:url('http://asset.jdk5.com/public/w3c/fonts/fontawesome.eot?14663396#iefix') format('embedded-opentype'),
+    url('http://asset.jdk5.com/public/w3c/fonts/fontawesome.woff?14663396') format('woff'),
+    url('http://asset.jdk5.com/public/w3c/fonts/fontawesome.ttf?14663396') format('truetype'),
+    url('http://asset.jdk5.com/public/w3c/fonts/fontawesome.svg?14663396#fontawesome') format('svg');
+font-weight:normal;
+font-style:normal;
+}
+.fa {
+  display:inline-block;
+  font:normal normal normal 14px/1 FontAwesome;
+  font-size:inherit;
+  text-rendering:auto;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  transform:translate(0,0);
+}
+.fa-2x {
+  font-size:2em;
+}
+.fa-home:before {content: '\e800'; }
+
+#iframewrapper {
+	
+}
+</style>
+<!--[if lt IE 8]>
+<style>
+#textareacontainer, #iframecontainer {width:48%;}
+#container {height:500px;}
+#textarea, #iframe {width:90%;height:450px;}
+#textareaCode, #iframeResult {height:450px;}
+.stack {display:none;}
+</style>
+<![endif]-->
+</head>
+<body>
+<div id="tryitLeaderboard" style="background-color:#ffffff">
+<!-- TryitLeaderboard -->
+<div id="div-gpt-ad-1428407818244-0">
+</div>
+</div>
+
+<div class="trytopnav">
+<ul class="w3-navbar w3-light-grey" style="border-top:1px solid #f1f1f1;">
+  <li class="stack" id="tryhome" style="width:auto !important;float:left;"><a href="http://blog.jdk5.com/zh/" target="_blank" title="w3schools.com Home" class="topnav-icons fa fa-home" style="font-size:28px;color:#999999;margin-top:-2px"></a></li>
+  <li class="stack" style="width:auto !important;float:left;"><button title="Vertically" onclick="restack(false)" id="stackV" class=" "><img src="./Js实现中国公民身份证号码有效性验证_files/stack_vertically.png"></button></li>
+  <li class="stack" style="width:auto !important;float:left;"><button title="Horizontally" onclick="restack(true)" id="stackH" class=" "><img src="./Js实现中国公民身份证号码有效性验证_files/stack_horizontally.png"></button></li>
+  <li style="width:auto !important;float:left;"><button class="w3-green w3-hover-white w3-hover-text-green" onclick="submitTryit(1)">Run »</button></li>
+  <li class="w3-right" style="width:auto !important;float:left;"><span style="padding:8px 8px 8px 8px;display:block"></span></li>
+  <li class="w3-right w3-hide-small"><span style="padding:8px 0;display:block"><div id="framesize">Result Size: <span>945 x 745</span></div></span></li>  
+</ul>
+</div>
+<div id="shield" style="display: none;"></div>
+<a href="javascript:void(0)" id="dragbar" style="width: 5px; top: 138px; left: 946.5px; height: 745px; cursor: col-resize;"></a>
+<div id="container" class=" ">
+  <div id="textareacontainer" class=" " style="height: 100%; width: 50%;">
+    <div id="textarea" class=" ">
+      <div id="textareawrapper">
+        <div id="codecolor" class=" codecolorCC"><span style="color:brown"><span style="color:mediumblue">&lt;</span>!DOCTYPE<span style="color:red"> html</span><span style="color:mediumblue">&gt;</span></span><br><span style="color:brown"><span style="color:mediumblue">&lt;</span>html<span style="color:mediumblue">&gt;</span></span><br><span style="color:brown"><span style="color:mediumblue">&lt;</span>head<span style="color:mediumblue">&gt;</span></span><br><span style="color:brown"><span style="color:mediumblue">&lt;</span>meta<span style="color:red"> charset<span style="color:mediumblue">="UTF-8"</span></span><span style="color:mediumblue">&gt;</span></span><br><span style="color:brown"><span style="color:mediumblue">&lt;</span>script<span style="color:red"> src<span style="color:mediumblue">="http://demo.js.jdk5.com/jquery-1.12.3.min.js"</span></span><span style="color:mediumblue">&gt;</span></span><span style="color:black"></span><span style="color:brown"><span style="color:mediumblue">&lt;</span>/script<span style="color:mediumblue">&gt;</span></span><br><span style="color:brown"><span style="color:mediumblue">&lt;</span>script<span style="color:red"> type<span style="color:mediumblue">="text/javascript"</span> src<span style="color:mediumblue">="http://demo.js.jdk5.com/IDValidator/IDValidator.js"</span> charset<span style="color:mediumblue">="utf-8"</span> </span><span style="color:mediumblue">&gt;</span></span><span style="color:black"></span><span style="color:brown"><span style="color:mediumblue">&lt;</span>/script<span style="color:mediumblue">&gt;</span></span><br><span style="color:brown"><span style="color:mediumblue">&lt;</span>script<span style="color:red"> type<span style="color:mediumblue">="text/javascript"</span> src<span style="color:mediumblue">="http://demo.js.jdk5.com/IDValidator/GB2260.js"</span> charset<span style="color:mediumblue">="utf-8"</span> </span><span style="color:mediumblue">&gt;</span></span><span style="color:black"></span><span style="color:brown"><span style="color:mediumblue">&lt;</span>/script<span style="color:mediumblue">&gt;</span></span><br><span style="color:brown"><span style="color:mediumblue">&lt;</span>title<span style="color:mediumblue">&gt;</span></span>Insert title here<span style="color:brown"><span style="color:mediumblue">&lt;</span>/title<span style="color:mediumblue">&gt;</span></span><br><span style="color:brown"><span style="color:mediumblue">&lt;</span>style<span style="color:red"> type<span style="color:mediumblue">="text/css"</span></span><span style="color:mediumblue">&gt;</span></span><span style="color:brown"><br>div<span style="color:black">{</span><span style="color:red">margin<span style="color:mediumblue"><span style="color:black">:</span> 20px<span style="color:black">;</span></span></span><span style="color:black">}</span><br></span><span style="color:brown"><span style="color:mediumblue">&lt;</span>/style<span style="color:mediumblue">&gt;</span></span><br><span style="color:brown"><span style="color:mediumblue">&lt;</span>script<span style="color:red"> type<span style="color:mediumblue">="text/javascript"</span></span><span style="color:mediumblue">&gt;</span></span><span style="color:black"><br><span style="color:green">//新建普通实例<br></span><span style="color:mediumblue">var</span> Validator = <span style="color:mediumblue">new</span> IDValidator();<br><span style="color:green">//或使用带地址码实例,需要引入GB2260<br></span><span style="color:green">//var Validator = IDValidator(GB2260);<br></span><br>$(<span style="color:mediumblue">function</span> (){<br>&nbsp;$(<span style="color:brown">"#isValid-btn"</span>).click(<span style="color:mediumblue">function</span> (){<br>&nbsp;&nbsp;<span style="color:green">//验证号码是否合法，合法返回true，不合法返回false<br></span>&nbsp;&nbsp;<span style="color:mediumblue">var</span> code = $(<span style="color:brown">"#isValid"</span>).val();<br>&nbsp;&nbsp;<span style="color:mediumblue">var</span> i = Validator.isValid(code);<br>&nbsp;&nbsp;$(<span style="color:brown">"#isValid-show"</span>).html(i == <span style="color:mediumblue">false</span> ? <span style="color:brown">"号码不合法"</span> : <span style="color:brown">"号码合法"</span>);<br>&nbsp;});<br>&nbsp;$(<span style="color:brown">"#getInfo-btn"</span>).click(<span style="color:mediumblue">function</span> (){<br>&nbsp;&nbsp;<span style="color:green">//号码合法时返回分析信息（地区、出生日期、性别、校验位），不合法返回false<br></span>&nbsp;&nbsp;<span style="color:mediumblue">var</span> code = $(<span style="color:brown">"#getInfo"</span>).val();<br>&nbsp;&nbsp;<span style="color:mediumblue">var</span> i = Validator.getInfo(code);<br>&nbsp;&nbsp;$(<span style="color:brown">"#getInfo-show"</span>).html(i == <span style="color:mediumblue">false</span> ? <span style="color:brown">"号码不合法"</span> : JSON.stringify(i));<br>&nbsp;});<br>&nbsp;$(<span style="color:brown">"#makeID18-btn"</span>).click(<span style="color:mediumblue">function</span> (){<br>&nbsp;&nbsp;<span style="color:green">//仿造一个18位身份证号<br></span>&nbsp;&nbsp;$(<span style="color:brown">"#makeID18-show"</span>).html(Validator.makeID());<br>&nbsp;});<br>&nbsp;$(<span style="color:brown">"#makeID15-btn"</span>).click(<span style="color:mediumblue">function</span> (){<br>&nbsp;&nbsp;<span style="color:green">//仿造一个15位身份证号<br></span>&nbsp;&nbsp;$(<span style="color:brown">"#makeID15-show"</span>).html(Validator.makeID(<span style="color:mediumblue">true</span>));<br>&nbsp;});<br>});<br></span><span style="color:brown"><span style="color:mediumblue">&lt;</span>/script<span style="color:mediumblue">&gt;</span></span><br><span style="color:brown"><span style="color:mediumblue">&lt;</span>/head<span style="color:mediumblue">&gt;</span></span><br><span style="color:brown"><span style="color:mediumblue">&lt;</span>body<span style="color:mediumblue">&gt;</span></span><br><span style="color:brown"><span style="color:mediumblue">&lt;</span>div<span style="color:mediumblue">&gt;</span></span><br>&nbsp;<span style="color:brown"><span style="color:mediumblue">&lt;</span>input<span style="color:red"> id<span style="color:mediumblue">="isValid"</span> /</span><span style="color:mediumblue">&gt;</span></span><br>&nbsp;<span style="color:brown"><span style="color:mediumblue">&lt;</span>button<span style="color:red"> id<span style="color:mediumblue">="isValid-btn"</span></span><span style="color:mediumblue">&gt;</span></span>判断是否合法<span style="color:brown"><span style="color:mediumblue">&lt;</span>/button<span style="color:mediumblue">&gt;</span></span><br>&nbsp;<span style="color:brown"><span style="color:mediumblue">&lt;</span>div<span style="color:red"> id<span style="color:mediumblue">="isValid-show"</span></span><span style="color:mediumblue">&gt;</span></span><span style="color:brown"><span style="color:mediumblue">&lt;</span>/div<span style="color:mediumblue">&gt;</span></span><br><span style="color:brown"><span style="color:mediumblue">&lt;</span>/div<span style="color:mediumblue">&gt;</span></span><br><span style="color:brown"><span style="color:mediumblue">&lt;</span>div<span style="color:mediumblue">&gt;</span></span><br>&nbsp;<span style="color:brown"><span style="color:mediumblue">&lt;</span>input<span style="color:red"> id<span style="color:mediumblue">="getInfo"</span> /</span><span style="color:mediumblue">&gt;</span></span><br>&nbsp;<span style="color:brown"><span style="color:mediumblue">&lt;</span>button<span style="color:red"> id<span style="color:mediumblue">="getInfo-btn"</span></span><span style="color:mediumblue">&gt;</span></span>身份证详细信息<span style="color:brown"><span style="color:mediumblue">&lt;</span>/button<span style="color:mediumblue">&gt;</span></span><br>&nbsp;<span style="color:brown"><span style="color:mediumblue">&lt;</span>div<span style="color:red"> id<span style="color:mediumblue">="getInfo-show"</span></span><span style="color:mediumblue">&gt;</span></span><span style="color:brown"><span style="color:mediumblue">&lt;</span>/div<span style="color:mediumblue">&gt;</span></span><br><span style="color:brown"><span style="color:mediumblue">&lt;</span>/div<span style="color:mediumblue">&gt;</span></span><br><span style="color:brown"><span style="color:mediumblue">&lt;</span>div<span style="color:mediumblue">&gt;</span></span><br>&nbsp;<span style="color:brown"><span style="color:mediumblue">&lt;</span>button<span style="color:red"> id<span style="color:mediumblue">="makeID18-btn"</span></span><span style="color:mediumblue">&gt;</span></span>仿造一个18位身份证号<span style="color:brown"><span style="color:mediumblue">&lt;</span>/button<span style="color:mediumblue">&gt;</span></span><br>&nbsp;<span style="color:brown"><span style="color:mediumblue">&lt;</span>div<span style="color:red"> id<span style="color:mediumblue">="makeID18-show"</span></span><span style="color:mediumblue">&gt;</span></span><span style="color:brown"><span style="color:mediumblue">&lt;</span>/div<span style="color:mediumblue">&gt;</span></span><br><span style="color:brown"><span style="color:mediumblue">&lt;</span>/div<span style="color:mediumblue">&gt;</span></span><br><span style="color:brown"><span style="color:mediumblue">&lt;</span>div<span style="color:mediumblue">&gt;</span></span><br>&nbsp;<span style="color:brown"><span style="color:mediumblue">&lt;</span>button<span style="color:red"> id<span style="color:mediumblue">="makeID15-btn"</span></span><span style="color:mediumblue">&gt;</span></span>仿造一个15位身份证号<span style="color:brown"><span style="color:mediumblue">&lt;</span>/button<span style="color:mediumblue">&gt;</span></span><br>&nbsp;<span style="color:brown"><span style="color:mediumblue">&lt;</span>div<span style="color:red"> id<span style="color:mediumblue">="makeID15-show"</span></span><span style="color:mediumblue">&gt;</span></span><span style="color:brown"><span style="color:mediumblue">&lt;</span>/div<span style="color:mediumblue">&gt;</span></span><br><span style="color:brown"><span style="color:mediumblue">&lt;</span>/div<span style="color:mediumblue">&gt;</span></span><br><span style="color:brown"><span style="color:mediumblue">&lt;</span>/body<span style="color:mediumblue">&gt;</span></span><br><span style="color:brown"><span style="color:mediumblue">&lt;</span>/html<span style="color:mediumblue">&gt;</span></span><br><br><br></div>
+        <textarea autocomplete="off" id="textareaCode" wrap="logical" spellcheck="false" class=" textareaCC">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;script src="http://demo.js.jdk5.com/jquery-1.12.3.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="http://demo.js.jdk5.com/IDValidator/IDValidator.js" charset="utf-8" &gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="http://demo.js.jdk5.com/IDValidator/GB2260.js" charset="utf-8" &gt;&lt;/script&gt;
+&lt;title&gt;Insert title here&lt;/title&gt;
+&lt;style type="text/css"&gt;
+div{margin: 20px;}
+&lt;/style&gt;
+&lt;script type="text/javascript"&gt;
+//新建普通实例
+var Validator = new IDValidator();
+//或使用带地址码实例,需要引入GB2260
+//var Validator = IDValidator(GB2260);
+
+$(function (){
+	$("#isValid-btn").click(function (){
+		//验证号码是否合法，合法返回true，不合法返回false
+		var code = $("#isValid").val();
+		var i = Validator.isValid(code);
+		$("#isValid-show").html(i == false ? "号码不合法" : "号码合法");
+	});
+	$("#getInfo-btn").click(function (){
+		//号码合法时返回分析信息（地区、出生日期、性别、校验位），不合法返回false
+		var code = $("#getInfo").val();
+		var i = Validator.getInfo(code);
+		$("#getInfo-show").html(i == false ? "号码不合法" : JSON.stringify(i));
+	});
+	$("#makeID18-btn").click(function (){
+		//仿造一个18位身份证号
+		$("#makeID18-show").html(Validator.makeID());
+	});
+	$("#makeID15-btn").click(function (){
+		//仿造一个15位身份证号
+		$("#makeID15-show").html(Validator.makeID(true));
+	});
+});
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div&gt;
+	&lt;input id="isValid" /&gt;
+	&lt;button id="isValid-btn"&gt;判断是否合法&lt;/button&gt;
+	&lt;div id="isValid-show"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div&gt;
+	&lt;input id="getInfo" /&gt;
+	&lt;button id="getInfo-btn"&gt;身份证详细信息&lt;/button&gt;
+	&lt;div id="getInfo-show"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div&gt;
+	&lt;button id="makeID18-btn"&gt;仿造一个18位身份证号&lt;/button&gt;
+	&lt;div id="makeID18-show"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div&gt;
+	&lt;button id="makeID15-btn"&gt;仿造一个15位身份证号&lt;/button&gt;
+	&lt;div id="makeID15-show"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</textarea>
+        <form autocomplete="off" style="margin:0px;display:none;">
+          <input type="hidden" name="code" id="code">
+          <input type="hidden" id="bt" name="bt">
+        </form>
+       </div>
+    </div>
+  </div>
+  <div id="iframecontainer" class=" " style="height: 100%; width: 50%;">
+    <div id="iframe" class=" ">
+      <div id="iframewrapper"><iframe frameborder="0" id="iframeResult" src="./Js实现中国公民身份证号码有效性验证_files/saved_resource.html"></iframe></div>
+    </div>
+  </div>
+</div>
+<script>
+submitTryit()
+//var adrefreshtimer
+function submitTryit(n) {
+  var text = document.getElementById("textareaCode").value;
+  var ifr = document.createElement("iframe");
+  ifr.setAttribute("frameborder", "0");
+  ifr.setAttribute("id", "iframeResult");  
+  document.getElementById("iframewrapper").innerHTML = "";
+  document.getElementById("iframewrapper").appendChild(ifr);
+  var ifrw = (ifr.contentWindow) ? ifr.contentWindow : (ifr.contentDocument.document) ? ifr.contentDocument.document : ifr.contentDocument;
+  ifrw.document.open();
+  ifrw.document.write(text);  
+  ifrw.document.close();
+  //23.02.2016: contentEditable is set to true, to fix text-selection (bug) in firefox.
+  //(and back to false to prevent the content from being editable)
+  //(To reproduce the error: Select text in the result window with, and without, the contentEditable statements below.)  
+  if (ifrw.document.body && !ifrw.document.body.isContentEditable) {
+    ifrw.document.body.contentEditable = true;
+    ifrw.document.body.contentEditable = false;
+  }
+//  if (!adrefreshtimer) {adrefreshtimer = new Date().getTime();}
+//  if (new Date().getTime() - adrefreshtimer >= 30000) {
+//  if (n == 1) {
+//    googletag.cmd.push(function() {
+//      googletag.pubads().refresh([gptAdSlots[0]]);
+//    });
+//  }
+//    adrefreshtimer = new Date().getTime();
+//  }
+}
+if ((window.screen.availWidth <= 768 && window.innerHeight > window.innerWidth) || "" == " horizontal") {restack(true);}
+function restack(horizontal) {
+    var tc, ic, t, i, c, f, sv, sh, d, height, flt, width;
+    tc = document.getElementById("textareacontainer");
+    ic = document.getElementById("iframecontainer");
+    t = document.getElementById("textarea");
+    i = document.getElementById("iframe");
+    c = document.getElementById("container");    
+    sv = document.getElementById("stackV");
+    sh = document.getElementById("stackH");
+    tc.className = tc.className.replace("horizontal", "");
+    ic.className = ic.className.replace("horizontal", "");        
+    t.className = t.className.replace("horizontal", "");        
+    i.className = i.className.replace("horizontal", "");        
+    c.className = c.className.replace("horizontal", "");                        
+    sv.className = sv.className.replace("horizontal", "");
+    sh.className = sh.className.replace("horizontal", "");
+    stack = "";
+    if (horizontal) {
+        tc.className = tc.className + " horizontal";
+        ic.className = ic.className + " horizontal";        
+        t.className = t.className + " horizontal";        
+        i.className = i.className + " horizontal";                
+        c.className = c.className + " horizontal";                
+        sv.className = sv.className + " horizontal";                        
+        sh.className = sh.className + " horizontal";
+        stack = " horizontal";
+        document.getElementById("textareacontainer").style.height = "50%";
+        document.getElementById("iframecontainer").style.height = "50%";
+        document.getElementById("textareacontainer").style.width = "100%";
+        document.getElementById("iframecontainer").style.width = "100%";
+    } else {
+        document.getElementById("textareacontainer").style.height = "100%";
+        document.getElementById("iframecontainer").style.height = "100%";
+        document.getElementById("textareacontainer").style.width = "50%";
+        document.getElementById("iframecontainer").style.width = "50%";
+    }
+    fixDragBtn();
+    showFrameSize();
+}
+if (navigator.userAgent.indexOf("WebKit") > -1 && navigator.userAgent.indexOf("Edge") == -1) {
+    document.getElementById("codecolor").className += " codecolorCC";
+    document.getElementById("textareaCode").className += " textareaCC";
+    removetabs();
+    removespaces();
+    colorcoding();
+    if (document.getElementById("textareaCode").addEventListener) {              
+        document.getElementById("textareaCode").addEventListener("input", removetabs);
+        document.getElementById("textareaCode").addEventListener("input", colorcoding);
+        document.getElementById("textareaCode").addEventListener("scroll", syncscroll);
+    } else if (document.getElementById("textareaCode").attachEvent) {                 
+        document.getElementById("textareaCode").attachEvent("oninput", removetabs);
+        document.getElementById("textareaCode").attachEvent("oninput", colorcoding);
+        document.getElementById("textareaCode").attachEvent("onscroll", syncscroll);
+    }
+}
+function removetabs() {
+    var text = document.getElementById("textareaCode").value;
+    text = text.replace(/\t/g, " ");
+    document.getElementById("textareaCode").value = text;
+}
+function removespaces() {
+  var textlines, i, j, newtext = "", newline;
+  textlines = document.getElementById("textareaCode").value.split("\n");
+  for (i = 0; i < textlines.length; i++) {
+    newline = textlines[i];
+    for (j = newline.length - 1; j >= 0; j--) {
+      if (newline[j] != " ") {
+        newline = newline.substr(0, j + 1);
+        break;
+      }
+    }
+    newtext += newline + "\n";
+  }
+  document.getElementById("textareaCode").value = newtext;
+}
+function colorcoding() {
+    var text = document.getElementById("textareaCode").value;
+    text = text.replace(/&/g, "&amp;");
+    text = text.replace(/\t/g, "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");   
+    text = text.replace(/  /g, " &nbsp;");  
+    text = text.replace(/</g, "&lt;");
+    text = text.replace(/>/g, "&gt;");
+    text = text.replace(/(?:\r\n|\r|\n)/g, '<br>');
+    text = text.replace(/<br> /g, "<br>&nbsp;");  
+    text = w3CodeColorize(text);
+    document.getElementById("codecolor").innerHTML = text + "<br>";
+}
+function syncscroll() {
+    document.getElementById("codecolor").scrollTop = document.getElementById("textareaCode").scrollTop;
+}
+//var framesizetimeout;
+function showFrameSize() {
+  var t;
+//  if (navigator.userAgent.indexOf("Edge") > -1) {return;}
+//  if (stack == " horizontal") {
+//    document.getElementById("framesize").style.top = "auto";
+//    document.getElementById("framesize").style.bottom = "11px";
+//  } else {
+//    t = (Number(w3_getStyleValue(document.getElementById("container"), "top").replace("px", "")) + 2).toFixed();
+//    document.getElementById("framesize").style.top = t + "px";
+//    document.getElementById("framesize").style.bottom = "auto";
+//  }
+  var width, height;
+//  if (framesizetimeout) {window.clearTimeout(framesizetimeout);}
+  width = Number(w3_getStyleValue(document.getElementById("iframeResult"), "width").replace("px", "")).toFixed();
+  height = Number(w3_getStyleValue(document.getElementById("iframeResult"), "height").replace("px", "")).toFixed();
+//  document.getElementById("framesize").style.display = "block";
+  document.getElementById("framesize").innerHTML = "Result Size: <span>" + width + " x " + height + "</span>";
+//  framesizetimeout = window.setTimeout(function () {document.getElementById("framesize").style.display = "none";}, 1000);
+}
+var dragging = false;
+var stack;
+function fixDragBtn() {
+  var textareawidth, leftpadding, dragleft, containertop, buttonwidth
+  var containertop = Number(w3_getStyleValue(document.getElementById("container"), "top").replace("px", ""));
+  if (stack != " horizontal") {
+    document.getElementById("dragbar").style.width = "5px";    
+    textareasize = Number(w3_getStyleValue(document.getElementById("textareaCode"), "width").replace("px", ""));
+    leftpadding = Number(w3_getStyleValue(document.getElementById("textarea"), "padding-left").replace("px", ""));
+    buttonwidth = Number(w3_getStyleValue(document.getElementById("dragbar"), "width").replace("px", ""));
+    textareaheight = w3_getStyleValue(document.getElementById("textareaCode"), "height");
+    dragleft = textareasize + leftpadding + (leftpadding / 2) - (buttonwidth / 2);
+    document.getElementById("dragbar").style.top = containertop + "px";
+    document.getElementById("dragbar").style.left = dragleft + "px";
+    document.getElementById("dragbar").style.height = textareaheight;
+    document.getElementById("dragbar").style.cursor = "col-resize";
+    
+  } else {
+    document.getElementById("dragbar").style.height = "5px";
+    if (window.getComputedStyle) {
+        textareawidth = window.getComputedStyle(document.getElementById("textareaCode"),null).getPropertyValue("height");
+        textareaheight = window.getComputedStyle(document.getElementById("textareaCode"),null).getPropertyValue("width");
+        leftpadding = window.getComputedStyle(document.getElementById("textarea"),null).getPropertyValue("padding-top");
+        buttonwidth = window.getComputedStyle(document.getElementById("dragbar"),null).getPropertyValue("height");
+    } else {
+        dragleft = document.getElementById("textareaCode").currentStyle["width"];
+    }
+    textareawidth = Number(textareawidth.replace("px", ""));
+    leftpadding = Number(leftpadding .replace("px", ""));
+    buttonwidth = Number(buttonwidth .replace("px", ""));
+    dragleft = containertop + textareawidth + leftpadding + (leftpadding / 2);
+    document.getElementById("dragbar").style.top = dragleft + "px";
+    document.getElementById("dragbar").style.left = "5px";
+    document.getElementById("dragbar").style.width = textareaheight;
+    document.getElementById("dragbar").style.cursor = "row-resize";        
+  }
+}
+function dragstart(e) {
+  e.preventDefault();
+  dragging = true;
+  var main = document.getElementById("iframecontainer");
+}
+function dragmove(e) {
+  if (dragging) 
+  {
+    document.getElementById("shield").style.display = "block";        
+    if (stack != " horizontal") {
+      var percentage = (e.pageX / window.innerWidth) * 100;
+      if (percentage > 5 && percentage < 98) {
+        var mainPercentage = 100-percentage;
+        document.getElementById("textareacontainer").style.width = percentage + "%";
+        document.getElementById("iframecontainer").style.width = mainPercentage + "%";
+        fixDragBtn();
+      }
+    } else {
+      var containertop = Number(w3_getStyleValue(document.getElementById("container"), "top").replace("px", ""));
+      var percentage = ((e.pageY - containertop + 20) / (window.innerHeight - containertop + 20)) * 100;
+      if (percentage > 5 && percentage < 98) {
+        var mainPercentage = 100-percentage;
+        document.getElementById("textareacontainer").style.height = percentage + "%";
+        document.getElementById("iframecontainer").style.height = mainPercentage + "%";
+        fixDragBtn();
+      }
+    }
+    showFrameSize();    
+  }
+}
+function dragend() {
+  document.getElementById("shield").style.display = "none";
+  dragging = false;
+}
+if (window.addEventListener) {              
+  document.getElementById("dragbar").addEventListener("mousedown", function(e) {dragstart(e);});
+  document.getElementById("dragbar").addEventListener("touchstart", function(e) {dragstart(e);});
+  window.addEventListener("mousemove", function(e) {dragmove(e);});
+  window.addEventListener("touchmove", function(e) {dragmove(e);});
+  window.addEventListener("mouseup", dragend);
+  window.addEventListener("touchend", dragend);
+  window.addEventListener("load", fixDragBtn);
+  window.addEventListener("load", showFrameSize);
+}
+function w3_getStyleValue(elmnt,style) {
+    if (window.getComputedStyle) {
+        return window.getComputedStyle(elmnt,null).getPropertyValue(style);
+    } else {
+        return elmnt.currentStyle[style];
+    }
+}
+</script>
+
+</body></html>

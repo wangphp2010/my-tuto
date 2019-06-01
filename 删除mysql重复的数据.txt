@@ -1,0 +1,13 @@
+delete   from adult   
+   
+where adult_id NOT IN 
+
+
+(
+    SELECT * FROM ( SELECT min(adult_id)  FROM adult  group by  `adult_url` ) AS TEMP
+    
+   ) 
+   
+   
+   
+   delete from verystream where `verystream_id` IN ( SELECT * FROM ( SELECT `verystream_id` FROM verystream GROUP BY `adult_id` HAVING COUNT( * ) >1 ) AS Temp )

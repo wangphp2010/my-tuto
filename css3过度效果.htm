@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)http://tympanus.net/Development/PageTransitions/ -->
+<html lang="en" class=" js no-touch cssanimations csstransitions" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>A Collection of Page Transitions</title>
+		<meta name="description" content="A Collection of Page Transitions with CSS Animations">
+		<meta name="keywords" content="page transition, css animation, website, effect, css3, jquery">
+		<meta name="author" content="Codrops">
+		<link rel="shortcut icon" href="http://tympanus.net/Development/favicon.ico"> 
+		<link rel="stylesheet" type="text/css" href="./css过度效果_files/default.css">
+		<link rel="stylesheet" type="text/css" href="./css过度效果_files/multilevelmenu.css">
+		<link rel="stylesheet" type="text/css" href="./css过度效果_files/component.css">
+		<link rel="stylesheet" type="text/css" href="./css过度效果_files/animations.css">
+		<script type="text/javascript" async="" src="./css过度效果_files/ga.js"></script><script src="./css过度效果_files/modernizr.custom.js"></script>
+		<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-7243260-2']);
+		_gaq.push(['_trackPageview']);
+		(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+		</script>
+	<link rel="stylesheet" type="text/css" href="./css过度效果_files/demoad.css"><script type="text/javascript" async="" src="./css过度效果_files/pro.js"></script><script type="text/javascript" id="_bsaPRO_js" src="./css过度效果_files/saved_resource" async="async"></script><script src="./css过度效果_files/ad.js" async=""></script></head>
+	<body>	
+		<div class="codrops-top clearfix">
+			<a class="codrops-icon codrops-icon-prev" href="http://tympanus.net/Tutorials/AutomaticFigureNumbering/"><span>Previous Demo</span></a>
+			<span class="right"><a class="codrops-icon codrops-icon-drop" href="http://tympanus.net/codrops/?p=15001"><span>Back to the Codrops Article</span></a></span>
+		</div>
+
+		<div class="pt-triggers">
+			<button id="iterateEffects" class="pt-touch-button">Show next page transition</button>
+			<div id="dl-menu" class="dl-menuwrapper">
+				<button class="dl-trigger">Choose a transition</button>
+				<ul class="dl-menu dl-menu-toggle">
+					<li class="">
+						<a href="http://tympanus.net/Development/PageTransitions/#">Move</a>
+						<ul class="dl-submenu"><li class="dl-back"><a href="http://tympanus.net/Development/PageTransitions/#">back</a></li>
+							<li data-animation="1"><a href="http://tympanus.net/Development/PageTransitions/#">Move to left/ from right</a></li>
+							<li data-animation="2"><a href="http://tympanus.net/Development/PageTransitions/#">Move to right/ from left</a></li>
+							<li data-animation="3"><a href="http://tympanus.net/Development/PageTransitions/#">Move to top/ from bottom</a></li>
+							<li data-animation="4"><a href="http://tympanus.net/Development/PageTransitions/#">Move to bottom/ from top</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="http://tympanus.net/Development/PageTransitions/#">Fade</a>
+						<ul class="dl-submenu"><li class="dl-back"><a href="http://tympanus.net/Development/PageTransitions/#">back</a></li>
+							<li data-animation="5"><a href="http://tympanus.net/Development/PageTransitions/#">Fade / from right</a></li>
+							<li data-animation="6"><a href="http://tympanus.net/Development/PageTransitions/#">Fade / from left</a></li>
+							<li data-animation="7"><a href="http://tympanus.net/Development/PageTransitions/#">Fade / from bottom</a></li>
+							<li data-animation="8"><a href="http://tympanus.net/Development/PageTransitions/#">Fade / from top</a></li>
+							<li data-animation="9"><a href="http://tympanus.net/Development/PageTransitions/#">Fade left / Fade right</a></li>
+							<li data-animation="10"><a href="http://tympanus.net/Development/PageTransitions/#">Fade right / Fade left</a></li>
+							<li data-animation="11"><a href="http://tympanus.net/Development/PageTransitions/#">Fade top / Fade bottom</a></li>
+							<li data-animation="12"><a href="http://tympanus.net/Development/PageTransitions/#">Fade bottom / Fade top</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="http://tympanus.net/Development/PageTransitions/#">Different easing</a>
+						<ul class="dl-submenu"><li class="dl-back"><a href="http://tympanus.net/Development/PageTransitions/#">back</a></li>
+							<li data-animation="13"><a href="http://tympanus.net/Development/PageTransitions/#">Different easing / from right</a></li>
+							<li data-animation="14"><a href="http://tympanus.net/Development/PageTransitions/#">Different easing / from left</a></li>
+							<li data-animation="15"><a href="http://tympanus.net/Development/PageTransitions/#">Different easing / from bottom</a></li>
+							<li data-animation="16"><a href="http://tympanus.net/Development/PageTransitions/#">Different easing / from top</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="http://tympanus.net/Development/PageTransitions/#">Scale</a>
+						<ul class="dl-submenu"><li class="dl-back"><a href="http://tympanus.net/Development/PageTransitions/#">back</a></li>
+							<li data-animation="17"><a href="http://tympanus.net/Development/PageTransitions/#">Scale down / from right</a></li>
+							<li data-animation="18"><a href="http://tympanus.net/Development/PageTransitions/#">Scale down / from left</a></li>
+							<li data-animation="19"><a href="http://tympanus.net/Development/PageTransitions/#">Scale down / from bottom</a></li>
+							<li data-animation="20"><a href="http://tympanus.net/Development/PageTransitions/#">Scale down / from top</a></li>
+							<li data-animation="21"><a href="http://tympanus.net/Development/PageTransitions/#">Scale down / scale down</a></li>
+							<li data-animation="22"><a href="http://tympanus.net/Development/PageTransitions/#">Scale up / scale up</a></li>
+							<li data-animation="23"><a href="http://tympanus.net/Development/PageTransitions/#">Move to left / scale up</a></li>
+							<li data-animation="24"><a href="http://tympanus.net/Development/PageTransitions/#">Move to right / scale up</a></li>
+							<li data-animation="25"><a href="http://tympanus.net/Development/PageTransitions/#">Move to top / scale up</a></li>
+							<li data-animation="26"><a href="http://tympanus.net/Development/PageTransitions/#">Move to bottom / scale up</a></li>
+							<li data-animation="27"><a href="http://tympanus.net/Development/PageTransitions/#">Scale down / scale up</a></li>
+						</ul>
+					</li>
+					<li class="">
+						<a href="http://tympanus.net/Development/PageTransitions/#">Rotate</a>
+						<ul class="dl-submenu"><li class="dl-back"><a href="http://tympanus.net/Development/PageTransitions/#">back</a></li>
+							<li class="">
+								<a href="http://tympanus.net/Development/PageTransitions/#">Glue</a>
+								<ul class="dl-submenu"><li class="dl-back"><a href="http://tympanus.net/Development/PageTransitions/#">back</a></li>
+									<li data-animation="28"><a href="http://tympanus.net/Development/PageTransitions/#">Glue left / from right</a></li>
+									<li data-animation="29"><a href="http://tympanus.net/Development/PageTransitions/#">Glue right / from left</a></li>
+									<li data-animation="30"><a href="http://tympanus.net/Development/PageTransitions/#">Glue bottom / from top</a></li>
+									<li data-animation="31"><a href="http://tympanus.net/Development/PageTransitions/#">Glue top / from bottom</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="http://tympanus.net/Development/PageTransitions/#">Flip</a>
+								<ul class="dl-submenu"><li class="dl-back"><a href="http://tympanus.net/Development/PageTransitions/#">back</a></li>
+									<li data-animation="32"><a href="http://tympanus.net/Development/PageTransitions/#">Flip right</a></li>
+									<li data-animation="33"><a href="http://tympanus.net/Development/PageTransitions/#">Flip left</a></li>
+									<li data-animation="34"><a href="http://tympanus.net/Development/PageTransitions/#">Flip top</a></li>
+									<li data-animation="35"><a href="http://tympanus.net/Development/PageTransitions/#">Flip bottom</a></li>
+								</ul>
+							</li>
+							<li data-animation="36"><a href="http://tympanus.net/Development/PageTransitions/#">Fall</a></li>
+							<li data-animation="37"><a href="http://tympanus.net/Development/PageTransitions/#">Newspaper</a></li>
+							<li class="">
+								<a href="http://tympanus.net/Development/PageTransitions/#">Push / Pull</a>
+								<ul class="dl-submenu"><li class="dl-back"><a href="http://tympanus.net/Development/PageTransitions/#">back</a></li>
+									<li data-animation="38"><a href="http://tympanus.net/Development/PageTransitions/#">Push left / from right</a></li>
+									<li data-animation="39"><a href="http://tympanus.net/Development/PageTransitions/#">Push right / from left</a></li>
+									<li data-animation="40"><a href="http://tympanus.net/Development/PageTransitions/#">Push top / from bottom</a></li>
+									<li data-animation="41"><a href="http://tympanus.net/Development/PageTransitions/#">Push bottom / from top</a></li>
+
+									<li data-animation="42"><a href="http://tympanus.net/Development/PageTransitions/#">Push left / pull right</a></li>
+									<li data-animation="43"><a href="http://tympanus.net/Development/PageTransitions/#">Push right / pull left</a></li>
+									<li data-animation="44"><a href="http://tympanus.net/Development/PageTransitions/#">Push top / pull bottom</a></li>
+									<li data-animation="45"><a href="http://tympanus.net/Development/PageTransitions/#">Push bottom / pull top</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="http://tympanus.net/Development/PageTransitions/#">Fold / Unfold</a>
+								<ul class="dl-submenu"><li class="dl-back"><a href="http://tympanus.net/Development/PageTransitions/#">back</a></li>
+									<li data-animation="46"><a href="http://tympanus.net/Development/PageTransitions/#">Fold left / from right</a></li>
+									<li data-animation="47"><a href="http://tympanus.net/Development/PageTransitions/#">Fold right / from left</a></li>
+									<li data-animation="48"><a href="http://tympanus.net/Development/PageTransitions/#">Fold top / from bottom</a></li>
+									<li data-animation="49"><a href="http://tympanus.net/Development/PageTransitions/#">Fold bottom / from top</a></li>
+									<li data-animation="50"><a href="http://tympanus.net/Development/PageTransitions/#">Move to right / unfold left</a></li>
+									<li data-animation="51"><a href="http://tympanus.net/Development/PageTransitions/#">Move to left / unfold right</a></li>
+									<li data-animation="52"><a href="http://tympanus.net/Development/PageTransitions/#">Move to bottom / unfold top</a></li>
+									<li data-animation="53"><a href="http://tympanus.net/Development/PageTransitions/#">Move to top / unfold bottom</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="http://tympanus.net/Development/PageTransitions/#">Room</a>
+								<ul class="dl-submenu"><li class="dl-back"><a href="http://tympanus.net/Development/PageTransitions/#">back</a></li>
+									<li data-animation="54"><a href="http://tympanus.net/Development/PageTransitions/#">Room to left</a></li>
+									<li data-animation="55"><a href="http://tympanus.net/Development/PageTransitions/#">Room to right</a></li>
+									<li data-animation="56"><a href="http://tympanus.net/Development/PageTransitions/#">Room to top</a></li>
+									<li data-animation="57"><a href="http://tympanus.net/Development/PageTransitions/#">Room to bottom</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="http://tympanus.net/Development/PageTransitions/#">Cube</a>
+								<ul class="dl-submenu"><li class="dl-back"><a href="http://tympanus.net/Development/PageTransitions/#">back</a></li>
+									<li data-animation="58"><a href="http://tympanus.net/Development/PageTransitions/#">Cube to left</a></li>
+									<li data-animation="59"><a href="http://tympanus.net/Development/PageTransitions/#">Cube to right</a></li>
+									<li data-animation="60"><a href="http://tympanus.net/Development/PageTransitions/#">Cube to top</a></li>
+									<li data-animation="61"><a href="http://tympanus.net/Development/PageTransitions/#">Cube to bottom</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="http://tympanus.net/Development/PageTransitions/#">Carousel</a>
+								<ul class="dl-submenu"><li class="dl-back"><a href="http://tympanus.net/Development/PageTransitions/#">back</a></li>
+									<li data-animation="62"><a href="http://tympanus.net/Development/PageTransitions/#">Carousel to left</a></li>
+									<li data-animation="63"><a href="http://tympanus.net/Development/PageTransitions/#">Carousel to right</a></li>
+									<li data-animation="64"><a href="http://tympanus.net/Development/PageTransitions/#">Carousel to top</a></li>
+									<li data-animation="65"><a href="http://tympanus.net/Development/PageTransitions/#">Carousel to bottom</a></li>
+								</ul>
+							</li>
+							<li data-animation="66"><a href="http://tympanus.net/Development/PageTransitions/#">Sides</a></li>
+						</ul>
+					</li>
+					<li data-animation="67"><a href="http://tympanus.net/Development/PageTransitions/#">Slide</a></li>
+				</ul>
+			</div><!-- /dl-menu-wrapper-->
+		</div><!-- /triggers -->
+
+		<div id="pt-main" class="pt-perspective">
+			<div class="pt-page pt-page-1"><h1><span>A collection of</span><strong>Page</strong> Transitions</h1></div>
+			<div class="pt-page pt-page-2"><h1><span>A collection of</span><strong>Page</strong> Transitions</h1></div>
+			<div class="pt-page pt-page-3"><h1><span>A collection of</span><strong>Page</strong> Transitions</h1></div>
+			<div class="pt-page pt-page-4 pt-page-current"><h1><span>A collection of</span><strong>Page</strong> Transitions</h1></div>
+			<div class="pt-page pt-page-5"><h1><span>A collection of</span><strong>Page</strong> Transitions</h1></div>
+			<div class="pt-page pt-page-6"><h1><span>A collection of</span><strong>Page</strong> Transitions</h1></div>
+		</div>
+
+		<div class="pt-message">
+			<p>Your browser does not support CSS animations.</p>
+		</div>
+
+		<script src="./css过度效果_files/jquery.min.js"></script>
+		<script src="./css过度效果_files/jquery.dlmenu.js"></script>
+		<script src="./css过度效果_files/pagetransitions.js"></script>
+		<script src="./css过度效果_files/demoad.js"></script><div id="cdawrap"><div id="bsap_402" class="bsap" data-serve="CKSDE"><style type="text/css">
+.one{position:relative;}.one .bsa_it_ad{display:block;padding:15px;border:1px solid #e1e1e1;background:#f9f9f9;font-family:helvetica,arial,sans-serif;line-height:100%;position:relative;}.one .bsa_it_ad a{text-decoration:none;}.one .bsa_it_ad a:hover{text-decoration:none;}.one .bsa_it_ad .bsa_it_t{display:block;font-size:12px;font-weight:bold;color:#212121;line-height:125%;padding:0 0 5px 0;}.one .bsa_it_ad .bsa_it_d{display:block;font-size:11px;color:#434343;font-size:12px;line-height:135%;}.one .bsa_it_ad .bsa_it_i{float:left;margin:0 15px 10px 0;}.one .bsa_it_p{display:block;text-align:right;position:absolute;bottom:10px;right:15px;}.one .bsa_it_p a{font-size:10px;color:#666;text-decoration:none;}.one .bsa_it_ad .bsa_it_p a:hover{font-style:italic;}
+</style>
+<div class="bsa_it one"><script type="text/javascript" id="auto_1" class="ignoreme">
+(function(){
+  var fusion = document.createElement('script');
+  fusion.src = window.location.protocol + '//adn.fusionads.net/api/1.0/ad.js?zoneid=184&rand=' + Math.floor(Math.random()*9999999);
+  fusion.async = true;
+  (document.head || document.getElementsByTagName('head')[0]).appendChild(fusion);
+})();</script>
+		<div id="fusion_ad"><span class="fusionentire"><a href="http://adn.fusionads.net/click?creative_id=812&publisher_id=184&1373165756855.4404" title="Learn how UX can cut interactive project costs and help meet tough deadlines." target="_top"><img src="./css过度效果_files/812-fusion-ads.png" class="fusionimg" alt="Learn how UX can cut interactive project costs and help meet tough deadlines." border="0" height="100" width="130"></a><a href="http://adn.fusionads.net/click?creative_id=812&publisher_id=184&1373165756855.4404" class="fusiontext" title="Learn how UX can cut interactive project costs and help meet tough deadlines." target="_top">Learn how UX can cut interactive project costs and help meet tough deadlines.</a></span>
+	<a class="poweredbyfusion" href="http://fusionads.net/" title="FusionAds">Powered by Fusion</a>
+</div>
+		<span class="bsa_it_p">
+<a href="http://buysellads.com/buy/detail/138927/zone/1286824?utm_source=site_138927&utm_medium=website&utm_campaign=imagetext&utm_content=zone_1286824">ads by BSA</a>
+</span>
+</div></div><span id="cda-remove"></span></div>
+	
+
+</body></html>

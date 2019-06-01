@@ -1,0 +1,60 @@
+
+<script src="js.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+$(function() {
+var sh=function(){
+
+var _slideFun=[
+
+function(){$("#d").animate({opacity:0},500,_takeOne);},
+function(){$("#c").animate({opacity:0},500,_takeOne);},
+function(){$("#b").animate({opacity:0},500,_takeOne);},
+function(){$("#a").animate({opacity:0},500,_takeOne);},
+function(){$("#d").animate({opacity:1},1,_takeOne);},
+function(){$("#c").animate({opacity:1},1,_takeOne);},
+function(){$("#b").animate({opacity:1},1,_takeOne);},
+function(){$("#a").animate({opacity:1},1,_takeOne);},
+
+
+ ];
+$('#demo').queue('slideList',_slideFun);
+
+var _takeOne=function(){
+$('#demo').dequeue('slideList');
+};
+
+_takeOne();
+
+};
+sh()
+
+var ss;
+ss=setInterval(sh,1504); //setInterval(cache,3000) setTimeout(gogo,2000);
+
+
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+</script><div style="width:100%;position:relative;margin:0 auto;" id="demo">
+<div style="width:100px;position:absolute;" id="f"><img src="tu/tutu.jpg" width="150" height="150"/></div>
+
+<div style="width:100px;position:absolute;" id="a"><img src="tu/404.jpg" width="150" height="150" /></div>
+<div style="width:100px;position:absolute;" id="b"><img src="tu/5584-1-wusfp-1349114756.jpg" width="150" height="150" /></div>
+<div style="width:100px;position:absolute;" id="c"><img src="tu/dao2.JPG" width="150" height="150"/></div>
+<div style="width:100px;position:absolute;" id="d"><img src="tu/tutu.jpg" width="150" height="150"/></div>
+
+</div>
+
+

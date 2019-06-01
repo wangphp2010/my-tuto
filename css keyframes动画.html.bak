@@ -1,0 +1,60 @@
+
+<style type="text/css">
+.loader{ 
+width:100px;height:100px;
+  background: #0dcecb;
+  
+    border-radius: 25px;;
+
+
+  
+  -webkit-animation:load 2s infinite ease ;
+  -moz-animation: load 2s infinite ease;
+  -ms-animation: load 2s infinite ease;
+  -o-animation: loa2 2s infinite ease;
+  animation: load 2s infinite ease;
+ 	}  
+  
+
+ 	
+	
+@-webkit-keyframes load {
+	0% {
+ transform:rotate(0deg);
+-webkit-transform:rotate(0deg);
+-moz-transform:rotate(0deg);
+-ms-transform:rotate(0deg);
+-o-transform:rotate(0deg);
+  }
+  100% {
+   transform:rotate(360deg);
+-webkit-transform:rotate(360deg);
+-moz-transform:rotate(360deg);
+-ms-transform:rotate(360deg);
+-o-transform:rotate(360deg); 
+  }
+  
+  
+}  
+
+
+@keyframes load {
+	0% {
+   transform:rotate(0deg);
+-webkit-transform:rotate(0deg);
+-moz-transform:rotate(0deg);
+-ms-transform:rotate(0deg);
+-o-transform:rotate(0deg);
+  }
+  100% {
+   transform:rotate(360deg);
+-webkit-transform:rotate(360deg);
+-moz-transform:rotate(360deg);
+-ms-transform:rotate(360deg);
+-o-transform:rotate(360deg);   }
+  
+  
+}
+ 
+</style>
+<div class="loader"></div>

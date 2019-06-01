@@ -1,0 +1,13 @@
+<html>  
+<body>  
+<input type="file" id="file" onChange="onInputFileChange()">  
+<audio id="audio_id" loop="" controls="" autoplay=""     ></audio>  
+<script>  
+function onInputFileChange() {  
+   var file = document.getElementById('file').files[0];  
+   var url = URL.createObjectURL(file); 
+  document.getElementById("audio_id").src = url;  
+ }  
+</script>  
+</body>  
+</html>   

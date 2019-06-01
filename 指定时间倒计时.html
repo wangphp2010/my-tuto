@@ -1,0 +1,22 @@
+<SCRIPT LANGUAGE="JavaScript">
+var d=Date.parse(new Date())/1000; 
+
+var x=d+100;
+</SCRIPT>
+
+
+<p >请等待<span id="times"></span></p>
+
+<SCRIPT LANGUAGE="JavaScript">
+
+function sss()
+{
+var p=Date.parse(new Date())/1000; 
+var y= x-p ;
+document.getElementById("times").innerHTML = y;
+}
+sss()
+var sh;
+sh=setInterval(sss,1000);
+</SCRIPT>
+

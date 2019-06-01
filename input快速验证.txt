@@ -1,0 +1,7 @@
+onclick="if(this.value=='输入你的新手机号码'){this.value=''}" onblur="if(this.value==''){this.value='输入你的新手机号码'}"
+
+
+<input type="text"   id="num" name="num"    value=" EX : 127"  onclick=" javasricpt: value='' "  onfocus="javasricpt: value='' " />
+
+
+   <input type="text"   id="num" name="num"   placeholder=" EX : 127"   />      

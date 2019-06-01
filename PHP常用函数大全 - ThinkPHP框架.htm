@@ -1,0 +1,1476 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0036)http://www.thinkphp.cn/code/150.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> -->
+	<title>PHP常用函数大全 - ThinkPHP框架</title>
+	<meta name="keywords" content="ThinkPHP代码分享,文档,教程,手册,学习,资源,thinkphp教程,thinkphp,顶想,刘晨,顶想.thinkphp.刘晨">
+	<meta name="description" content="中文最佳实践框架  JUST THINK IT ThinkPHP 大道至简 开发由我|php快速开发|just think it|php开源框架|php网站开发|上海顶想|ORM|Framework|PHP企业开发">
+	<meta property="wb:webmaster" content="06779971d6009b5a">
+	<link rel="alternate" type="application/rss+xml" title="ThinkPHP官方资讯" href="http://www.thinkphp.cn/rss/index.xml">
+	<link href="http://www.thinkphp.cn/Public/favicon.ico" rel="shortcut icon">
+	<link rel="stylesheet" type="text/css" href="./PHP常用函数大全 - ThinkPHP框架_files/base.css" media="all">
+	<link rel="stylesheet" type="text/css" href="./PHP常用函数大全 - ThinkPHP框架_files/header.css" media="all">
+	<link rel="stylesheet" type="text/css" href="./PHP常用函数大全 - ThinkPHP框架_files/module.css" media="all">
+	<link rel="stylesheet" href="http://www.thinkphp.cn/Public/common/ThinkBox/skin/default/style.css">
+	<link rel="stylesheet" href="http://www.thinkphp.cn/Public/new/css/img.css">
+	<link rel="stylesheet" type="text/css" href="./PHP常用函数大全 - ThinkPHP框架_files/prettify.css">
+	<script type="text/javascript" src="./PHP常用函数大全 - ThinkPHP框架_files/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="./PHP常用函数大全 - ThinkPHP框架_files/prettify.js"></script>
+	<script type="text/javascript" src="./PHP常用函数大全 - ThinkPHP框架_files/jquery.zclip.min.js"></script>
+	<script type="text/javascript" src="./PHP常用函数大全 - ThinkPHP框架_files/jquery.ThinkBox.min.js"></script>
+	<script type="text/javascript" src="./PHP常用函数大全 - ThinkPHP框架_files/Validform_v5.3.2.js"></script>
+	<script type="text/javascript" src="./PHP常用函数大全 - ThinkPHP框架_files/jquery.masonry.min.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		//翻页快捷键
+		$(document).keyup(function(event){
+			if(event.keyCode == 37){
+				$('.prev span').click();
+			}else if(event.keyCode == 39){
+				$('.next span').click();
+			}
+		});
+
+		//阻止事件的冒泡
+		$(':text,textarea').keyup(function(event){
+			event.stopPropagation();
+		});
+
+		$("#header-search").hover(function(){
+			$("#search-sort-list").show();
+		},function(){
+			$("#search-sort-list").hide();
+		});
+		//搜索选项选择
+		$("#search-sort-list li").click(function(){
+			var curTxt = $(this).text();
+			var type = $(this).val();
+			$('#search').val(type);
+			$(this).addClass("current").siblings().removeClass("current");
+			$(this).parent().siblings(".search-sort-txt").text(curTxt);
+			$(this).parent().hide();
+		});
+		 
+		 //入口图标菜单
+		$(".entrance").hover(function(){
+			$(this).children(".user-menu").show();
+		},function(){
+			$(this).children(".user-menu").hide();
+		});
+		
+		//返回顶部
+		function gotoTop(min_height){
+		    //预定义返回顶部的html代码，它的css样式默认为不显示
+		    var gotoTop_html = '<div id="gotoTop">返回顶部</div>';
+		    //将返回顶部的html代码插入页面上id为page的元素的末尾 
+		    $("body").append(gotoTop_html);
+		    $("#gotoTop").click(//定义返回顶部点击向上滚动的动画
+		        function(){ $('html,body').animate({scrollTop:0},700);
+		    }).hover(//为返回顶部增加鼠标进入的反馈效果，用添加删除css类实现
+		        function(){ $(this).addClass("hover");},
+		        function(){ $(this).removeClass("hover");
+		    });
+	
+		    //获取页面的最小高度，无传入值则默认为600像素
+		    min_height ? min_height = min_height : min_height = 600;
+		    //为窗口的scroll事件绑定处理函数
+		    $(window).scroll(function(){
+		        //获取窗口的滚动条的垂直位置
+		        var s = $(window).scrollTop();
+		        //当窗口的滚动条的垂直位置大于页面的最小高度时，让返回顶部元素渐现，否则渐隐
+		        if( s > min_height){
+		            $("#gotoTop").fadeIn(100);
+		        }else{
+		            $("#gotoTop").fadeOut(200);
+		        };
+		    });
+		};
+		gotoTop();
+		//代码高亮
+		$('code').each(function(){
+	        $(this).data('think-source', (this.innerText || this.textContent).replace(/ /g, ' '));
+	    });
+	    prettyPrint();
+	    $('code').each(function(){
+	        var self = $(this);
+	        var copy = $('<div><span>复制代码</span></div>')
+	            .addClass('think-copy')
+	            .appendTo(self)
+	            .zclip({
+	                'path':'/Public/common/zclip/ZeroClipboard.swf',
+	                'afterCopy' : function(){
+	                    $.ThinkBox.success('复制成功');
+	                },
+	                'copy': function(){
+	                    return self.closest('code').data('think-source');
+	                }
+	            });
+	    });
+	  	//每隔一段时间ajax加载提醒
+		setInterval("ajaxGetNotify()", parseInt(120) * 1000);
+	})
+	
+	function ajaxGetNotify(){
+  		$.get('/notify/getNotifyCount',
+			{},
+			function(data){
+				$('#review_num').text(data.review_count);
+				$('#letter_num').text(data.letter_count);
+				if(data.num != 0){
+					$('#all_notify').html("<em>"+data.num+"</em>");
+				}else{
+					$('#all_notify').html("");
+				}
+			},
+			'json'
+		);
+	}
+	</script>
+	<script type="text/javascript" src="./PHP常用函数大全 - ThinkPHP框架_files/common.js"></script>
+</head>
+<body>
+	<!-- 头部 -->
+	<div class="header">
+		<div class="hd-main cf">
+			<!-- logo -->
+			<h3 class="logo"><a href="http://www.thinkphp.cn/" title="返回首页"></a></h3>
+			<!-- /logo -->
+			
+			<!-- 主导航 -->
+			<ul class="main-nav">
+				<li><a href="http://www.thinkphp.cn/">首页</a></li>
+				<li><a href="http://www.thinkphp.cn/down.html">下载</a></li>
+				<li><a href="http://www.thinkphp.cn/extend/index.html">扩展</a></li>
+				<li><a href="http://www.thinkphp.cn/app/index.html">应用</a></li>
+				<li><a href="http://www.thinkphp.cn/document/index.html">教程</a></li>
+				<li class="current"><a href="http://www.thinkphp.cn/code/index.html">代码</a></li>
+				<li><a href="http://www.thinkphp.cn/case/index.html">案例</a></li>
+				<li><a href="http://www.thinkphp.cn/info/index.html">资讯</a></li>
+				<li><a href="http://www.thinkphp.cn/topic/index.html">讨论</a></li>
+			</ul>
+			<script type="text/javascript">
+            (function(){
+                //导航选中
+                var url = location.pathname, navg = $('.main-nav li');
+                if(url == '/' || url == '/index'){
+                    navg.eq(0).addClass('current');
+                }else if(!url.indexOf('/down')){
+                    navg.eq(1).addClass('current');
+                }else if(!url.indexOf('/extend')){
+                    navg.eq(2).addClass('current');
+                }else if(!url.indexOf('/app')){
+                    navg.eq(3).addClass('current');
+                }else if(!url.indexOf('/info')){
+                    if(!url.indexOf('/info/document') || !url.indexOf('/info/add/cate_id/36') || !url.indexOf('/info/zhuanti')){
+                        navg.eq(4).addClass('current');
+                    }else{
+                        navg.eq(7).addClass('current');
+                    }
+                }else if(!url.indexOf('/code')){
+                    navg.eq(5).addClass('current');
+                }else if(!url.indexOf('/case')){
+                    navg.eq(6).addClass('current');
+                }else if(!url.indexOf('/topic')){
+                    navg.eq(8).addClass('current');
+                }else if(!url.indexOf('/document')){
+                    navg.eq(4).addClass('current');
+                }
+            })()    
+            </script>
+			<!-- /主导航 -->
+
+			<div class="header-bar">
+				<!-- 搜索 -->
+				<form action="http://www.thinkphp.cn/Search/" method="post" class="search cf">
+					<div id="header-search" class="search-sort">
+						<span class="search-sort-txt">全部</span><em></em>						
+						<input type="hidden" name="type" id="search" value="10">
+						<ul id="search-sort-list" class="search-sort-list">
+							<li value="10">全部</li>
+							<li value="0">资讯</li>
+    						<li value="1">下载</li>
+    						<li value="2">讨论</li>
+    						<li value="6">代码</li>
+    						<li value="3">BUG</li>
+    						<li value="4">建议</li>
+    						<li value="5">更新</li>
+                            <li value="7">应用</li>
+						</ul>
+					</div>
+					<input type="hidden" name="time" value="0">					
+					<input type="text" name="name" class="search-input" x-webkit-speech="">
+					<a class="search-btn" onclick="$(this).parent().submit();">搜索</a>
+				</form>
+				<!-- /搜索 -->
+				<script type="text/javascript" src="./PHP常用函数大全 - ThinkPHP框架_files/getInfo.html"></script><div class="entrance">	<a class="unlogin" href="http://www.thinkphp.cn/member/login.html">		<b class="unlogin-ic"></b>		<i class="entr-icon"></i>	</a>	<ul class="user-menu set-l">		<li><a href="http://www.thinkphp.cn/member/login.html">登录</a></li>		<li><a href="http://www.thinkphp.cn/Member/register.html">注册</a></li>	</ul></div>
+			</div>
+		</div>
+	</div>
+	
+
+<!-- 主体 -->
+<div class="main cf">
+	<!-- 左边 -->
+	<div class="wrapper">
+		<!-- 详情内容 -->
+		<div class="box detail-box">
+			<!-- 标签 -->	
+																					<!-- /标签 -->
+			
+			<!-- 标题栏 -->
+			<div class="detail-hd">
+				<div class="t-head cf">
+					<!-- 标题名称 -->
+					<h2>PHP常用函数大全</h2>
+					<!-- /标题名称 -->
+
+					<!-- 圆形翻页按钮 -->
+					<div class="turn">
+						
+	<a class="prev" href="http://www.thinkphp.cn/code/151.html" title="上一篇：Uploadify 批量上传，结合ThinkPHP 使用方法...."></a>		<a class="dir" href="http://www.thinkphp.cn/code/system.html" title="返回目录"></a>
+	<a class="next" href="http://www.thinkphp.cn/code/149.html" title="下一篇：Flash头像上传，可裁切，支持摄像头"></a>
+					</div>
+					<!-- /圆形翻页按钮 -->
+				</div>
+				<div class="t-foot">
+					<span>浏览：2015</span>
+
+					<!-- 发布日期 -->
+					<span>发布日期：2013/03/21</span>
+					<!-- /发布日期 -->
+					<!-- 分类 -->
+					<span>分类：系统代码</span>					<!-- /分类 -->
+					<!-- 关键字 -->
+										<!-- /关键字 -->
+					
+					<input type="hidden" value="27807" id="editbtn_user_id">
+<input type="hidden" value="150" id="editbtn_article_id">
+<input type="hidden" value="Code" id="editbtn_article_module">
+<script type="text/javascript">
+//ajax获取文章编辑按钮
+$(function(){
+	function getEditBtn(){
+		var $user_id = $('#editbtn_user_id').val();
+		if($user_id != ''){
+			$.get('/member/getEditBtn',
+				{
+					'user_id' : $user_id,
+					'article_id' : $('#editbtn_article_id').val(),
+					'article_module' : $('#editbtn_article_module').val()
+				},
+				function(data){
+					$('.t-foot').append(data.info);
+					$('#hot_review_top').find('.comment-hd').append(data.cancelBest);
+				},
+				'json'
+			);
+		}
+	}
+	getEditBtn();
+
+	$('#hot_review_top').delegate('#cancelBest', 'click', function(event){
+		$.get($(this).attr('href'),
+			{},
+			function(data){
+				if(data.status){
+					$.ThinkBox.success(data.info);
+					setTimeout(function(){window.location.reload();},1500);
+				}else{
+					$.ThinkBox.error(data.info);
+				}
+			},
+			'json'
+		);
+		return false;
+	});
+})
+</script>
+				</div>
+			</div>
+			<!-- /标题栏 -->
+
+			<!-- 内容介绍 -->
+			<div class="detail-bd">
+				
+	php<br>usleep() 函数延迟代码执行若干微秒。<br>
+unpack() 函数从二进制字符串对数据进行解包。<br>
+uniqid() 函数基于以微秒计的当前时间，生成一个唯一的 ID。<br>
+time_sleep_until() 函数延迟代码执行直到指定的时间。<br>
+time_nanosleep() 函数延迟代码执行若干秒和纳秒。<br>
+sleep() 函数延迟代码执行若干秒。<br>
+show_source() 函数对文件进行语法高亮显示。<br>
+strip_whitespace() 函数返回已删除 PHP 注释以及空白字符的源代码文件。<br>
+pack() 函数把数据装入一个二进制字符串。<br>
+ignore_user_abort() 函数设置与客户机断开是否会终止脚本的执行。<br>
+highlight_string() 函数对字符串进行语法高亮显示。<br>
+highlight_file() 函数对文件进行语法高亮显示。<br>
+get_browser() 函数返回用户浏览器的性能。<br>
+exit() 函数输出一条消息，并退出当前脚本。<br>
+eval() 函数把字符串按照 PHP 代码来计算。<br>
+die() 函数输出一条消息，并退出当前脚本。<br>
+defined() 函数检查某常量是否存在。<br>
+define() 函数定义一个常量。<br>
+constant() 函数返回常量的值。<br>
+connection_status() 函数返回当前的连接状态。<br>
+connection_aborted() 函数检查是否断开客户机。<br>
+zip_read() 函数读取打开的 zip 档案中的下一个文件。<br>
+zip_open() 函数打开 ZIP 文件以供读取。<br>
+zip_entry_read() 函数从打开的 zip 档案项目中获取内容。<br>
+zip_entry_open() 函数打开一个 ZIP 档案项目以供读取。<br>
+zip_entry_name() 函数返回 zip 档案项目的名称。<br>
+zip_entry_filesize() 函数返回 zip 档案项目的原始大小（在压缩之前）。<br>
+zip_entry_compressionmethod() 函数返回 zip 档案项目的压缩方法。<br>
+zip_entry_compressedsize() 函数返回 zip 档案项目的压缩文件尺寸。<br>
+zip_entry_close() 函数关闭由 zip_entry_open() 函数打开的 zip 档案文件。<br>
+zip_close() 函数关闭由 zip_open() 函数打开的 zip 档案文件。<br>
+xml_set_unparsed_entity_decl_handler() 函数规定在遇到无法解析的实体名称（NDATA）声明时被调用的函数。<br>
+xml_set_processing_instruction_handler() 函数规定当解析器在 XML 文档中找到处理指令时所调用的函数。<br>
+xml_set_object() 函数允许在对象中使用 XML 解析器。<br>
+xml_set_notation_decl_handler() 函数规定当解析器在 XML 文档中找到符号声明时被调用的函数。<br>
+xml_set_external_entity_ref_handler() 函数规定当解析器在 XML 文档中找到外部实体时被调用的函数。<br>
+xml_set_element_handler() 函数建立起始和终止元素处理器。<br>
+xml_set_default_handler() 函数为 XML 解析器建立默认的数据处理器。<br>
+xml_set_character_data_handler() 函数建立字符数据处理器。<br>
+xml_parser_set_option() 函数为 XML 解析器进行选项设置。<br>
+xml_parser_get_option() 函数从 XML 解析器获取选项设置信息。<br>
+xml_parser_free() 函数释放 XML 解析器。<br>
+xml_parser_create() 函数创建 XML 解析器。<br>
+xml_parser_create_ns() 函数创建带有命名空间支持的 XML 解析器。<br>
+xml_parse_into_struct() 函数把 XML 数据解析到数组中。<br>
+xml_parse() 函数解析 XML 文档。<br>
+xml_get_error_code() 函数获取 XML 解析器错误代码。<br>
+xml_get_current_line_number() 函数获取 XML 解析器的当前行号。<br>
+xml_get_current_column_number() 函数获取 XML 解析器的当前列号。<br>
+xml_get_current_byte_index() 函数获取 XML 解析器的当前字节索引。<br>
+xml_error_string() 函数获取 XML 解析器的错误描述。<br>
+utf8_encode() 函数把 ISO-8859-1 字符串编码为 UTF-8。<br>
+utf8_decode() 函数把 UTF-8 字符串解码为 ISO-8859-1。<br>
+wordwrap() 函数按照指定长度对字符串进行折行处理。<br>
+vsprintf() 函数把格式化字符串写入变量中。<br>
+vprintf() 函数输出格式化的字符串。<br>
+vfprintf() 函数把格式化的字符串写到指定的输出流。<br>
+ucwords() 函数把字符串中每个单词的首字符转换为大写。<br>
+ucfirst() 函数把字符串中的首字符转换为大写。<br>
+trim() 函数从字符串的两端删除空白字符和其他预定义字符。<br>
+substr_replace() 函数把字符串的一部分替换为另一个字符串。<br>
+substr_count() 函数计算子串在字符串中出现的次数。<br>
+substr_compare() 函数从指定的开始长度比较两个字符串。<br>
+substr() 函数返回字符串的一部分。<br>
+strtr() 函数转换字符串中特定的字符。<br>
+strtoupper() 函数把字符串转换为大写。<br>
+strtolower() 函数把字符串转换为小写。<br>
+strtok() 函数把字符串分割为更小的字符串。<br>
+strstr() 函数搜索一个字符串在另一个字符串中的第一次出现。<br>
+strspn() 函数返回在字符串中包含的特定字符的数目。<br>
+strrpos() 函数查找字符串在另一个字符串中最后一次出现的位置。<br>
+strripos() 函数查找字符串在另一个字符串中最后一次出现的位置。<br>
+strrev() 函数反转字符串。<br>
+strrchr() 函数查找字符串在另一个字符串中最后一次出现的位置，并返回从该位置到字符串结尾的所有字符。<br>
+strpos() 函数返回字符串在另一个字符串中第一次出现的位置。<br>
+strpbrk() 函数在字符串中搜索指定字符中的任意一个。<br>
+strncmp() 函数比较两个字符串。<br>
+strncasecmp() 函数比较两个字符串。<br>
+strnatcmp() 函数使用一种“自然”算法来比较两个字符串。<br>
+strnatcasecmp() 函数使用一种“自然”算法来比较两个字符串。<br>
+strlen() 函数返回字符串的长度。<br>
+stristr() 函数查找字符串在另一个字符串中第一次出现的位置。<br>
+stripos() 函数返回字符串在另一个字符串中第一次出现的位置。<br>
+stripslashes() 函数删除由 addslashes() 函数添加的反斜杠。<br>
+stripcslashes() 函数删除由 addcslashes() 函数添加的反斜杠。<br>
+strip_tags() 函数剥去 HTML、XML 以及 PHP 的标签。<br>
+strcspn() 函数返回在找到任何指定的字符之前，在字符串查找的字符数。<br>
+strcoll() 函数比较两个字符串。<br>
+strcmp() 函数比较两个字符串。<br>
+strchr() 函数搜索一个字符串在另一个字符串中的第一次出现。<br>
+strcasecmp() 函数比较两个字符串。<br>
+str_word_count() 函数计算字符串中的单词数。<br>
+str_split() 函数把字符串分割到数组中。<br>
+str_shuffle() 函数随机地打乱字符串中的所有字符。<br>
+str_rot13() 函数对字符串执行 ROT13 编码。<br>
+str_replace() 函数使用一个字符串替换字符串中的另一些字符。<br>
+str_repeat() 函数把字符串重复指定的次数。<br>
+str_pad() 函数把字符串填充为指定的长度。<br>
+str_ireplace() 函数使用一个字符串替换字符串中的另一些字符。<br>
+sscanf() 函数根据指定的格式解析来自一个字符串的输入。<br>
+sprintf() 函数把格式化的字符串写写入一个变量中。<br>
+soundex() 函数计算字符串的 soundex 键。<br>
+similar_text() 函数计算两个字符串的匹配字符的数目。<br>
+sha1_file() 函数计算文件的 SHA-1 散列。<br>
+sha1() 函数计算字符串的 SHA-1 散列。<br>
+setlocale() 函数设置地区信息（地域信息）。<br>
+rtrim() P rtrim() 函数 <br>
+PHP String 函数<br>
+quotemeta() 函数在字符串中某些预定义的字符前添加反斜杠。<br>
+quoted_printable_decode() 函数对经过 quoted-printable 编码后的字符串进行解码，返回 8 位的字符串。<br>
+printf() 函数输出格式化的字符串。<br>
+print() 函数输出一个或多个字符串。<br>
+parse_str() 函数把查询字符串解析到变量中。<br>
+ord() 函数返回字符串第一个字符的 ASCII 值。<br>
+number_format() 函数通过千位分组来格式化数字。<br>
+nl2br() 函数在字符串中的每个新行 (\n) 之前插入 HTML 换行符 (&lt;br /&gt;)。<br>
+nl_langinfo() 函数返回指定的本地信息。<br>
+money_format() 函数把字符串格式化为货币字符串。<br>
+metaphone() 函数计算字符串的 metaphone 键。<br>
+md5_file() 函数计算文件的 MD5 散列。<br>
+md5() 函数计算字符串的 MD5 散列。<br>
+ltrim() 函数从字符串左侧删除空格或其他预定义字符。<br>
+localeconv() 函数返回包含本地数字及货币信息格式的数组。<br>
+levenshtein() 函数返回两个字符串之间的 Levenshtein 距离。<br>
+join() 函数把数组元素组合为一个字符串。<br>
+implode() 函数把数组元素组合为一个字符串。<br>
+htmlspecialchars() 函数把一些预定义的字符转换为 HTML 实体。<br>
+html_entity_decode() chars_decode() 函数<br>
+<br>
+PHP String 函数<br>
+htmlentities() 函数把字符转换为 HTML 实体。<br>
+html_entity_decode() 函数把 HTML 实体转换为字符。<br>
+hebrevc() 函数把希伯来文本从右至左的流转换为左至右的流。它也会把新行 (\n) 转换为 &lt;br /&gt;。<br>
+hebrev() 函数把希伯来文本从右至左的流转换为左至右的流。<br>
+get_html_translation_table() 函数返回被 htmlentities() 和 htmlspecialchars() 函数使用的翻译表。<br>
+fprintf() 函数把格式化的字符串写到指定的输出流（例如：文件或数据库）。<br>
+explode() 函数把字符串分割为数组。<br>
+echo() 函数输出一个或多个字符串。<br>
+crypt() 函数返回使用 DES、Blowfish 或 MD5 加密的字符串。<br>
+crc32() 函数计算一个字符串的 crc32 多项式。<br>
+count_chars() 函数返回字符串所用字符的信息。<br>
+convert_uuencode() 函数使用 uuencode 算法对字符串进行编码。<br>
+convert_uudecode() 函数对 uuencode 编码的字符串进行解码。<br>
+convert_cyr_string() 函数把字符由一种 Cyrillic 字符转换成另一种。<br>
+chunk_split() 函数把字符串分割为一连串更小的部分。<br>
+chr() 函数从指定的 ASCII 值返回字符。<br>
+chop() 函数从字符串的末端开始删除空白字符或其他预定义字符。<br>
+bin2hex() 函数把 ASCII 字符的字符串转换为十六进制值。<br>
+addslashes() 函数在指定的预定义字符前添加反斜杠。<br>
+addcslashes() 函数在指定的字符前添加反斜杠。<br>
+xpath() 函数运行对 XML 文档的 XPath 查询。<br>
+simplexml_load_string() 函数把 XML 字符串载入对象中。<br>
+simplexml_load_file() 函数把 XML 文档载入对象中。<br>
+simplexml_import_dom() 函数把 DOM 节点转换为 SimpleXMLElement 对象。<br>
+registerXPathNamespace() 函数为下一次 XPath 查询创建命名空间语境。<br>
+getNamespace() 函数获取在 XML 文档中使用的命名空间。<br>
+getName() 函数从 SimpleXMLElement 对象获取 XML 元素的名称。<br>
+getDocNamespaces() 函数从 SimpleXMLElement 对象返回在 XML 文档中声明的命名空间。<br>
+children() 函数获取指定节点的子节点。<br>
+attributes() 函数获取 SimpleXML 元素的属性。<br>
+asXML() 函数以字符串的形式从 SimpleXMLElement 对象返回 XML 文档。<br>
+addChild() 函数向指定的 XML 节点添加一个子节点。<br>
+addAttribute() 函数给 SimpleXML 元素添加一个属性。<br>
+__construct() 函数创建一个新的 SimpleXMLElement 对象。<br>
+mysql_unbuffered_query() 函数向 MySQL 发送一条 SQL 查询（不获取 / 缓存结果）。<br>
+mysql_thread_id() 函数返回当前线程的 ID。<br>
+mysql_stat() 函数返回 MySQL 服务器的当前系统状态。<br>
+mysql_select_db() 函数设置活动的 MySQL 数据库。<br>
+mysql_result() 函数返回结果集中一个字段的值。<br>
+mysql_real_escape_string() 函数转义 SQL 语句中使用的字符串中的特殊字符。<br>
+mysql_query() 函数执行一条 MySQL 查询。<br>
+mysql_ping() 函数 Ping 一个服务器连接，如果没有连接则重新连接。<br>
+mysql_pconnect() 函数打开一个到 MySQL 服务器的持久连接。<br>
+mysql_num_rows() 函数返回结果集中行的数目。<br>
+mysql_num_fields() 函数返回结果集中字段的数。<br>
+mysql_list_processes() 函数列出 MySQL 进程。<br>
+mysql_list_dbs() 函数列出 MySQL 服务器中所有的数据库。<br>
+mysql_insert_id() 函数返回上一步 INSERT 操作产生的 ID。<br>
+mysql_info() 函数返回最近一条查询的信息。<br>
+mysql_get_server_info() 函数返回 MySQL 服务器的信息。<br>
+mysql_get_proto_info() 函数返回 MySQL 协议的信息。<br>
+mysql_get_host_info() 函数返回 MySQL 主机的信息。<br>
+mysql_get_client_info() 函数返回 MySQL 客户端信息。<br>
+mysql_free_result() 函数释放结果内存。<br>
+mysql_field_type() 函数返回结果集中指定字段的类型。<br>
+mysql_field_table() 函数返回指定字段所在的表名。<br>
+mysql_field_seek() 函数将结果集中的指针设定为指定的字段偏移量。<br>
+mysql_field_name() 函数取得结果中指定字段的字段名。<br>
+mysql_field_len() 函数返回指定字段的长度。<br>
+mysql_field_flags() 函数从结果中取得和指定字段关联的标志。<br>
+mysql_fetch_row() 函数从结果集中取得一行作为数字数组。<br>
+mysql_fetch_object() 函数从结果集（记录集）中取得一行作为对象。<br>
+mysql_fetch_lengths() 函数取得一行中每个字段的内容的长度。<br>
+mysql_fetch_field() 函数从结果集中取得列信息并作为对象返回。<br>
+mysql_fetch_assoc() 函数从结果集中取得一行作为关联数组。<br>
+mysql_fetch_array() 函数从结果集中取得一行作为关联数组，或数字数组，或二者兼有<br>
+mysql_error() 函数返回上一个 MySQL 操作产生的文本错误信息。<br>
+mysql_errno() 函数返回上一个 MySQL 操作中的错误信息的数字编码。<br>
+mysql_db_name() 函数取得 mysql_list_dbs() 调用所返回的数据库名。<br>
+mysql_data_seek() 函数移动内部结果的指针。<br>
+mysql_connect() 函数打开非持久的 MySQL 连接。<br>
+mysql_close() 函数关闭非持久的 MySQL 连接。<br>
+mysql_client_encoding() 函数返回当前连接的字符集的名称。<br>
+mysql_affected_rows() 函数返回前一次 MySQL 操作所影响的记录行数。<br>
+tanh() 函数返回双曲正切。<br>
+tan() 函数返回正切。<br>
+srand() 函数播下随机数发生器种子。<br>
+sqrt() 函数返回一个数的平方根。<br>
+sinh() 函数返回一个数的双曲正弦。<br>
+sin() 函数返回一个数的正弦。<br>
+round() 函数对浮点数进行四舍五入。<br>
+rand() 函数返回随机整数。<br>
+rad2deg() 函数把弧度数转换为角度数。<br>
+pow() 函数返回 x 的 y 次方。<br>
+pi() 函数返回圆周率的值。<br>
+octdec() 函数把八进制转换为十进制。<br>
+mt_srand() 播种 Mersenne Twister 随机数生成器。<br>
+mt_rand() 使用 Mersenne Twister 算法返回随机整数。<br>
+mt_getrandmax() 显示随机数的最大可能值。<br>
+min() 返回最小值。<br>
+max() 返回最大值。<br>
+log1p() 以返回 log(1 + x)，甚至当 x 的值接近零也能计算出准确结果。<br>
+log10() 以 10 为底的对数。<br>
+log() 返回自然对数。<br>
+lcg_value() 组合线性同余发生器。<br>
+is_nan() 判断是否为合法数值。<br>
+is_infinite() 判断是否为无限值。<br>
+is_finite() 函数判断是否为有限值。<br>
+hypot() 函数计算一直角三角形的斜边长度。<br>
+hexdec() 函数把十六进制转换为十进制。<br>
+fmod() 函数显示随机数最大的可能值。<br>
+fmod() 函数返回除法的浮点数余数。<br>
+floor() 函数向下舍入为最接近的整数。<br>
+expm1() 函数返回 exp(x) - 1，甚至当 number 的值接近零也能计算出准确结果。<br>
+exp() 函数计算 e 的指数。<br>
+deg2rad() 函数将角度转换为弧度。<br>
+decoct() 函数把十进制转换为八进制。<br>
+dechex() 函数把十进制转换为十六进制。<br>
+decbin() 函数把十进制转换为二进制。<br>
+cosh() 函数返回一个数的双曲余弦。<br>
+cos() 函数返回一个数的余弦。<br>
+ceil() 函数向上舍入为最接近的整数。<br>
+bindec() 函数把二进制转换为十进制。<br>
+base_convert() 函数在任意进制之间转换数字。<br>
+atanh() 函数返回一个角度的反双曲正切。<br>
+atan() 和 atan2() 和 atan2() 函数<br>
+<br>
+PHP Math 函数<br>
+atan() 和 atan2() 和 atan2() 函数<br>
+<br>
+PHP Math 函数<br>
+asinh() 函数返回一个数的反双曲正弦。<br>
+asin() 函数返回不同数值的反正弦，返回的结果是介于 -PI/2 与 PI/2 之间的弧度值。<br>
+acosh() 函数返回一个数的反双曲余弦。<br>
+acos() 函数返回一个数的反余弦。<br>
+abs() 函数返回一个数的绝对值。<br>
+mail() 函数允许您从脚本中直接发送电子邮件。<br>
+libxml_use_internal_errors() 函数禁用标准的 libxml 错误，并启用用户错误处理。<br>
+libxml_get_last_error() 函数从 libxml 错误缓冲中获取最后一个错误。<br>
+libxml_get_errors() 函数从 libxml 错误缓冲中获取错误。<br>
+libxml_clear_errors() 函数清空 libxml 错误缓冲。<br>
+setrawcookie() 函数不对 cookie 值进行 URL 编码，发送一个 HTTP cookie。<br>
+setcookie() 函数向客户端发送一个 HTTP cookie。<br>
+headers_sent() 函数检查 HTTP 报头是否发送/已发送到何处。<br>
+headers_list() 函数返回已发送的（或待发送的）响应头部的一个列表。<br>
+header() 函数向客户端发送原始的 HTTP 报头。<br>
+ftp_systype() 函数返回远程 FTP 服务器的系统类型标识符。<br>
+ftp_ssl_connect() 函数打开一个安全的 SSL-FTP 连接。<br>
+ftp_size() 函数返回指定文件的大小。<br>
+ftp_site() 函数向服务器发送 SITE 命令。<br>
+ftp_set_option() 函数设置各种 FTP 运行时选项。<br>
+ftp_rmdir() 函数删除一个目录。<br>
+ftp_rename() 函数更改 FTP 服务器上的文件或目录名。<br>
+ftp_rawlist() 函数返回指定目录中文件的详细列表。<br>
+ftp_raw() 函数向 FTP 服务器发送一个 raw 命令。<br>
+ftp_quit() 函数关闭 FTP 连接。<br>
+ftp_pwd() 函数返回当前目录名。<br>
+ftp_put() 函数把文件上传到服务器。<br>
+ftp_pasv() 函数把被动模式设置为打开或关闭。<br>
+ftp_nlist() 函数返回指定目录的文件列表。<br>
+ftp_nb_put() 函数把文件上传到服务器 (non-blocking)。<br>
+ftp_nb_get() 函数从 FTP 服务器上获取文件并写入本地文件 (non-blocking)。<br>
+ftp_nb_fput() 函数上传一个已打开的文件，并在 FTP 服务器上把它保存为文件 (non-blocking)。<br>
+ftp_nb_fget() 函数从 FTP 服务器上下载一个文件并保存到本地已经打开的一个文件中 (non-blocking)。<br>
+ftp_nb_continue() 函数连续获取 / 发送文件。<br>
+ftp_mkdir() 函数在 FTP 服务器上建立新目录。<br>
+ftp_mdtm() 函数返回指定文件的最后修改时间。<br>
+ftp_login() 函数登录 FTP 服务器。<br>
+ftp_get() 函数从 FTP 服务器上下载一个文件。<br>
+ftp_get_option() 函数返回当前 FTP 连接的各种不同的选项设置。<br>
+ftp_fput() 函数上传一个已经打开的文件到 FTP 服务器。<br>
+ftp_fget() 函数从 FTP 服务器上下载一个文件并保存到本地一个已经打开的文件中。<br>
+ftp_exec() 函数请求在 FTP 服务器上执行一个程序或命令。<br>
+ftp_delete() 函数删除 FTP 服务器上的一个文件。<br>
+ftp_connect() 函数建立一个新的 FTP 连接。<br>
+ftp_close() 函数关闭 FTP 连接。<br>
+ftp_chmod() 函数设置 FTP 服务器上指定文件的权限。<br>
+ftp_chdir() 函数改变 FTP 服务器上的当前目录。<br>
+ftp_cdup() 函数把当前目录改变为 FTP 服务器上的父目录。<br>
+ftp_alloc() 函数为要上传到 FTP 服务器的文件分配空间。<br>
+filter_var() 函数通过指定的过滤器过滤变量。<br>
+filter_var_array() 函数获取多项变量，并进行过滤。<br>
+filter_list() 函数返回包含所有得到支持的过滤器的一个数组。<br>
+filter_input_array() 函数从脚本外部获取多项输入，并进行过滤。<br>
+filter_input() 函数从脚本外部获取输入，并进行过滤。<br>
+filter_id() 函数返回指定过滤器的 ID 号。<br>
+filter_has_var() 函数检查是否存在指定输入类型的变量。<br>
+unlink() 函数删除文件。<br>
+umask() 函数改变当前的 umask。<br>
+touch() 函数设置指定文件的访问和修改时间。<br>
+tmpfile() 函数以读写（w+）模式建立一个具有唯一文件名的临时文件。<br>
+tempnam() 函数创建一个具有唯一文件名的临时文件。<br>
+symlink() 函数创建符号连接。<br>
+stat() 函数返回关于文件的信息。<br>
+set_file_buffer() 函数设置打开文件的缓冲大小。<br>
+rmdir() 函数删除空的目录。<br>
+rewind() 函数将文件指针的位置倒回文件的开头。<br>
+rename() 函数重命名文件或目录。<br>
+realpath() 函数返回绝对路径。<br>
+readlink() 函数返回符号连接指向的目标。<br>
+readfile() 函数输出一个文件。<br>
+popen() 函数打开进程文件指针。<br>
+pclose() 函数关闭由 popen() 打开的管道。<br>
+pathinfo() 函数以数组的形式返回文件路径的信息。<br>
+parse_ini_file() 函数解析一个配置文件，并以数组的形式返回其中的设置。<br>
+move_uploaded_file() 函数将上传的文件移动到新位置。<br>
+mkdir() 函数创建目录。<br>
+lstat() 函数返回关于文件或符号连接的信息。<br>
+linkinfo() 函数返回连接的信息。<br>
+link() 函数建立一个硬连接。<br>
+is_writeable() 函数判断指定的文件是否可写。<br>
+is_writable() 函数判断指定的文件是否可写。<br>
+is_uploaded_file() 函数判断指定的文件是否是通过 HTTP POST 上传的。<br>
+is_readable() 函数判断指定文件名是否可读。<br>
+is_link() 函数判断指定文件名是否为一个符号连接。<br>
+is_file() 函数检查指定的文件名是否是正常的文件。<br>
+is_executable() 函数检查指定的文件是否可执行。<br>
+is_dir() 函数检查指定的文件是否是目录。<br>
+glob() 函数返回匹配指定模式的文件名或目录。<br>
+fwrite() 函数写入文件（可安全用于二进制文件）。<br>
+ftruncate() 函数把文件截断到指定的长度。<br>
+ftell() 函数在打开文件中的当前位置。<br>
+fstat() 函数返回关于打开文件的信息。<br>
+fseek() 函数在打开的文件中定位。<br>
+fscanf() 函数根据指定的格式对来自打开的文件的输入进行解析。<br>
+fread() 函数读取文件（可安全用于二进制文件）。<br>
+fputs() 函数写入文件（可安全用于二进制文件）。<br>
+fputcsv() 函数将行格式化为 CSV 并写入一个打开的文件。<br>
+fpassthru() 函数输出文件指针处的所有剩余数据。<br>
+fopen() 函数打开文件或者 URL。<br>
+fnmatch() 函数根据指定的模式来匹配文件名或字符串。<br>
+flock() 函数锁定或释放文件。<br>
+filetype() 函数返回指定文件或目录的类型。<br>
+filesize() 函数返回指定文件的大小。<br>
+fileperms() 函数返回文件或目录的权限。<br>
+fileowner() 函数返回文件的所有者。<br>
+filemtime() 函数返回文件内容上次的修改时间。<br>
+fileinode() 函数返回文件的 inode 编号。<br>
+filegroup() 函数返回指定文件的组 ID。<br>
+filectime() 函数返回指定文件的上次 inode 修改时间。<br>
+fileatime() 函数返回指定文件的上次访问时间。<br>
+file_put_contents() 函数把一个字符串写入文件中。<br>
+file_get_contents() 函数把整个文件读入一个字符串中。<br>
+file_exists() 函数检查文件或目录是否存在。<br>
+file() 函数把整个文件读入一个数组中。<br>
+fgetss() 函数从打开的文件中读取一行并过滤掉 HTML 和 PHP 标记。<br>
+fgets() 函数从文件指针中读取一行。<br>
+fgetcsv() 函数从文件指针中读入一行并解析 CSV 字段。<br>
+fgetc() 函数从文件指针中读取一个字符。<br>
+fflush() 函数将缓冲内容输出到文件。<br>
+feof() 函数检测是否已到达文件末尾 (eof)。<br>
+fclose() 函数关闭一个打开文件。<br>
+diskfreespace() 函数返回目录中的可用空间。该函数是 disk_free_space() 函数的别名。<br>
+disk_total_space() 函数返回指定目录的磁盘总大小。<br>
+disk_free_space() 函数返回目录中的可用空间<br>
+dirname() 函数返回路径中的目录部分。<br>
+clearstatcache() 函数拷贝文件。<br>
+clearstatcache() 函数清除文件状态缓存。<br>
+chown() 函数改变指定文件的所有者。<br>
+chmod() 函数改变文件模式。<br>
+chgrp() 函数改变文件所属的组。<br>
+basename() 函数返回路径中的文件名部分。<br>
+set_exception_handler() handler() 函数<br>
+<br>
+PHP Error 和 Logging 函数<br>
+set_exception_handler() 函数设置用户自定义的异常处理函数。<br>
+set_error_handler() 函数设置用户自定义的错误处理函数。<br>
+restore_exception_handler() 函数恢复之前的异常处理程序，该程序是由 set_exception_handler() 函数改变的。<br>
+restore_error_handler() 函数恢复之前的错误处理程序，该程序是由 set_error_handler() 函数改变的。<br>
+error_reporting() 设置 PHP 的报错级别并返回当前级别。<br>
+error_log() 函数向服务器错误记录、文件或远程目标发送一个错误。<br>
+error_get_last() 函数获取最后发生的错误。<br>
+debug_print_backtrace() 函数输出 backtrace。<br>
+debug_backtrace() cktrace() 函数<br>
+<br>
+PHP Error 和 Logging 函数<br>
+scandir() 函数返回一个数组，其中包含指定路径中的文件和目录。<br>
+rewinddir() 函数重置由 opendir() 打开的目录句柄。<br>
+readdir() 函数返回由 opendir() 打开的目录句柄中的条目。<br>
+opendir() 函数打开一个目录句柄，可由 closedir()，readdir() 和 rewinddir() 使用。<br>
+getcwd() 函数返回当前目录。<br>
+closedir() 函数关闭由 opendir() 函数打开的目录句柄。<br>
+dir() 函数打开一个目录句柄，并返回一个对象。这个对象包含三个方法：read() , rewind() 以及 close()。<br>
+chroot() 函数把当前进程的根目录改变为指定的目录。<br>
+chdir() 函数把当前的目录改变为指定的目录。<br>
+time() 函数返回当前时间的 Unix 时间戳。<br>
+strtotime() 函数将任何英文文本的日期时间描述解析为 Unix 时间戳。<br>
+strptime() 函数解析由 strftime() 生成的日期／时间。<br>
+strftime() 函数根据区域设置格式化本地时间／日期。<br>
+mktime() 函数返回一个日期的 Unix 时间戳。<br>
+microtime() 函数返回当前 Unix 时间戳和微秒数。<br>
+localtime() 函数返回本地时间（一个数组）。<br>
+idate() 函数将本地时间/日期格式化为整数。<br>
+gmstrftime() 函数根据本地区域设置格式化 GMT/UTC 时间／日期。<br>
+gmmktime() 函数取得 GMT 日期的 UNIX 时间戳。<br>
+gmdate() 函数格式化 GMT/UTC 日期/时间。<br>
+gettimeofday() 函数返回一个包含当前时间信息的数组。<br>
+getdate() 函数取得日期／时间信息。<br>
+date() 函数格式化一个本地时间／日期。<br>
+date_sunset() 函数返回指定的日期与地点的日落时间。<br>
+date_sunrise() 函数返回指定的日期与地点的日出时间。<br>
+date_default_timezone_set() 函数设置用在脚本中所有日期/时间函数的默认时区。<br>
+date_default_timezone_get() 函数返回脚本中所有日期时间函数所使用的默认时区。<br>
+checkdate() 函数验证一个格里高里日期。<br>
+UnixToJD() 函数把 Unix 时间戳转换为儒略日计数。<br>
+JulianToJD() 函数把儒略历转换为儒略日计数。<br>
+JewishToJD() 函数把犹太历法转换为儒略日计数。<br>
+JDToUnix() 函数把儒略日计数转换为 Unix 时间戳。<br>
+JDToGregorian() lian() 函数<br>
+<br>
+PHP Array 函数<br>
+JDToGregorian() wish() 函数<br>
+<br>
+PHP Array 函数<br>
+JDToGregorian() 函数把儒略日计数转换为格利高里历法。<br>
+JDToFrench() 函数把儒略日计数转换为法国共和国历法。<br>
+JDMonthName() 函数返回指定历法的月份字符串。<br>
+JDDayOfWeek() 函数返回日期在周几。<br>
+GregorianToJD() 函数将格利高里历法转换成为儒略日计数。<br>
+FrenchToJD() 函数将法国共和历法转换成为儒略日计数。<br>
+easter_days() 函数返回指定年份的复活节与 3 月 21 日之间的天数。<br>
+easter_date() 函数返回指定年份的复活节午夜的 Unix 时间戳。<br>
+cal_to_jd() 函数把指定的日期转换为儒略日计数。<br>
+cal_info() 函数返回一个数组，其中包含了关于给定历法的信息。<br>
+cal_from_jd() 函数把儒略日计数转换为指定历法的日期。<br>
+cal_days_in_month() 函数针对指定的年份和日历，返回一个月中的天数。<br>
+usort() 函数使用用户自定义的函数对数组排序。<br>
+uksort() 函数使用用户自定义的比较函数按照键名对数组排序，并保持索引关系。<br>
+uasort() 函数使用用户自定义的比较函数对数组排序，并保持索引关联（不为元素分配新的键）。<br>
+sort() 函数按升序对给定数组的值排序。<br>
+sizeof() 函数计算数组中的单元数目或对象中的属性个数。<br>
+shuffle() 函数把数组中的元素按随机顺序重新排列。<br>
+rsort() 函数对数组的元素按照键值进行逆向排序。与 arsort() 的功能基本相同。<br>
+reset() 函数把数组的内部指针指向第一个元素，并返回这个元素的值。<br>
+range() 函数创建并返回一个包含指定范围的元素的数组。<br>
+prev() HP prev() 函数<br>
+<br>
+PHP Array 函数<br>
+pos() 函数是 current() 函数 的别名。它可返回数组中当前元素的值。<br>
+next() 函数把指向当前元素的指针移动到下一个元素的位置，并返回当前元素的值。<br>
+natsort() 函数用自然顺序算法对给定数组中的元素排序。<br>
+natcasesort() 函数用不区分大小写的自然顺序算法对给定数组中的元素排序。<br>
+list() 函数用数组中的元素为一组变量赋值。<br>
+ksort() 函数按照键名对数组排序，为数组值保留原来的键。<br>
+krsort() 函数将数组按照键逆向排序，为数组值保留原来的键。<br>
+key() 函数返回数组内部指针当前指向元素的键名。<br>
+in_array() 函数在数组中搜索给定的值。<br>
+extract() extract() 函数<br>
+<br>
+PHP Array 函数<br>
+end() 函数将数组内部指针指向最后一个元素，并返回该元素的值（如果成功）。<br>
+each() 函数生成一个由数组当前内部指针所指向的元素的键名和键值组成的数组，并把内部指针向前移动。<br>
+current() 函数返回数组中的当前元素（单元）。<br>
+count() 函数计算数组中的单元数目或对象中的属性个数。<br>
+compact() 函数创建一个由参数所带变量组成的数组。如果参数中存在数组，该数组中变量的值也会被获取。<br>
+asort() 函数对数组进行排序并保持索引关系。主要用于对那些单元顺序很重要的结合数组进行排序。<br>
+arsort() 函数对数组进行逆向排序并保持索引关系。主要用于对那些单元顺序很重要的结合数组进行排序。<br>
+array_walk_recursive() cursive() 函数<br>
+<br>
+PHP Array 函数<br>
+array_walk() 函数对数组中的每个元素应用回调函数。如果成功则返回 TRUE，否则返回 FALSE。<br>
+array_values() 函数返回一个包含给定数组中所有键值的数组，但不保留键名。<br>
+array_unshift() 函数在数组开头插入一个或多个元素。<br>
+array_unique() 函数移除数组中的重复的值，并返回结果数组。<br>
+array_uintersect_assoc() 函数带索引检查计算数组的交集，用回调函数比较数据。<br>
+array_uintersect() 函数计算数组的交集，用回调函数比较数据。<br>
+array_udiff_uassoc() 函数返回 array1 数组中存在但其它数组中都不存在的部分。返回的数组中键名保持不变。<br>
+array_udiff_assoc() 函数返回 array1 中存在但其它数组中都不存在的部分。<br>
+array_udiff() 函数返回一个数组，该数组包括了所有在被比较数组中，但是不在任何其它参数数组中的值，键名保留不变。<br>
+array_sum() 函数返回数组中所有值的总和。<br>
+array_splice() 函数与 array_slice() 函数类似，选择数组中的一系列元素，但不返回，而是删除它们并用其它值代替。<br>
+array_slice() 函数在数组中根据条件取出一段值，并返回。<br>
+array_shift() 函数删除数组中的第一个元素，并返回被删除元素的值。<br>
+array_search() 函数与 in_array() 一样，在数组中查找一个键值。如果找到了该值，匹配元素的键名会被返回。如果没找到，则返回 false。<br>
+array_reverse() 函数将原数组中的元素顺序翻转，创建新的数组并返回。如果第二个参数指定为 true，则元素的键名保持不变，否则键名将丢失。<br>
+array_reduce() 函数用回调函数迭代地将数组简化为单一的值。如果指定第三个参数，则该参数将被当成是数组中的第一个值来处理，或者如果数组为空的话就作为最终返回值。<br>
+array_rand() 函数从数组中随机选出一个或多个元素，并返回。<br>
+array_push() 函数向第一个参数的数组尾部添加一个或多个元素（入栈），然后返回新数组的长度。<br>
+array_product() 函数计算并返回数组中所有值的乘积。<br>
+array_pop() 函数删除数组中的最后一个元素。<br>
+array_pad() 函数向一个数组插入带有指定值的指定数量的元素。<br>
+array_multisort() 函数对多个数组或多维数组进行排序。<br>
+array_merge_recursive() 函数与 array_merge() 函数 一样，将一个或多个数组的元素的合并起来，一个数组中的值附加在前一个数组的后面。并返回作为结果的数组。<br>
+array_merge() 函数把两个或多个数组合并为一个数组。<br>
+array_map() 函数返回用户自定义函数作用后的数组。回调函数接受的参数数目应该和传递给 array_map() 函数的数组数目一致。<br>
+array_keys() 函数返回包含数组中所有键名的一个新数组。<br>
+array_key_exists() 函数判断某个数组中是否存在指定的 key，如果该 key 存在，则返回 true，否则返回 false。<br>
+array_intersect_ukey() 函数用回调函数比较键名来计算数组的交集。<br>
+array_intersect_uassoc() 函数使用用户自定义的回调函数计算数组的交集，用回调函数比较索引。<br>
+array_intersect_key() 函数使用键名比较计算数组的交集。<br>
+array_intersect_assoc() 函数返回两个或多个数组的交集数组。<br>
+array_intersect() 函数返回两个或多个数组的交集数组。<br>
+array_flip() 函数返回一个反转后的数组，如果同一值出现了多次，则最后一个键名将作为它的值，所有其他的键名都将丢失。<br>
+array_filter() 函数用回调函数过滤数组中的元素，如果自定义过滤函数返回 true，则被操作的数组的当前值就会被包含在返回的结果数组中， 并将结果组成一个新的数组。如果原数组是一个关联数组，键名保持不变。<br>
+array_fill() 函数用给定的值填充数组，返回的数组有 number 个元素，值为 value。返回的数组使用数字索引，从 start 位置开始并递增。如果 number 为 0 或小于 0，就会出错。<br>
+array_diff_ukey() 返回一个数组，该数组包括了所有出现在 array1 中但是未出现在任何其它参数数组中的键名的值。注意关联关系保留不变。与 array_diff() 不同的是，比较是根据键名而不是值来进行的。<br>
+array_diff_uassoc() 函数使用用户自定义的回调函数 (callback) 做索引检查来计算两个或多个数组的差集。返回一个数组，该数组包括了在 array1 中但是不在任何其他参数数组中的值。<br>
+array_diff_key() 函数返回一个数组，该数组包括了所有在被比较的数组中，但是不在任何其他参数数组中的键。<br>
+array_diff_assoc() 函数返回两个数组的差集数组。该数组包括了所有在被比较的数组中，但是不在任何其他参数数组中的键和值。<br>
+array_diff() 函数返回两个数组的差集数组。该数组包括了所有在被比较的数组中，但是不在任何其他参数数组中的键值。<br>
+array_count_values() 函数用于统计数组中所有值出现的次数。<br>
+array_combine() 函数通过合并两个数组来创建一个新数组，其中的一个数组是键名，另一个数组的值为键值。<br>
+array_chunk() 函数把一个数组分割为新的数组块。<br>
+array_change_key_case() 函数将数组的所有的 KEY 都转换为大写或小写。<br>
+array() 创建数组，带有键和值。如果在规定数组时省略了键，则生成一个整数键，这个 key 从 0 开始，然后以 1 进行递增。	
+			</div>
+			<!-- /内容介绍 -->
+		</div>
+		<!-- /详情内容 -->
+
+		<!-- 最佳评论(只有讨论有) -->
+		
+		<!-- /最佳评论(只有讨论有) -->
+
+		<!--选项卡显隐块-->
+		<div id="tabbar" class="box tabbar">
+			<!-- 选项卡导航 -->
+			<div class="tab-nav cf">
+				
+				<span class="item selected" data-target="comment">评论（<span class="review-count">5</span>）</span>
+				<span class="item" data-target="similar">相关</span>			</div>
+			<!-- /选项卡导航 -->
+
+			<!-- 内容 -->
+			<div id="tab-wrap" class="tab-wrap">
+				<!-- 应用摘要 -->
+				
+				<!-- /应用摘要 -->
+
+				<!-- 评论 -->
+				
+<div class="tab-comment item-content" id="comment">
+    <!-- <div class="tab-title">
+        评论（<span class="review-count">0</span>）
+    </div> -->
+    
+    <div class="cmt-box">
+        <div class="cmt-item review_item_list"><span class="avatar" user_id="60926"><img src="./PHP常用函数大全 - ThinkPHP框架_files/44_44.png"></span> <div class="comment-hd cf"><span class="username">yywoaini</span><span class="commment-time">07月03日 </span></div><div class="comment-bd" id="20142"><div class="cmt-txt">收藏       谢谢</div></div></div><div class="cmt-item review_item_list"><span class="avatar" user_id="72598"><img src="./PHP常用函数大全 - ThinkPHP框架_files/44_44.png"></span> <div class="comment-hd cf"><span class="username">zh711711</span><span class="commment-time">04月18日</span></div><div class="comment-bd" id="8993"><div class="cmt-txt">果断收藏</div></div></div><div class="cmt-item review_item_list"><span class="avatar" user_id="75371"><img src="./PHP常用函数大全 - ThinkPHP框架_files/44_44.png"></span> <div class="comment-hd cf"><span class="username">来田</span><span class="commment-time">03月22日</span></div><div class="comment-bd" id="7996"><div class="cmt-txt">多谢</div></div></div><div class="cmt-item review_item_list"><span class="avatar" user_id="45542"><img src="./PHP常用函数大全 - ThinkPHP框架_files/original_44_44.gif"></span> <div class="comment-hd cf"><span class="username">281978297</span><span class="commment-time">03月22日</span></div><div class="comment-bd" id="7973"><div class="cmt-txt">这个不错<br>
+</div></div></div><div class="cmt-item review_item_list"><span class="avatar" user_id="54594"><img src="./PHP常用函数大全 - ThinkPHP框架_files/original_44_44(1).gif"></span> <div class="comment-hd cf"><span class="username">tongjh</span><span class="commment-time">03月22日</span></div><div class="comment-bd" id="7968"><div class="cmt-txt">哇欧，这是在哪整理的呀</div></div></div><div class="more-comment" style="display: none;">
+            后面还有<span id="more_count"></span>条评论，<a href="javascript:get_review();">点击查看&gt;&gt;</a>
+        </div>
+        <form action="http://www.thinkphp.cn/review/update.html" method="post" class="cmt-item" id="reviewForm" style="display:none;" autocomplete="off">
+        	<input type="hidden" name="app_name" value="">
+        	<input type="hidden" name="author_id" value="27807">
+        	<input type="hidden" name="title" value="PHP常用函数大全">
+        	<input type="hidden" value="41" name="model_id">
+    		<input type="hidden" value="150" name="record_id">
+        	<input type="hidden" value="0" name="review_id">
+        	<span class="avatar">
+                <img src="./PHP常用函数大全 - ThinkPHP框架_files/44_44.png" alt="" id="my_avatar">
+            </span>
+        	<div class="comment-bd" id="review">
+        		<div class="cmt-textarea">
+					<textarea name="content" placeholder="我也来说两句..."></textarea>
+				</div>
+			</div>
+            <div class="comment-ft">
+				<input type="submit" class="cmt-btn" value="评论 [ Ctrl+Enter ]">
+				<span class="c-tips">评论支持使用[code][/code]标签添加代码</span>
+			</div>
+            <!-- <span class="syn">同步到：<a href="#">新浪微博</a><a href="#">腾讯微博</a></span> -->
+        </form>
+        <div class="login-tip" style="">
+        	您需要登录后才可以评论 <a href="http://www.thinkphp.cn/member/login.html">登录</a> | <a href="http://www.thinkphp.cn/member/register.html">立即注册</a>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+	$(function(){	
+				
+	    $('.think-article code').each(function(){
+	        $(this).data('think-source', (this.innerText || this.textContent).replace(/ /g, ' '));
+	    });
+	    
+        $('#reviewForm').Validform({
+        	tiptype:function(msg,o,cssctl){
+        		if(o.type == 2){
+        			$.ThinkBox.success(msg);
+        			setTimeout(function(){window.location.reload();},2000);
+        		}
+        		if(o.type == 3){
+        			$.ThinkBox.error(msg,{'delayClose':3000});
+        		}
+        	},
+        	ajaxPost:true
+        });
+	    var form = $('.cmt-item:last');
+	    //插入回复表单
+	    $('.cmt-box').delegate('.reply-btn','click',function(event){
+	        var parent = $(this).closest('.cmt-item');
+	        //写入对应回复ID
+	        form.find(':hidden[name=review_id]').val($(this).attr('reply'));
+	        var textarea = parent.append(form).find('textarea');
+	        //对回复回复的处理
+	        if($(this).attr('at-user') == 'true'){
+				var username = $(this).parent().find('.username').text();
+				textarea.text('回复 @' + username + ' : ');
+		    }else{
+		    	textarea.text('');
+			}
+	        moveEnd(textarea.get(0));
+	        event.stopPropagation();
+	    })
+	    $('.cmt-box').delegate('.cmt-item','click',function(event){
+	        $(this).has('form').length && event.stopPropagation();
+	    })
+	    //点击评论框以外的地方，重置评论表单
+	    $(document).click(function(){
+		    if(form.find(':hidden[name=review_id]').val() != 0){
+		    	$('.more-comment').after($('.cmt-box').find('form'));
+		        form.find(':hidden[name=review_id]').val(0);
+		        form.find('textarea').text('');
+			}
+	    })
+	    //快捷键提交评论
+	    $("#reviewForm").find('textarea').on("keydown", function(e){
+	    	e.stopPropagation();
+	    	if(e.ctrlKey && e.which ==13){
+	    		$('#reviewForm').submit();
+	    	}
+	    });
+	    //删除评论绑定事件
+	    $('.cmt-box').delegate('.delete-review','click',function(event){
+	    	var self = $(this);
+		    var id = self.attr('review_id');
+		    $.ThinkBox.confirm('确定删除吗？',
+				{'cancel' : function(){this.hide();},
+				 'ok' : function(){
+					this.hide();
+					$.post(
+						'/review/deleteReview',
+						{'id':id},
+						function(data){
+							if(data.status == 1){
+								$.ThinkBox.success(data.info);
+								setTimeout(function(){window.location.reload();}, 2000);
+							}else{
+								$.ThinkBox.error(data.info);
+							}
+						},
+						'json'
+					);
+				 },
+				 'drag' : true,
+				 'modal' : true
+				}
+			 );
+		    
+		});
+	})
+	
+	function parse_content(str) {
+	    str = str.replace(/\[code\]((?:.|\n|\r)+?)\[\/code\]/ig, function(_str, code){
+	        code = code.replace(/ /g, '&nbsp;').replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;');
+	        return '<code class="prettyprint linenums lang-php">'+ code +'</code>';
+	    });
+	    str = str.replace(/&amp;/g, '&')
+	    		.replace(/(http(s?):\/\/(?:[A-za-z0-9-]+\.)+[A-za-z]{2,4}(?:[\/\?#][\/=\?%\-&~`@[\]\':+!\.#\w]*)?)/ig, 
+	            '<a href="$1" target="_blank">$1</a>'
+	        );
+	    return str.replace(/([^>])[\r\n]+/g, '$1<br>\n');
+	}
+	
+	//JS U方法的实现
+	//U('member/login')
+	//U('member/register')
+	//U('member') //设置
+	//TODO:目前只是简单的分隔符替换
+	function U(url){
+	    if(!url)return;
+	    var sep = '/',suffix = '.html',root='/';
+	    url = url.replace(/download\/detail\/id\/(\d+)/, 'down/$1')
+	            .replace(/download|extend\/download\/id\/(\d+)/, 'download/$1')
+	            .replace(/(\w+)\/detail\/id\/(\d+)/, '$1/$2'); 
+	    return root + url.replace(/\//g,sep)+suffix;
+	}
+
+	//将光标移动到textarea末尾
+	function moveEnd(obj){
+		obj.focus(); 
+	    var len = obj.value.length;
+	    if (document.selection) {
+	        var sel = obj.createTextRange(); 
+	        sel.moveStart('character',len); 
+	        sel.collapse(); 
+	        sel.select(); 
+	    } else if (typeof obj.selectionStart == 'number' && typeof obj.selectionEnd == 'number') {
+	        obj.selectionStart = obj.selectionEnd = len; 
+	    } 
+	}
+
+	//设置是否显示最佳评论
+	var author_id = $(':input[name=author_id]').val();
+	function setReviewPosStr(data,id,user_id,pos){
+		var a = '<a class="reply-btn" href="javascript:;" reply="'+id+'">回复<i></i></a>';
+		if(pos != 3 && (data.is_admin || data.self_user_id == user_id)){
+			a += '<a class="fr delete-review" review_id="'+id+'" href="javascript:void(0);">删除</a>';
+		}
+		if(!data.is_login){
+			return '';
+		}
+		if(data.set_best){
+			if(!data.is_admin){
+				if(data.is_self){
+					//不存在最佳评论，且当前文章是自己的文章
+					if(!data.has_best && data.is_self){
+						a +='<a class="fr set-review-pos" review_id="'+id+'" href="javascript:void(0);">最佳答案</a>';
+					}
+				}	
+			}else{
+				if(!data.has_best){
+					a +='<a class="fr set-review-pos" review_id="'+id+'" href="javascript:void(0);">最佳答案</a>';
+				}
+			}
+		}
+		return a;
+	}
+
+	//设置最佳评论功能
+	setReviewPos();
+	function setReviewPos(){
+		  $('a[class~=set-review-pos]').live('click',function(){
+				$.post('/review/setReviewPos.html',
+					{review_id:$(this).attr('review_id'),'author_id':$('#reviewForm').find('input[name=author_id]').val()},
+					function(data){
+					if(data.status == 1){
+						$.ThinkBox.success(data.info);
+		    			setTimeout(function(){window.location.reload();},1500);
+					}else{
+						$.ThinkBox.error(data.info,{close:false});
+					}
+				},'json');
+			});
+	}
+	//评论加载
+    var page = 1;
+    function get_review(){
+        $.get(
+            U('review/getlist'),
+            {
+                'model' : $(':input[name=model_id]').val(), 
+                'record' : $(':input[name=record_id]').val(), 
+                'num' : 10, 
+                'page' : page,
+                'user_id': $(':input[name=author_id]').val(),
+                'avatar' : 'middle'
+            },
+            function(data){
+            	//是否登录做对应展示
+        		if(data.avatar != ""){
+            		$('#my_avatar').attr('src', data.avatar);
+        			$('#reviewForm').show();
+        		}else{
+        			$('#my_avatar').attr('src', '/avatar/44_44.png');
+        			$('.login-tip').show();
+        		}
+                $.isNumeric(data.count) && $('.review-count').text(data.count);
+                $('#comment_count').text(data.count);
+                $('.c-comment > .cib').text(data.count);
+                if(data.list && (typeof data.list == 'object')){
+                    $.each(data.list, function(i, v){
+                        var html = '<div class="cmt-item review_item_list">'+
+                            '<span class="avatar" user_id="'+v.user_id+'">'+
+                                '<img src="'+ v.avatar+'" />'+
+                            '</span> '+
+                            '<div class="comment-hd cf">';                                     	
+                            html += setReviewPosStr(data,v.id,v.user_id,v.pos);
+                            html += '<span class="username">' + v.username + v.ico + '</span>' + 
+                            '<span class="commment-time">' + v.review_time + '</span>'+
+                            '</div>'+
+                            '<div class="comment-bd" id="' + v.id + '">'+
+                            '<div class="cmt-txt">'+parse_content(v.content) + '</div>'
+                            '</div>'+
+                        '</div>';
+                        $('.more-comment').before(html);
+                    });
+                    page = page+1;
+                }
+                if(data.review && (typeof data.review == 'object')){
+                    $.each(data.review, function(i, v){
+                        var html = '<div class="cmt-item reply-item" id="' + v.id + '">'+
+                            '<span class="avatar" user_id="'+v.user_id+'">'+
+                                '<img src="'+ v.avatar+'" />'+
+                            '</span>'+
+                            '<div class="comment-hd cf"><a class="reply-btn" href="javascript:;" reply="'+v.review_id+'" at-user="true">回复<i></i></a>';
+                        if(v.pos != 3 && (data.is_admin || data.self_user_id == v.user_id)){
+                        	html += '<a class="fr delete-review" review_id="'+v.id+'" href="javascript:void(0);">删除</a>';
+                		}
+                        html += '<span class="username">' + v.username + v.ico + '</span>' + 
+                            '<span class="commment-time">' + v.review_time + '</span>'+
+                            '</div>'+
+                            '<div class="comment-bd">'+
+                            '<div>' + parse_content(v.content) + '</div>'+
+                            '</div>'
+                        '</div>';
+                        $('#' + v.review_id).after(html);
+                    });
+                }
+                var review_count = data.count;
+                if($('.review_item_list').length < review_count){
+                    $('#more_count').text(review_count - $('.review_item_list').length);
+                    $('.more-comment').show();
+                }else{
+                    $('.more-comment').hide();
+                }
+                /* 代码高亮 */
+                prettyPrint();
+                $('#comment code').each(function(){
+                    $(this).data('think-source', this.innerText || this.textContent);
+                });
+                
+                $('#comment code').each(function(){
+                    var self = $(this);
+                    var copy = $('<div><span>复制代码</span></div>')
+                        .addClass('think-copy')
+                        .appendTo(self)
+                        .zclip({
+                            'path':'/Public/common/zclip/ZeroClipboard.swf',
+                            'afterCopy' : function(){
+                                $.ThinkBox.success('复制成功');
+                            },
+                            'copy': function(){
+                                return $(this).closest('code').data('think-source');
+                            }
+                        });
+                });
+                
+            },
+            'json'
+        );
+        
+    }
+    get_review();
+
+    $('.cmt-textarea textarea').keyup(function(){
+        var self = $(this);
+        var speed = Math.max(self.get(0).scrollHeight, 48);
+        self.height(speed);
+
+    });
+    
+</script>
+				<!-- /评论 --> 
+
+				<!-- 同类推荐 -->
+				<div class="tab-similar item-content" id="similar">
+					<!-- <div class="tab-title">同类推荐</div> -->
+					<ul class="similar-list">
+						
+	<li>
+			<div class="info">
+				<span>lxy1988ab</span>
+				<span class="time">14:54</span>
+			</div>
+			<a href="http://www.thinkphp.cn/code/238.html">Thinkphp 生成固定宽高像素的图片处理类</a>
+			
+		</li><li>
+			<div class="info">
+				<span>pakey</span>
+				<span class="time">10:53</span>
+			</div>
+			<a href="http://www.thinkphp.cn/code/237.html">第三方登录之支付宝登录，基于ThinkSDK</a>
+			
+		</li><li>
+			<div class="info">
+				<span>chunguang_1002@yeah.net</span>
+				<span class="time">07-11</span>
+			</div>
+			<a href="http://www.thinkphp.cn/code/236.html">【转载】php发短信  </a>
+			
+		</li><li>
+			<div class="info">
+				<span>itaotao</span>
+				<span class="time">07-09</span>
+			</div>
+			<a href="http://www.thinkphp.cn/code/235.html">用于thinkphp的FTP类（初步实现）</a>
+			
+		</li><li>
+			<div class="info">
+				<span>麦当苗儿<i class="icon-approve" title="认证用户"></i></span>
+				<span class="time">07-08</span>
+			</div>
+			<a href="http://www.thinkphp.cn/code/234.html">javascript文件中获取当前文件路径</a>
+			
+		</li>
+					</ul>
+				</div>
+				<!-- /同类推荐 -->
+			</div>
+			<!-- /内容 -->
+		</div>
+		<!--/选项卡显隐块-->
+	</div>
+	<!-- /左边 -->
+
+	<!-- 边栏 -->
+	<div class="sidebar">
+		<!-- 浏览，评论，赞，下载等 -->
+		
+			<div class="sn-wrap">
+				<div class="count-box count-3 cf">
+					<dl class="count-item c-view " id="collect">
+						<dt class="cit"><i></i>收藏</dt>
+						<dd class="cib" id="collect_count"></dd>
+						<input type="hidden" id="collect_model_id" value="41">
+<input type="hidden" id="collect_record_id" value="150">
+<input type="hidden" id="collect_title" value="PHP常用函数大全">
+<script type="text/javascript">
+$(function(){
+	$("#collect").bind("click", function(){
+		var text = $("#collect").find('.cit').text();
+		if(text == '已收藏'){
+			return false;
+		}
+		$.post(
+			"/collect/addCollecter",
+			{
+				"model_id" : $("#collect_model_id").val(),
+				"record_id" : $("#collect_record_id").val(),
+				"title" : $("#collect_title").val(),
+				'author_id' : $('input[name=author_id]').val(),
+				'app_name' : $('input[name=app_name]').val()
+			},
+			function(data){
+				if(data.status == 1){
+					var count = $('#collect_count').text();
+					$("#collect").addClass('sc-disabled');
+					$("#collect").find('.cit').html('<i></i>已收藏');
+					$('#collect_count').text(parseInt(count) + 1);
+					
+					$.ThinkBox.success(data.info);
+				}else{
+					$.ThinkBox.error(data.info);
+				}
+			},
+			"json"
+		);
+	});
+	//获取被收藏的人数,和我是否收藏了
+	function getCollectCount(){
+		$.post(
+			"/collect/getCollectCount",
+			{
+				"model" : $("#collect_model_id").val(),
+				"id" : $("#collect_record_id").val()
+			},
+			function(data){
+				if(data.status == 1){
+					$('#collect_count').text(data.data);
+					if(data.info == 1){
+						$("#collect").find('.cit').html('<i></i>已收藏');
+						$("#collect").addClass('sc-disabled');
+					}
+				}else{
+					$.ThinkBox.error(data.info);
+				}
+			},
+			"json"
+		);
+	}
+	getCollectCount();
+})
+</script>
+					</dl>
+				
+					<!--赞 -->
+					<dl class="count-item c-like support">
+						<dt class="cit" record_id="150">
+							<i></i>赞
+						</dt>
+						<dd class="cib support_num"></dd>
+						<script type="text/javascript" src="./PHP常用函数大全 - ThinkPHP框架_files/support.js"></script>
+						<input type="hidden" id="su_model_id" value="41">
+					</dl>
+					<!--赞 -->
+				
+					<!-- 评论 -->
+					<a class="count-item c-cmt" href="javascript:;">
+						<span class="cit"><i></i>评论</span>
+						<span class="cib review-count"></span>
+					</a>
+					<!-- /评论 -->
+				</div>
+			</div>
+		
+		<!-- /浏览，评论，赞，下载等 -->
+
+		<!-- 发布者信息 -->
+		
+			<div class="box promulgator">
+				<div class="avatar"><img src="./PHP常用函数大全 - ThinkPHP框架_files/original_44_44(2).gif"></div>
+				<div class="name">
+					<span class="send"><i class="icon-send"></i></span>
+					hesibei					<i class="icon-star" title="明星用户"></i>				</div>
+				<span class="mr">积分：1001</span>
+				<span>等级：LV3</span>	
+			</div>
+		
+		<!-- /发布者信息 -->
+
+		<!-- a7广告 -->
+		
+	<div class="a7-wrap">
+		<a href="http://www.thinkphp.cn/ad/count/id/43.html" target="_blank" title="ThinkPHP官方招聘"><img src="./PHP常用函数大全 - ThinkPHP框架_files/51d53ba5e8a39.jpg" alt="ThinkPHP官方招聘"></a>		<a href="http://www.thinkphp.cn/ad/count/id/44.html" target="_blank" title="开发手册"><img src="./PHP常用函数大全 - ThinkPHP框架_files/51ad94f7a4b83.jpg" alt="开发手册"></a>	</div>
+
+		<!-- /a7广告 -->
+
+		<!-- 分享到 -->
+		
+			<div class="box share">
+				<span>分享到：</span>
+				<a href="javascript:;" class="sina" title="新浪微博"></a>
+				<a href="javascript:;" class="tencent" title="腾讯微博"></a>
+			</div>
+		
+		<!-- /分享到 -->
+
+		
+	<!-- 热点推荐 -->
+<div class="box ranking hot-rec">
+	<div class="index-hd">
+		<div class="title"> 
+			<i class="t-icon"></i><em>热点推荐</em>
+		</div>
+	</div>
+	<ul class="bd ellipsis">
+		<li class="top3"><i>1</i><a title="PHP中文分词，自动获取关键词" href="http://www.thinkphp.cn/code/42.html">PHP中文分词，自动获取关键词</a></li><li class="top3"><i>2</i><a title="ThinkPHP示例：强大的Ueditor富文本编辑器" href="http://www.thinkphp.cn/code/175.html">ThinkPHP示例：强大的Ueditor富文本编辑器</a></li><li class="top3"><i>3</i><a title="ThinkPHP3.X RBAC演示系统" href="http://www.thinkphp.cn/code/133.html">ThinkPHP3.X RBAC演示系统</a></li><li><i>4</i><a title="Flash Paper 仿百度文库的功能实现" href="http://www.thinkphp.cn/code/5.html">Flash Paper 仿百度文库的功能实现</a></li><li><i>5</i><a title="ThinkPHP邮件发送函数" href="http://www.thinkphp.cn/code/32.html">ThinkPHP邮件发送函数</a></li><li><i>6</i><a title="10行代码搞定 无限级分类 正常输出 效率极高" href="http://www.thinkphp.cn/code/170.html">10行代码搞定 无限级分类 正常输出 效率极高</a></li><li><i>7</i><a title="Flash头像上传，可裁切，支持摄像头" href="http://www.thinkphp.cn/code/149.html">Flash头像上传，可裁切，支持摄像头</a></li><li><i>8</i><a title="基于easyui1.3.1和thinkphp3.1的小型权限管理系统" href="http://www.thinkphp.cn/code/105.html">基于easyui1.3.1和thinkphp3.1的小型权限管理系统</a></li><li><i>9</i><a title="三个方法搞定全站增、删、改操作" href="http://www.thinkphp.cn/code/218.html">三个方法搞定全站增、删、改操作</a></li><li><i>10</i><a title="ajax中国地域三级联动" href="http://www.thinkphp.cn/code/148.html">ajax中国地域三级联动</a></li>	</ul>
+</div>
+<!-- /热点推荐 -->
+
+<!-- 最新更新 -->
+<div class="box ranking lupd">
+	<div class="index-hd">
+		<div class="title"> 
+			<i class="t-icon"></i><em>最新更新</em>
+		</div>
+	</div>
+	<ul class="bd ellipsis">
+		<li class="top3"><i>1</i><a title="Thinkphp 生成固定宽高像素的图片处理类" href="http://www.thinkphp.cn/code/238.html">Thinkphp 生成固定宽高像素的图片处理类</a></li><li class="top3"><i>2</i><a title="第三方登录之支付宝登录，基于ThinkSDK" href="http://www.thinkphp.cn/code/237.html">第三方登录之支付宝登录，基于ThinkSDK</a></li><li class="top3"><i>3</i><a title="【转载】php发短信  " href="http://www.thinkphp.cn/code/236.html">【转载】php发短信  </a></li><li><i>4</i><a title="用于thinkphp的FTP类（初步实现）" href="http://www.thinkphp.cn/code/235.html">用于thinkphp的FTP类（初步实现）</a></li><li><i>5</i><a title="javascript文件中获取当前文件路径" href="http://www.thinkphp.cn/code/234.html">javascript文件中获取当前文件路径</a></li><li><i>6</i><a title=" 计算指定文件夹的信息(文件夹数,文件数,文件夹大小)" href="http://www.thinkphp.cn/code/233.html"> 计算指定文件夹的信息(文件夹数,文件数,文件夹大小)</a></li><li><i>7</i><a title="thinkphp教程之RBAC详解4之权限校验" href="http://www.thinkphp.cn/code/232.html">thinkphp教程之RBAC详解4之权限校验</a></li><li><i>8</i><a title="thinkphp教程之RBAC详解3之登录验证" href="http://www.thinkphp.cn/code/231.html">thinkphp教程之RBAC详解3之登录验证</a></li><li><i>9</i><a title="thinkphp教程之RBAC详解2之RBAC类内容和使用流程讲解" href="http://www.thinkphp.cn/code/230.html">thinkphp教程之RBAC详解2之RBAC类内容和使用流程讲解</a></li><li><i>10</i><a title="thinkphp教程之RBAC详解1之准备工作" href="http://www.thinkphp.cn/code/229.html">thinkphp教程之RBAC详解1之准备工作</a></li>	</ul>
+</div>
+<!-- /最新更新 -->
+
+		
+		
+
+		
+	</div>
+	<!-- /边栏 -->
+</div>
+<!-- 主体 -->
+
+<!-- 分享脚本 -->
+
+	<script type="text/javascript">
+	var title,url;
+    $('.share a').click(function(){
+        var ele = $(this).closest('.think-info').find('.tihead h3 a');
+        title = encodeURIComponent("PHP常用函数大全");
+        url   = encodeURIComponent(document.location);
+        window.open( eval($(this).attr('class') + '()') , "_blank" ,"width=680,height=430,scrollbars=no,location=no" ) ;
+    }); 
+	</script>
+
+<!-- /分享脚本 -->
+
+<script type="text/javascript">
+//腾讯微博分享
+function tencent(){
+    var param = [
+        'c=share',
+        'a=index',
+        'url=' + url,
+        'appkey=801098607',
+        'title=' + title
+    ].join('&');
+    return 'http://share.v.t.qq.com/index.php?' + param;
+}
+
+//新浪微博分享
+function sina(){
+    var param = [
+        'url=' + url,
+        'appkey=3891435835',
+        'title=' + title
+    ].join('&');
+    return 'http://service.weibo.com/share/share.php?' + param;
+}
+
+$(function(){
+	//选项卡切换效果
+	$(".tab-nav .item").click(function(){
+		$(".tab-nav .item").removeClass("selected");
+		$(".item-content").hide();
+		$("#" + $(this).addClass("selected").data("target")).show();
+	});
+	$(".tab-nav .item").first().click();
+
+	var tabTop = $("#tabbar").offset().top - 70;
+	$(".sn-wrap .c-cmt").click(
+	    function(){ $('html,body').animate({scrollTop:tabTop},700);
+	})
+})
+</script>
+
+<!-- 底部 -->
+<!-- 底部 -->
+<div class="footer">
+	<div class="ft-main cf">
+		<div class="ft-col">
+			<h3>我们</h3>
+			<ul>
+				<li><a href="http://www.thinkphp.cn/about/index.html">关于我们</a></li>
+				<li><a href="http://www.thinkphp.cn/7year.html">公司动态</a></li>
+				<li><a href="http://www.thinkphp.cn/about/contact.html">联系我们</a></li>
+				<li><a href="http://www.thinkphp.cn/about/disclaimer.html">免责声明</a></li>
+				<li><a href="http://www.thinkphp.cn/about/join_us.html">加入我们</a></li>
+				<li><a href="http://www.thinkphp.cn/about/donate.html">捐赠我们</a></li>
+			</ul>
+		</div>
+		<div class="ft-col">
+			<h3>合作</h3>
+			<ul>
+				<li><a href="http://www.thinkphp.cn/cooperation/training.html">技术培训</a></li>
+				<li><a href="http://www.thinkphp.cn/cooperation/adcoop.html">广告合作</a></li>
+				<li><a href="http://www.thinkphp.cn/cooperation/projectcoop.html">项目合作</a></li>
+				<li><a href="http://www.thinkphp.cn/cooperation/investcoop.html">投资合作</a></li>
+				<li><a href="http://www.thinkphp.cn/cooperation/partner.html">合作伙伴</a></li>
+				<li><a href="http://www.thinkphp.cn/link/index.html">友情链接</a></li>
+			</ul>
+		</div>
+		<div class="ft-col">
+			<h3>网站</h3>
+			<ul>
+				<li><a href="http://www.thinkphp.cn/rss.html">RSS订阅</a></li>
+				<li><a href="http://www.thinkphp.cn/help/contribute.html">投稿指南</a></li>
+				<li><a href="http://www.thinkphp.cn/help/sitehelp.html">网站帮助</a></li>
+			</ul>
+		</div>
+		<div class="ft-col">
+			<h3>信息</h3>
+			<ul>
+				<li><a href="http://www.thinkphp.cn/update/index.html">更新列表</a></li>
+				<li><a href="http://www.thinkphp.cn/bug/index.html">BUG反馈</a></li>
+				<li><a href="http://www.thinkphp.cn/topic/index.html">技术讨论</a></li>
+				<li><a href="http://www.thinkphp.cn/info/index.html">教程资讯</a></li>
+			</ul>
+		</div>
+		<div class="ft-intro">
+			<div class="btm-logo">
+				<p>ThinkPHP 是一个免费开源的，快速、简单的面向对象的 轻量级PHP开发框架 ，创立于2006年初，遵循Apache2开源协议发布，是为了敏捷WEB应用开发和简化企业应用开发而诞生的。ThinkPHP从诞生以来一直秉承简洁实用的设计原则，在保持出色的性能和至简的代码的同时，也注重易用性。并且拥有众多的原创功能和特性，在社区团队的积极参与下，在易用性、扩展性和性能方面不断优化和改进，已经成长为国内最领先和最具影响力的WEB应用开发框架，众多的典型案例确保可以稳定用于商业以及门户级的开发。</p>
+				<div class="copyright">沪ICP备12007941号-2</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /底部 -->
+
+<div class="hidden">
+    <script charset="UTF-8" src="./PHP常用函数大全 - ThinkPHP框架_files/stats" type="text/javascript"></script>
+	<script src="./PHP常用函数大全 - ThinkPHP框架_files/stat.php" language="JavaScript"></script></div></body></html>

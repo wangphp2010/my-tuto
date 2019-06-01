@@ -1,0 +1,3 @@
+imagettftext($img,12,0,5,20,$rs,'simkai.ttf',$s);
+imagejpeg($img);
+mb_convert_encoding("把你要的中文放在这里", "html-entities", "utf-8")//转化人uft不然中文会乱码

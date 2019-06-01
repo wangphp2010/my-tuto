@@ -1,0 +1,3 @@
+ 
+$gb=   mysql_fetch_array( mysql_query("SELECT sum(DATA_LENGTH)+sum(INDEX_LENGTH)FROM information_schema.TABLES where TABLE_SCHEMA='db508556084'"));
+echo $gb['0']/1048576 ;

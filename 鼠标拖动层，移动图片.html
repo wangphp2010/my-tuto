@@ -1,0 +1,55 @@
+<script src="monpub/jquery.min.js"></script>
+<script>
+ 
+$(document).ready(function (e) { 
+$("#Drigging").mousedown(function (e) { 
+$(this).css('cursor','move');
+var iDiffX = e.pageX - $(this).offset().left; 
+var iDiffY = e.pageY - $(this).offset().top; 
+$(document).mousemove(function (e) { 
+$("#Drigging").css({ "left": (e.pageX - iDiffX), "top": (e.pageY - iDiffY) }); 
+}); 
+}); 
+$("#Drigging").mouseup(function () { 
+$(this).css('cursor','default');
+
+$(document).unbind("mousemove"); 
+}); 
+}); 
+
+//********************拖动图片
+
+$(function () { 
+
+	 $("#tu").mousemove(function (e) { 
+	 
+	 
+$("#XY").html("x "+e.pageX+" Y "+e.pageY);
+  	 $("#tu").css("top",e.pageY-100);
+	 $("#tu").css("left",e.pageX-100);
+	 $("#XY").css("width",e.pageX-9);
+	 $("#XY").css("height",e.pageY-9);
+	 	 
+		 
+		
+	 });
+	 
+	 
+	   $("#tu").click(function () { 
+ 	 $(this).css("top",9);
+	 $(this).css("left",9 );  
+	  });
+	 });
+	
+     </script> 
+  <div   id="Drigging" style="position:absolute; top:200px; left:400px; width:200px; height:200px; background:#8a9bca; " ></div> 
+      
+  
+       <div id="XY" style="border:1px solid red;"> </div>
+
+   <img  id="tu"    style="position:absolute"src="monpub/bimage/1348753692_27787.jpg" width="200" height="200" />  
+
+     
+   
+
+

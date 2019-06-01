@@ -1,0 +1,54 @@
+RewriteEngine on
+RewriteCond %{HTTP_REFERER} !^$ [NC]
+RewriteCond %{HTTP_REFERER} !zhukun.net [NC]
+RewriteCond %{HTTP_REFERER} !youdao.com [NC]
+RewriteCond %{HTTP_REFERER} !zhuaxia.com [NC]
+RewriteCond %{HTTP_REFERER} !twitter.com [NC]
+RewriteCond %{HTTP_REFERER} !facebook.com [NC]
+RewriteCond %{HTTP_REFERER} !xianguo.com [NC]
+RewriteCond %{HTTP_REFERER} !google.cn [NC]
+RewriteCond %{HTTP_REFERER} !google.com [NC]
+RewriteCond %{HTTP_REFERER} !google.com.tw [NC]
+RewriteCond %{HTTP_REFERER} !google.com.sg [NC]
+RewriteCond %{HTTP_REFERER} !google.com.hk [NC]
+RewriteCond %{HTTP_REFERER} !bloglines.com [NC]
+RewriteCond %{HTTP_REFERER} !soso.com [NC]
+RewriteCond %{HTTP_REFERER} !mail.qq.com [NC]
+RewriteCond %{HTTP_REFERER} !cn.bing.com [NC]
+RewriteCond %{HTTP_REFERER} !image.baidu.com [NC]
+RewriteCond %{HTTP_REFERER} !feedburner.com [NC]
+RewriteCond %{HTTP_REFERER} !feedsky.com [NC]
+RewriteRule .(png|jpg)$ /no.gif [R,NC,L]
+
+---我把.htaccess文件和no.gif文件一起上传到了根目录，注意看最后一行，当指定类型（png或jpg）的图片出现在非上述列表中的网站时，图片会自动替换成no.gif。演示见此。
+
+解释一下上述语句：
+
+1、RewriteCond %{HTTP_REFERER} !^$ [NC]
+允许空“HTTP_REFERER”的访问，即允许用户在浏览器地址栏中直接输入图片地址时图片文件的显示。一般而言，这是可选的，不过，建议这么设置，如果强迫必须具有“HTTP_REFERER”才能访问，可能会带来某些问题，比如说在用户通过代理服务器访问时。
+
+2、 RewriteCond %{HTTP_REFERER} !zhukun.net [NC]
+设置允许访问的HTTP来源，包括我们的自身站点、Google、Baidu、Bloglines、Feedburner、feedsky等。
+
+3、 RewriteRule .(jpg|png)$ /no.gif [R,NC,L]
+定义被盗链时替代的图片，让所有盗链 jpg、png 等图片的网页，显示根目录下的 no.gif 文件。注意：这里必须有一个“/”，而且no.gif件体积越小越好，越小就越节省流量。
+
+4、说明一下其中的 R、NC 和 L
+R 就是转向的意思
+NC 指的是不区分大小写
+L 指明本次转向到此结束，后续的转向不受先前判断语句的影响
+
+特别注意：不建议同时禁止gif|jpg|png这三种图片文件，比如你已经禁止了gif，但是却用了no.gif来替换盗链图片，这样肯定会出问题。如果你想同时禁止这三种类型，可以使用以下方法来解决：
+
+1
+RewriteRule .(gif|png|jpg)$ http://farm3.static.flickr.com/2743/4462030670_dc36df0e3d_o.png [R,NC,L]
+即用其它服务器上（未设置过防盗链）的图片来替换演示。
+
+本方法已在Godaddy的免费空间上测试成功，再次声明一下，清风小荷塘原创文章，转载请标明来源。
+
+2010.07.16补充，如果你没看懂，不防看看梦游科技的这篇文章。
+
+发表于 2010/03/28 由 bear 此条目发表在 电脑网络 分类目录，贴了 站长, 网站, 网络, 防盗链 标签。将固定链接加入收藏夹。
+以下内容你肯定也感兴趣：
+
+http://www.zhukun.net/archives/3822

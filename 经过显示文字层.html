@@ -1,0 +1,57 @@
+<<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<FCK:meta http-equiv="Content-Type" content="text/html; charset=utf-8"  />
+<title>滑动说明文字</title>
+<style type="text/css" media="all">
+.bg{border:#ccc 3px solid;width:180px;height:140px;position:relative;overflow:hidden;float:left;margin-right:6px;}
+.img{background-image:url(http://img.lingd.net/attachments/date_201101/a117883dd974d6ef09034e0bb8c55109.jpg);width:180px;height:140px;}
+.txt{width:180px;height:140px;background-color:#000;position:absolute;top:178px;left:0px;color:#FFCC33;line-height:22px;padding:5px;font-size:12px;}
+</style>
+<script language="javascript" type="text/javascript">
+var div=document.getElementsByTagName("div");
+var elem=new Array();    //存储已经初始化的对象
+var status=new Array();  //存储对象状态
+var interval=10;         //滑动速度
+var opacity=70;          //内容图层透明度
+//run_animation
+var d=function(){
+var timer=0,div;
+var ypos=100;
+this.go_up=function(con,target){timer=setInterval(con.up,interval);div=target;div.style.filter="alpha(opacity="+opacity+")";div.style.opacity=opacity/100;}
+this.go_down=function(con){timer=setInterval(con.down,interval)}
+this.up=function(){if(ypos<=0){clearInterval(timer);div.style.top="0px";}else{ypos-=10;div.style.top=ypos+"px";}}
+this.down=function(){if(ypos>=106){clearInterval(timer);div.style.top="178px";}else{ypos+=10;div.style.top=ypos+"px";}}
+this.pause=function(){clearInterval(timer);}
+}
+//start
+var c={
+up:function(tar){if(status[tar]==tar){elem[tar].pause();elem[tar].go_up(elem[tar],div[tar]);}else{var n=tar;tar=new d();elem[n]=tar;status[n]=n;tar.go_up(tar,div[n]);}},
+pause:function(tar){elem[tar].pause();},
+down:function(tar){if(elem[tar]!=undefined){elem[tar].pause();elem[tar].go_down(elem[tar])}}
+}
+//initial
+window.onload=function(){for(var i=0;i<div.length;i+=3){div[i+1].index=div[i+2].index=i+2;div[i+1].onmouseover=function(){c.up(this.index)};div[i+2].onmouseout=function(){c.down(this.index)}}}
+</script>
+</head>
+<body>
+<div class="bg">
+<div ><img src="tu/tutu.jpg" /></div>
+<div class="txt"><a href="grossiste/grossiste.php">图片1：<br />下面是测试说明1<br>文字内容1。</a></div>
+</div>
+<div class="bg">
+<div class="img"></div>
+<div class="txt">图片2：<br />下面是测试说明2<br><a href="http://xu123.lingd.net/" _fcksavedurl="http://xu123.lingd.net/" target="_blank">勇哥代码站</a></div>
+</div>
+<div class="bg">
+<div class="img"></div>
+<div class="txt">图片3：<br />下面是测试说明3<br>文字内容3。</div>
+</div>
+<div class="bg">
+<div class="img"></div>
+<div class="txt">图片4：<br />下面是测试说明4<br>文字内容4。</div>
+</div>
+</body>
+</html></P>
+</body>
+</html>

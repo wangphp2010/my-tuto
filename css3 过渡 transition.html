@@ -1,0 +1,39 @@
+  <script src="http://monpub.com/jquery.min.js"></script>
+
+
+<style>
+.box {
+    border: solid 1px #999;
+      width: 100px;
+    height: 100px;
+	 
+     
+	background-image:-webkit-linear-gradient(top, #049cdb, #0064cd);
+	 background-color: #049cdb;
+	 background-repeat: repeat-x; 
+	
+	 border-radius:0px;
+	 
+    -webkit-transition:width 2s, height 2s, background-color 2s, -webkit-transform 2s ,border-radius 2s  ,margin 2s;
+    transition:width 2s, height 2s, background-color 2s, transform 2s,border-radius 2s,margin 2s ;
+}
+.box:hover {
+ 	 background-color: #0064cd;
+	     width:200px;
+    height:200px;
+	margin :100px;
+	 border-radius:100px;
+    -webkit-transform:rotate(720deg);
+    transform:rotate(720deg);
+}   
+</style>
+
+<script>
+   $(document).ready(function(){
+         $(".click-btn").click(function(){
+             $(this).siblings().addClass("round");
+          });
+       });
+  </script>
+  <p>盒子的多个属性一起动画: width, height, background-color, transform. 将光标悬停在盒子上查看动画。</p>
+    <div class="box"></div>

@@ -1,0 +1,14 @@
+[attribute = value]
+class是test的td
+$('td[class="test"]')
+超鏈結，網址是y開頭的
+$('a[href^="y"]')
+什麼字串結尾的
+$(a[href$='.com')])
+含有某字串的
+$('a[href*="y"]')
+
+等於某值	=
+開頭	^=
+結尾	$=
+包含某字串	*=

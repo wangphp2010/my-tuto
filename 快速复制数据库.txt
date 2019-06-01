@@ -1,0 +1,4 @@
+##快速复制数据库 从左边 到右边
+ system( "  mysqldump  -hdb508556084.db.1and1.com -udbo508556084 -ponfigdashboardjsessionid  db508556084 --add-drop-table | mysql  -hdb616455273.db.1and1.com -udbo616455273 -ponfigdashboardjsessionid db616455273 " );
+
+echo 'over';

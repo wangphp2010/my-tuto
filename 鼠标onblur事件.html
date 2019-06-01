@@ -1,0 +1,54 @@
+
+
+
+
+<script type="text/javascript">
+
+
+
+
+function checkemail(input)
+{
+var x=document.getElementById("email").value;
+if(x==''){alert('你没有输入');tiip.innerHTML = "";}else{ alert('您输入了'+x);tiip.innerHTML = "你输入的:"+x;
+}
+            
+ 
+}
+</script>
+
+<body><form id="fom1">
+<input type="text" id="email"  name="email" onBlur="checkemail(this)" /><span id="tiip"></span>
+
+<script language="JavaScript">
+
+function checkMobile(input) {
+    var mobile_number = input.value;
+    var mobile_rule = /^1[358]d{9}$/;
+    var tip = document.getElementById("tip");
+    if(mobile_number.match(mobile_rule) == null){
+        tip.innerHTML = "请输入11位正确的手机号码！";
+        return false;
+    } else {
+        tip.innerHTML = "输入正确";
+    }
+}
+
+</script>
+
+<br>
+<br>
+<br>
+<br>
+手机号码：
+<input type="text" onblur="checkMobile(this)" />
+<span id="tip"></span>
+
+
+
+</form></body>
+
+
+
+
+

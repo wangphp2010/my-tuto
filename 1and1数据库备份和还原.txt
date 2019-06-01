@@ -1,0 +1,43 @@
+备份
+<?php
+  // Personnalisez ici vos données d'accès
+  $host= 'dbxx.1and1.fr';
+  $user= 'dbxxxxxx';
+  $pass= 'xxxxxxxx';
+  $db=   'dbxxxxxxx';
+
+  // Création de la sauvegarde
+  system(sprintf(
+    'mysqldump --opt -h%s -u%s -p"%s" %s | gzip > %s/dumpDB.sql.gz',
+    $host,
+    $user,
+    $pass,
+    $db,
+    getenv('DOCUMENT_ROOT')
+  ));
+  echo '+DONE';
+?>
+
+
+
+
+还原
+
+<?php
+  // Indiquez vos données d'accès
+  $host= 'dbxx.1and1.fr';
+  $user= 'dboxxxxxx';
+  $pass= 'xxxxxxxx';
+  $db=   'dbxxxxxxx';
+
+  // Restauration du fichier Gzip
+  system(sprintf(
+    'gunzip -c %s/dumpDB.sql.gz | mysql -h %s -u %s -p%s %s',
+    getenv('DOCUMENT_ROOT'),
+    $host,
+    $user,
+    $pass,
+    $db
+  ));
+  echo '+DONE';
+?>

@@ -1,0 +1,9 @@
+<script language="javascript">
+    var ss =location.href.split("#");
+    document.cookie='ss='+ss[1];
+    if (ss[1] != "<?php echo $_COOKIE['ss']; ?>") {
+        //判断 cookie 是不是最新值，不是则重新载入页面
+        window.location.reload();
+    }
+</script> 
+<?php echo $_COOKIE['ss']; ?>

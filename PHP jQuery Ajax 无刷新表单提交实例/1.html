@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+
+
+
+<script type="text/javascript" src="PHP.jQuery.Ajax.js"></script>
+<script type="text/javascript">
+$(function() {
+$("#subbtn").click(function() {
+var params = $('input').serialize();
+var url = "1.php";
+
+$.ajax({
+type: "post",
+url: url,
+dataType: "json",
+data: params,
+success: function(msg){
+var tishi = "您提交的姓名为：" + msg.name +
+"<br /> 您提交的密码为：" + msg.password+
+"<br /> 您提交的内容为：" + msg.neirong;
+
+$("#tishi").html(tishi);
+$("#tishi").css({color: "green"});
+}
+});
+});
+
+});
+
+</script>
+<p><label for="name">姓名：</label>
+<input id="name" name="name" type="text" />
+</p>
+
+<p><label for="password">密码：</label>
+<input id="password" name="password" type="password" />
+</p>
+<p><label >内容：</label>
+<input id="password" name="neirong" type="text" />
+</p>
+<p><input id="subbtn" type="button" value="ajax 测试" /></p>
+<span id="tishi"></span>
+
+</html>

@@ -1,0 +1,70 @@
+
+<html>
+	<head></head>
+	<body>	
+						  <div align="center">change()函数里面加上对应的语句啊
+例如文本框的id是text1,隐藏域的id是hidden1,下拉表单的id是select1
+语句应该是这么写
+document.getElementById("text1").value=document.getElementById("select1").value;
+document.getElementById("hidden1").value=document.getElementById("select1").options[document.getElementById("select1").selectedIndex].text;</div>
+
+<script>
+
+		
+function show(xianshi){
+if (xianshi.value == "xianshi1") {
+yihao.style.display = "";
+}else{yihao.style.display = "none";
+}
+if (xianshi.value == "xianshi2") {
+erhao.style.display = "";
+}else{erhao.style.display = "none";
+}
+if (xianshi.value == "xianshi3") {
+sanhao.style.display = "";
+}else{sanhao.style.display = "none";
+}
+
+
+
+}
+
+
+	</script>
+		<p>
+<div>
+		  <select  id="xianshi"  onChange="show(xianshi)">
+		    <option selected="Selected" >-请选择-</option>
+		    <option  value="xianshi1">显示1号</option>
+		    <option   value="xianshi2">显示2号</option>
+			  <option   value="xianshi3">显示3号</option>
+	      </select></div>
+		  <p>          
+		           
+	
+		  <p>          
+		  <div align="center">
+          <div id="yihao" style="display:none">标签1号
+		   <select >
+		    <option selected="Selected" >标签1号</option>
+		    <option  value="xianshi1">显示1号</option>
+		    <option   value="xianshi2">显示2号</option>
+			  <option   value="xianshi3">显示3号</option>
+	      </select></div>
+<div id="erhao" style="display:none">标签2号
+<select >
+		    <option selected="Selected" >标签2号</option>
+		    <option  value="xianshi1">显示1号</option>
+		    <option   value="xianshi2">显示2号</option>
+			  <option   value="xianshi3">显示3号</option>
+	      </select></div>
+<div id="sanhao" style="display:none">标签3号</div>
+		
+	</div>
+		
+
+	</body>
+
+
+
+</html>

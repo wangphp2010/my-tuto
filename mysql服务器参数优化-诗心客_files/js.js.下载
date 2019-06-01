@@ -1,0 +1,21 @@
+﻿$(document).ready(function() {
+    if (GetCookie("username") && GetCookie("password")) {
+    //alert(bloghost)
+        var a, c, b = 0;
+        $('p.cloudreamHelperLink').css('display', 'block').css('text-align', 'right').each(function() {
+            a = $(this);
+            c = a.attr('codetype');
+            b = a.attr('entryid');
+            if (c == "0") {
+            a.append('[<a class="helperEdtLink" href="' + bloghost + 'zb_system/cmd.php?act=ArticleEdt&amp;id=' + b + '">编辑</a>]')
+            } 
+            else if (c == "1") {
+            a.append('[<a class="helperEdtLink" href="' + bloghost + 'zb_system/cmd.php?act=PageEdt&amp;id=' + b + '">编辑</a>]')
+            } 
+
+
+            });
+        $('a.helperEdtLink').attr("target", "_0");
+
+    }
+});

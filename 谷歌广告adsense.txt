@@ -1,0 +1,30 @@
+先eval 加密    
+	eval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('a="7";2.3("<4"+"5 6=\'1/8\' 9=\'/0/b.c.0?d\'></"+"e>");',15,15,'js|text|document|write|sc|ript|type|auto|javascript|src|adtype|ads|min|20160623|script'.split('|'),0,{}))
+
+解密内容 
+	adtype = "auto";
+	document.write("<sc" + "ript type='text/javascript' src='/js/adg.js?20160623'></" + "script>");
+
+
+
+
+
+js/ads.min.js的内容
+	eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('(s(){p b=7.J.r,a={t:{6:\'<0 f d="//g.l.m/n/3/2.3">\\5/0><o y="2" z="H:I" 8-4-q="h-i-j" 8-4-u="v" 8-4-w="x"></o><0>(2 = 7.2 || []).k({});\\5/0>\',9:""},A:{6:\'<0 f d="//g.l.m/n/3/2.3">\\5/0><0>(2 = 7.2 || []).k({B: "h-i-j",C: D});\\5/0>\',9:""}}["4"+E];"F"==G c&&(c=1);e=-1!=b.K("L.M")&&1==c?a.6:a.9;N.O(e)})();',51,51,'script||adsbygoogle|js|ad|x3c|gg|window|data|d1|||ggg|src||async|pagead2|ca|pub|1218038422599836|push|googlesyndication|com|pagead|ins|var|client|href|function|adauto|slot|4153571853|format|auto|class|style|admob|google_ad_client|enable_page_level_ads|true|adtype|undefined|typeof|display|block|location|indexOf|chinaq|tw|document|write'.split('|'),0,{}))
+解密后	
+	(function() {
+	var b = window.location.href,
+		a = {
+			adauto: {
+				gg: '<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1218038422599836" data-ad-slot="4153571853" data-ad-format="auto"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>',
+				d1: ""
+			},
+			admob: {
+				gg: '<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({google_ad_client: "ca-pub-1218038422599836",enable_page_level_ads: true});</script>',
+				d1: ""
+			}
+		}["ad" + adtype];
+	"undefined" == typeof ggg && (ggg = 1);
+	e = -1 != b.indexOf("chinaq.tw") && 1 == ggg ? a.gg : a.d1;
+	document.write(e)
+})();

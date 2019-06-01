@@ -1,0 +1,23 @@
+<script type='text/javascript'>
+function dj()
+{
+if( document.getElementById('s1').href=="http://www.monpub.com/")
+{
+ document.getElementById('s1').href="http://www.baidu.com/";
+document.getElementById( "s1" ).innerHTML = "baidu"; 
+}else{
+ document.getElementById('s1').href="http://www.monpub.com/";
+document.getElementById( "s1" ).innerHTML = "mon";
+}
+
+
+
+
+}
+</script>
+<br>
+<br>
+
+<a  id="s1" href="http://www.monpub.comd/">mon</a> <br>
+<button  onclick="dj()"  >修改链接</button>
+

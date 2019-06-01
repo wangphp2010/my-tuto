@@ -1,0 +1,11 @@
+保证数据完整性,例如添加和修改同时,两者成立则都执行,一者失败都失败
+                  mysql_query("BEGIN");
+         mysql_query("INSERT INTO customerinfo (name) VALUES ('$name1')";
+         mysql_query("SELECT * FROM `orderinfo` where customerid=".$id");
+         mysql_query("COMMIT");
+		 
+		 
+		      begin 开始一个事务
+        rollback 事务回滚
+        commit  事务确认
+        rollback和commit不能并列使用，当你同时使用，只有前面的一个有效，而后面的无效，即是你或执行commit或执行rollback

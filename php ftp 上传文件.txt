@@ -1,0 +1,119 @@
+ PHP FTP上传文件
+第一步：建立一个新的 FTP 连接。
+    ftp_connect(host,port,timeout);
+    host必需，规定要连接的 FTP 服务器，可以是域名或 IP 地址，后面不应以斜线结尾，前面也不需要用 ftp:// 开头。
+    port可选，规定 FTP 服务器的端口。
+    timeout可选，规定该 FTP 服务器的超时时间，默认是 90 秒。
+    返回值：若成功，则返回一个连接标识，否则返回 false。
+
+第二步：登陆FTP。
+    ftp_login(ftp_connection,username,password);
+    ftp_connection必需，规定要使用的 FTP 连接(FTP 连接的标识符)。
+    username必需，规定用于登录的用户名。
+    password必需，规定用于登录的密码。
+    返回值：若成功则返回 true，失败则返回 false 并发出一个警告。
+
+第三步：改变 FTP 服务器上的当前目录或在 FTP 服务器上建立新目录。
+    (1)改变 FTP 服务器上的当前目录。
+    ftp_chdir(ftp_connection,directory);
+    tp_connection必需，规定要使用的 FTP 连接(FTP 连接的标识符)。
+    directory必需，规定要切换到的目录。
+    返回值：若成功，则返回 true，否则返回 false，如果切换目录失败，PHP 还会发出一条警告。
+    (2)在 FTP 服务器上建立新目录。
+    ftp_mkdir(ftp_connection,dir);
+    ftp_connection必需，规定要使用的 FTP 连接(FTP 连接的标识符)。
+    dir必需，规定要创建的目录的名称。
+    返回值：若成功，则返回 true，否则返回 false。
+
+第四步：查看FTP当前目录。
+    ftp_pwd(ftp_connection);
+    ftp_connection必需，规定要使用的 FTP 连接(FTP 连接的标识符)。
+    返回值：返回FTP的当前目录。
+
+第五步：把文件上传到服务器。
+    ftp_put(ftp_connection,remote,local,mode,resume);
+    ftp_connection必需，规定要使用的 FTP 连接(FTP 连接的标识符)。
+    remote必需，上传到服务器上的文件名。
+    local，必需，规定要上传的本地文件的路径。
+    mode必需，规定传输模式，可能的值有：FTP_ASCII、FTP_BINARY。
+    resume必需，规定在本地文件中的何处开始拷贝，默认是0。
+    返回值：若成功则返回 true，失败则返回 false。
+
+第六步：关闭 FTP 连接。
+    ftp_close(ftp_connection);
+    ftp_connection必需，规定要使用的 FTP 连接(FTP 连接的标识符)。
+
+ 实例代码：
+<?php
+    $ftp_connection = ftp_connect('xxx.com',21,1000);
+    ftp_login($ftp_connection, 'xxxName', 'xxxPWD');
+    ftp_chdir($ftp_connection, '/blogs/test');
+    //echo ftp_pwd($ftp_connection);
+    $r = ftp_put($ftp_connection, 'romote.txt', './local.txt', FTP_BINARY);
+    var_dump($r);
+    ftp_close($ftp_connection);
+?>
+
+FTP相关的其他函数
+(1)删除 FTP 服务器上的一个文件。
+    ftp_delete(ftp_connection,path);
+    ftp_connection必需，规定要使用的 FTP 连接(FTP 连接的标识符)。
+    path必需，规定要删除的文件的路径。
+    返回值：若成功，则返回 true，否则返回 false。
+(2)获取文件的最后修改时间。
+    ftp_login(ftp_connection,file);
+    ftp_connection必需，规定要使用的 FTP 连接(FTP 连接的标识符)。
+    file必需，规定要检查的文件。
+    返回值：如：int 1338845458。
+    注释：并非所有 FTP 服务器都支持该函数，该函数不适用于检查目录。
+(3)删除目录。
+    ftp_rmdir(ftp_connection,dir);
+    ftp_connection必需，规定要使用的 FTP 连接(FTP 连接的标识符)。
+    dir必需，规定要删除的目录。
+    返回值：若成功，则返回 true，否则返回 false。
+    注释：删除的目录下不能包含子目录和文件。
+    
+(4)设置 FTP 服务器上指定文件的权限
+    ftp_chmod(ftp_connection,mode,file);
+    ftp_connection必需，规定要使用的 FTP 连接(FTP 连接的标识符)。
+    mode必需，规定新的权限。
+    file必需，规定要修改权限的文件的名称。
+    返回值：若成功，返回设置的权限值，否则返回false。
+
+(5)获取指定目录的文件列表。
+    ftp_nlist(ftp_connection,dir);
+    ftp_connection必需，规定要使用的 FTP 连接(FTP 连接的标识符)。
+    dir必需，规定要检查的目录，使用 '.' 来获得当前目录。
+    返回值：若成功，则返回给定目录下的文件名组成的数组，否则返回 false。
+ 
+ 举例：
+<?php
+/**
+* ftp上传下载文件
+* edit www.jbxue.com
+*/
+
+$ftp_server='www.jbxue.com';//服务器
+$ftp_user_name='jbxue.com';//用户名
+$ftp_user_pass='password';//密码
+$ftp_port='21';//端口
+$ftp_put_dir='data/photo/thumb/data2';//上传目录
+
+$ftp_conn_id = ftp_connect($ftp_server,$ftp_port);
+$ftp_login_result = ftp_login($ftp_conn_id, $ftp_user_name, $ftp_user_pass);
+
+if ((!$ftp_conn_id) || (!$ftp_login_result)) {
+ echo "连接到ftp服务器失败";
+ exit;
+} else {
+
+ ftp_pasv ($ftp_conn_id,true); //是否被动模式
+ 
+ ftp_chdir($ftp_conn_id, $ftp_put_dir);
+ $ftp_upload = ftp_put($ftp_conn_id, '3c264461abdf49de2ddaabc3426ceb65.jpg', 'data\jbxue.com\3c264461abdf49de2ddaabc3426ceb65.jpg', FTP_BINARY);
+ //var_dump($ftp_upload);//看看写入成功否？
+ ftp_close($ftp_conn_id); //断开
+}
+?>
+
+ 

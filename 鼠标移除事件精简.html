@@ -1,0 +1,18 @@
+<script type="text/javascript">
+function $(o){
+    return document.getElementById(o);
+}
+function checke(o){
+    var v = o.value,msg,dis;
+    if(v==''){
+        msg='你没有输入';
+        dis='';
+    }else{//本代码由www.Qsyz.net 提供
+        msg = dis = '你输入了:' + v;
+    }
+    $('tiip').innerHTML = dis;
+    alert(msg);
+}
+</script>
+<form><input type="text" id="email"  name="email" onBlur="checke(this)" /></form>
+<span id="tiip"></span>

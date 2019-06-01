@@ -1,0 +1,7 @@
+function FetchRepeatMemberInArray($array) {  
+    // 获取去掉重复数据的数组  
+    $unique_arr = array_unique ( $array ); //去掉重复数据 
+    // 获取重复数据的数组  
+    $repeat_arr = array_diff_assoc ( $array, $unique_arr ); //把重复数据中的第二个整合成数据
+    return $repeat_arr;  
+}

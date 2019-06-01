@@ -1,0 +1,12 @@
+ 
+<p>第一种情况：图片存在，正常显示
+ 
+<img src="http://www.jb51.net/logo.gif" 
+onerror="javascript:this.src='http://www.jb51.net/logos.gif'" /></p> 
+<p>第二种情况：图片不存在，显示默认图片
+ 
+<img src="http://www.jb51.net/logoddd.gif" 
+onerror="javascript:this.src='http://www.jb51.net/logos.gif'" /></p> 
+
+
+ 

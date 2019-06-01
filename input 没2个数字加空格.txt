@@ -1,0 +1,2 @@
+ 
+<input type="text"  onkeyup="this.value =this.value.replace(/(\d{2})(?=\d)/g,'$1 ')">

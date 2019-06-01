@@ -1,0 +1,106 @@
+
+
+
+
+
+
+
+ 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ 
+
+ 
+<script>
+//解决IE不支持getElementsByClassName
+if(!document.getElementsByClassName){
+    document.getElementsByClassName = function(className, element){
+        var children = (element || document).getElementsByTagName('*');
+        var elements = new Array();
+        for (var i=0; i<children.length; i++){
+            var child = children[i];
+            var classNames = child.className.split(' ');
+            for (var j=0; j<classNames.length; j++){
+                if (classNames[j] == className){
+                    elements.push(child);
+                    break;
+                }
+            }
+        }
+        return elements;
+    };
+}
+
+ z.style.background='#ccc';
+
+ 
+ </script>
+ 
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+ <script>
+
+ 
+ 
+ 
+
+ $(function() {
+ var i=-1;
+
+ $("#k").keydown(function(event){
+	 var keycd=event.which;
+
+ var x=document.getElementById("main");
+ var y=x.getElementsByClassName("c");
+
+$("#d").html(keycd);
+
+
+if(keycd==40){
+  	
+if(i==y.length-1)i=0;else i=i+1;
+
+ 	y[i].style.background='#ccc';
+	var k_val=y[i].innerHTML;		 
+		$("#k").val(k_val);
+		
+		
+	for(var s=0; s<y.length;s++){
+		if(s!=i)y[s].style.background='#fff';}
+	 
+	
+ 	 }
+	 
+
+
+ if(keycd==38){
+	 
+	 if(i==0)i=y.length-1;else i=i-1;
+
+ 	y[i].style.background='#ccc';
+	var k_val=y[i].innerHTML;	 
+		$("#k").val(k_val);
+		
+		
+		
+	for(var s=0; s<y.length;s++){
+		if(s!=i)y[s].style.background='#fff';}
+			 
+	  
+  	 }	 
+	 
+	 
+ 
+ });});
+ 
+ 
+ </script>
+ <div id='d'>nihao</div><br />
+<input id='k' />
+
+<div id="main"  >
+<p class="c">第1</p>
+<p class="c">第2</p>
+<p class="c">第3一</p>
+<p class="c">第4一</p>
+<p class="c">第5一</p><p class="c">第4一</p>
+<p class="c">第5一</p>
+</div> 

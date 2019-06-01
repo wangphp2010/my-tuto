@@ -1,0 +1,11 @@
+$data = array('foo'=>'bar',
+              'baz'=>'boom',
+              'cow'=>'milk',
+              'php'=>'hypertext processor');
+echo http_build_query($data) . "<br />";
+echo http_build_query($data, '', '&amp;');
+
+
+½á¹û
+foo=bar&baz=boom&cow=milk&php=hypertext+processor
+foo=bar&baz=boom&cow=milk&php=hypertext+processor

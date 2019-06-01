@@ -1,0 +1,80 @@
+<?php
+
+function is_siren($siren)//检验siren是否有效其实就是检验最后一位数字
+{
+    $siren = str_replace(' ', '', $siren);
+    if (strlen($siren) != 9 || !is_numeric($siren)) {
+        return false;
+    }
+
+    $total = 0;
+    for ($i = 0; $i < 9; $i++) {
+        $temp = substr($siren, $i, 1);
+        if ($i % 2 == 1) {
+            $temp *= 2;
+            if ($temp > 9) {
+                $temp -= 9;
+            }
+        }
+        $total += $temp;
+    }
+    return (($total % 10) == 0);
+}
+
+function is_siret($siret)
+{
+    $siret = str_replace(' ', '', $siret);
+    if (strlen($siret) != 14 || !is_numeric($siret)) {
+        return false;
+    }
+
+    $siren = substr($siret, 0, 9);
+    if (!Dieu::is_siren($siren)) {
+        return false;
+    }
+
+    $total = 0;
+    for ($i = 0; $i < 14; $i++) {
+        $temp = substr($siret, $i, 1);
+        if ($i % 2 == 0) {
+            $temp *= 2;
+            if ($temp > 9) {
+                $temp -= 9;
+            }
+        }
+        $total += $temp;
+    }
+    return (($total % 10) == 0);
+}
+
+$a='517952016';
+if (is_siren($a))
+    echo 'ok';
+else
+    echo 'n';
+	echo '<br />
+<br />
+<br />
+<br />
+';
+
+
+function ck_siren($a){
+	
+	 for ($i = 0; $i < 8; $i++) {
+        $temp = substr($a, $i, 1);
+        if ($i % 2 == 1) {
+            $temp *= 2;
+            if ($temp > 9) {
+                $temp -= 9;
+            }
+        }
+        $total += $temp;
+    }
+	return 10-($total % 10);
+	}
+	
+	echo ck_siren($a);//siren最后一位是检验数字，这个函数算出有效的检验数字--//检验siren是否有效其实就是检验最后一位数字
+
+	
+	 ?>

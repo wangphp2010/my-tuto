@@ -1,0 +1,68 @@
+<div style="border:2px #000 solid" >
+ 
+
+
+
+   &lt;script src=&quot;jquery.min.js&quot;&gt;&lt;/script&gt;<br />
+    &lt;script&gt;<br />
+    $(function(){<br />
+    <br />
+    var cp='i love you';<br />
+    $.getJSON(&quot;http://monpub.com/acc.php?callback=?&amp;cp=&quot;+cp, <br />
+    function(data){<br />
+    alert(data.v);<br />
+    }<br />
+    )<br />
+    }); 
+   &lt;/script&gt;<br />
+   <br />
+   <br />
+   <p>&lt;?php<br />
+     //header('Content-type: application/json');<br />
+   </p>
+   <p>$user['v']  =$_GET['cp'].' you love me';</p>
+   <p>echo $_GET['callback'].&quot;(&quot;.json_encode($user).&quot;)&quot;;</p>
+   <p>?&gt;</p>
+   <br />
+<br />
+  
+  
+</div>
+
+<div style="border:2px #000 solid" >
+<p>本地代码/*************************************************<br>  &lt;script src=&quot;jquery.min.js&quot;&gt;&lt;/script&gt;<br>
+  &lt;script&gt;<br>
+  $(function() {<br />
+  var cp=' i love you ';
+</p>
+<p>$.ajax({<br>
+  type:'get',//jquey是不支持post方式跨域的<br>
+  async:false,<br>
+  url:&quot;http://monpub.com/acc.php?cp=&quot;+cp,//跨域请求的URL<br>
+  dataType:'jsonp',<br>
+  //传递给请求处理程序，用以获得jsonp回调函数名的参数名(默认为:callback)<br>
+  jsonp:'jsoncallback',             //自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名<br>
+  jsonpCallback:&quot;success_jsonpCallback&quot;,<br>
+  //成功获取跨域服务器上的json数据后,会动态执行这个callback函数<br>
+  success:function(data){<br>
+  alert(data.v);<br>
+}</p>
+<p>});</p>
+<p>});</p>
+<p>&lt;/script&gt;<br>
+  <br>
+  <br>
+  <br>
+远程php代码***********************************<br>
+<br>
+&lt;?php<br>
+</p>
+<p> $data['v'] = $_GET['cp'];<br>
+  <br>
+</p>
+<p>$jsoncallback = $_GET['jsoncallback'];<br>
+  echo $jsoncallback.&quot;(&quot;.json_encode($data).&quot;)&quot;;<br>
+  ?&gt;<br />
+</p>
+<p>&nbsp; </p>
+</div>

@@ -1,0 +1,7 @@
+ <?php
+$jw="http://www.jwbook.cn?user=jwbook&age=21&sex=boy";
+$book=substr($jw,(strpos($jw,'?')+1));
+ parse_str($book);
+ echo $book;
+ echo "欢迎来到君威网！你的用户名：".$user."你的年龄{$age}你的性别{$sex}";
+?>

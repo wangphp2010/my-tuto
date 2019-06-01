@@ -1,0 +1,68 @@
+﻿ 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">  
+<html>  
+<head>  
+    <title>心林小屋Java工作室-http://hi.baidu.com/362217990</title>  
+    <script>  
+    var win;  
+    var body;  
+    var bg;  
+    window.onload=function(){  
+       win=document.getElementById("win"); //获取小窗口  
+       bg=document.getElementById("bg");//获取背景框  
+    body=document.body;//获取当前body    
+     }  
+      
+    function show(){  
+       document.body.scroll="no"; //隐藏当窗口的滚动条  
+    bg.style.width=body.clientWidth+"px"; //将背景框的宽度调到最宽  
+       bg.style.height=body.clientHeight+"px";//将背景框的高度调到最高  
+        
+       win.style.display="block";//将小窗口显示  
+       bg.style.display="block";//将背景框显示  
+    }  
+      
+    function hide(){  
+       document.body.scroll="auto";//当窗口的滚动条自动显示  
+       win.style.display="none";//将小窗口隐藏  
+       bg.style.display="none";//将背景框隐藏  
+    }  
+  
+    </script>  
+    <style type="text/css">  
+      
+    #win{  
+       position:absolute;  
+       border:1px solid #217AC1;   
+       width: 250px;  
+       height: 120px;  
+       top:50%;  
+       left:50%;  
+    margin: -75px -110px;  
+       background-color: white;  
+       display: none;  
+    }  
+      
+    #bg{  
+       filter:alpha(opacity=50);  
+       background-color: #99CCCC ;  
+       position: absolute;  
+       top:0px;  
+       left:0px;  
+       display: none;  
+    }  
+      
+      
+    </style>  
+</head>  
+  
+<body>  
+   <span id="bg"></span>  
+    <div id="win">  
+       <div style="background-color: #EBF4FC;"><span style="color: #519FEE"> 友情提示:</span></div>  
+       <div align="center"><br><span onClick="hide()">关闭窗口</span></div>  
+    </div>  
+    <a onClick="show()" href="#">显示窗口</a>  
+  
+ </body>  
+</html>  

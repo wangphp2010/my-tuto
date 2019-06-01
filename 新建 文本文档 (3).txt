@@ -1,0 +1,1 @@
+		exit('votre annonce a ¨¦t¨¦ remont¨¦e fail£º'.mysql_error().'[ <a href="javascript:history.back()">retour</a> ]');

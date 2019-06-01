@@ -1,0 +1,4 @@
+<?
+$message= "$userÄãºÃ£º»¶Ó­×¢²á£¡ÄãµÄÓÃ»§ÃûÊÇ$username,ÄãµÄÃÜÂëÊÇ$password. ";
+mail( "$usermail ",   "»¶Ó­×¢²á ",   $message,   "From:   yourname@123.com\nReply-To:   yourname@123.com ");
+?>  

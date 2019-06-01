@@ -1,0 +1,44 @@
+CREATE TABLE `roottb` (
+`id` INT(11) UNSIGNED AUTO_INCREMENT NOT NULL,
+`data` VARCHAR(100) NOT NULL DEFAULT '',
+PRIMARY KEY (`id`)
+) TYPE=InnoDB;
+CREATE TABLE `subtb` (
+`id` INT(11) UNSIGNED AUTO_INCREMENT NOT NULL,
+`rootid` INT(11) UNSIGNED NOT NULL DEFAULT '0',
+`data` VARCHAR(100) NOT NULL DEFAULT '',
+PRIMARY KEY (`id`),
+INDEX (`rootid`),
+FOREIGN KEY (`rootid`) REFERENCES roottb(`id`) ON DELETE
+CASCADE
+) TYPE=InnoDB;
+
+
+1、必须使用InnoDB引擎；
+2、外键必须建立索引（INDEX）；
+3、外键绑定关系这里使用了“ ON DELETE CASCADE”，意思是如果
+外键对应数据被删除，将关联数据完全删除，
+
+ALTER TABLE  `face2` ADD FOREIGN KEY (  `tid` ) REFERENCES  `test`.`face1` (
+`id`
+) ON DELETE CASCADE ON UPDATE NO ACTION ;
+其中tid 和id 类型一定要一样
+
+删除外键
+ALTER TABLE  `face2` DROP FOREIGN KEY  `face2_ibfk_1` ;
+
+
+
+
+create table studCourse
+(
+stuCourseId int unsigned primary key auto_increment,
+sid char(8) not null default '',
+cid char(2) not null default '',
+grade tinyint unsigned not null default 0,
+foreign key for_sid(sid) references student(sid), 
+/*建立外键 外键名字for_sid可以不写 不写时会自动生成 
+for_sid(sid) 针对本表的sid键
+references student(sid)针对的是student表的sid */ 
+foreign key for_cid(cid) references course(cid)
+

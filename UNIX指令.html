@@ -1,0 +1,396 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+
+<body>
+<table width="100%">
+  <tbody>
+    <tr>
+      <td height="32" colspan="2" bordercolor="#000000" bgcolor="#009900"><div align="center">INSTITUTE OF NETWORK DEVELOPMENT, NTOU</div></td>
+    </tr>
+    <tr>
+      <td height="32" colspan="2" bordercolor="#000000" bgcolor="#FFFFFF"><div align="center">UNIX 使用者基本操作(Basic User Commands) LV3<br />
+        <a href="http://ind.ntou.edu.tw/~jjt/basic_cmd/index.htm">LV1</a>-&gt;<a href="http://ind.ntou.edu.tw/~jjt/basic_cmd/index2.htm">LV2</a>-&gt;<a href="http://ind.ntou.edu.tw/~jjt/basic_cmd/index3.htm">LV3</a></div></td>
+    </tr>
+  </tbody>
+</table>
+<table width="1043" height="1400" border="1">
+  <tbody>
+    <tr>
+      <th width="208" height="40" rowspan="2" scope="col"><p>列出檔案或目錄<br />
+        list</p></th>
+      <th width="199" rowspan="2" scope="col">ls</th>
+      <th width="118" scope="col">-a</th>
+      <th width="118" scope="col">-l</th>
+      <th width="118" scope="col">-h</th>
+      <th width="118" scope="col"> </th>
+      <th width="118" scope="col"> </th>
+    </tr>
+    <tr>
+      <th scope="col">顯示隱藏</th>
+      <th scope="col">顯示詳細</th>
+      <th scope="col">檔案大小用人性化方式表示</th>
+      <th scope="col"> </th>
+      <th scope="col"> </th>
+    </tr>
+    <tr>
+      <th height="40" scope="row">列出檔案或目錄<br />
+        list</th>
+      <th scope="row">ll</th>
+      <th colspan="5" scope="row"><div align="left">=ls -al</div></th>
+    </tr>
+    <tr>
+      <th height="4" rowspan="3" scope="col">切換目錄<br />
+        change dir</th>
+      <th rowspan="3" scope="col">cd</th>
+      <th scope="col">~</th>
+      <th scope="col">-</th>
+      <th scope="col">/</th>
+      <th scope="col">..</th>
+      <th scope="col"> </th>
+    </tr>
+    <tr>
+      <th scope="col">使用者根目錄</th>
+      <th scope="col">前一個目錄</th>
+      <th scope="col">系統根目錄</th>
+      <th scope="col">往上一層</th>
+      <th scope="col"> </th>
+    </tr>
+    <tr>
+      <th colspan="5" scope="col"><div align="left">ex : cd /root , cd / , cd ../../test</div></th>
+    </tr>
+    <tr>
+      <th height="40" scope="row">創造目錄<br />
+        make directory</th>
+      <th scope="row">mkdir</th>
+      <th colspan="5" scope="col"><div align="left">創造一個叫做test 的目錄 <br />
+        ex: mkdir test</div></th>
+    </tr>
+    <tr>
+      <th height="40" rowspan="3" scope="row">刪除檔案或目錄<br />
+        remove file</th>
+      <th rowspan="3" scope="row">rm</th>
+      <th scope="col">-R</th>
+      <th scope="col">-f</th>
+      <th scope="col">-i</th>
+      <th scope="col"> </th>
+      <th scope="col"> </th>
+    </tr>
+    <tr>
+      <th scope="col">整個目錄檔案全刪</th>
+      <th scope="col">強制刪除不詢問</th>
+      <th scope="col">每刪除檔案都詢問</th>
+      <th scope="col"> </th>
+      <th scope="col"> </th>
+    </tr>
+    <tr>
+      <th colspan="5" scope="col"><div align="left">用法 rm [-Rfi] target <br />
+        刪除一個檔案 ==&gt;rm -f test <br />
+        刪除一個目錄包含目錄裡面的所有檔案 ==&gt;rm -Rf /home/test <br />
+        刪除一個目錄下的所有東西 ==&gt;rm -f /home/test/* <br />
+        刪除現在目錄下的所有副檔名是txt，而且詢問==&gt;rm -i *.txt<br />
+        刪除目前目錄中名稱是test開頭的所有東西 rm -f test* <br />
+        使用-f 時請小心用 有時候想 rm -f test* <br />
+        結果打成rm -f test * 這就變成刪除目錄下所有東西!!!</div></th>
+    </tr>
+    <tr>
+      <th height="40" scope="row">建立空的檔案<br />
+        create a empty file</th>
+      <th scope="row">touch</th>
+      <th colspan="5" scope="col"><div align="left">創造一個test.cpp 內容為空的檔案<br />
+        ex:touch test.cpp</div></th>
+    </tr>
+    <tr>
+      <th height="40" rowspan="2" scope="row">複製檔案<br />
+        copy file</th>
+      <th rowspan="2" scope="row">cp</th>
+      <th scope="col">-R</th>
+      <th scope="col">-p</th>
+      <th colspan="3" rowspan="2" scope="col"><div align="left">用法：cp [-Rp] source target</div></th>
+    </tr>
+    <tr>
+      <th scope="col">複製整個目錄檔案</th>
+      <th scope="col">保持原檔案日期</th>
+    </tr>
+    <tr>
+      <th height="40" scope="row"><p>印出檔案內容<br />
+        show file by page<br />
+      </p></th>
+      <th scope="row">more</th>
+      <th colspan="5" scope="col"><div align="left">空白鍵換頁，q離開，上下左右，/ 搜尋</div></th>
+    </tr>
+    <tr>
+      <th height="40" scope="row">顯示目前工作目錄</th>
+      <th scope="row">pwd</th>
+      <th colspan="5" scope="row"> </th>
+    </tr>
+    <tr>
+      <th height="40" scope="row">清除螢幕<br />
+        clear screen</th>
+      <th scope="row">clear</th>
+      <th colspan="5" scope="col"> </th>
+    </tr>
+    <tr>
+      <th height="40" scope="row">使用者磁碟容量</th>
+      <th scope="row">quota</th>
+      <th colspan="5" scope="row"> </th>
+    </tr>
+    <tr>
+      <th height="40" rowspan="2" scope="row">檔案所佔空間</th>
+      <th rowspan="2" scope="row">du</th>
+      <th scope="row">-a</th>
+      <th scope="row">-h</th>
+      <th scope="row"> </th>
+      <th scope="row"> </th>
+      <th scope="row"> </th>
+    </tr>
+    <tr>
+      <th scope="row">顯示隱藏詳細</th>
+      <th scope="row">檔案大小用人性化方式表示</th>
+      <th scope="row"> </th>
+      <th scope="row"> </th>
+      <th scope="row"> </th>
+    </tr>
+    <tr>
+      <th height="40" scope="row">程式終止</th>
+      <th scope="row">[CTRL + C]</th>
+      <th colspan="5" scope="row"><div align="left">大部分的程式終止都是按這個組合鍵</div></th>
+    </tr>
+    <tr>
+      <th height="40" scope="row">字串複製</th>
+      <th scope="row">滑鼠框選</th>
+      <th colspan="5" scope="row"><div align="left">putty 限定</div></th>
+    </tr>
+    <tr>
+      <th height="40" scope="row">字串貼上</th>
+      <th scope="row">滑鼠右鍵</th>
+      <th colspan="5" scope="row"><div align="left">putty 限定</div></th>
+    </tr>
+    <tr>
+      <th height="40" rowspan="2" scope="row">捷徑<br />
+        link</th>
+      <th rowspan="2" scope="row">ln</th>
+      <th scope="row">-s</th>
+      <th colspan="4" rowspan="2" scope="row"><div align="left">-s 不加 = hard link<br />
+        刪除soft link　不會刪掉原始檔案 <br />
+        當檔案的所有hard link 刪除後　檔案才會完全消失 <br />
+        使用： ln -s source taget<br />
+        ex: ln -s /root /home/root ==&gt; /home/root 　為/root的捷徑</div></th>
+    </tr>
+    <tr>
+      <th scope="row">soft link</th>
+    </tr>
+    <tr>
+      <th height="40" scope="row">檔案權限設定</th>
+      <th scope="row">chmod</th>
+      <th colspan="5" scope="row"><p align="left">一般文字檔案 chmod 644 filename<br />
+        一般執行檔/目錄 chmod 755 filename<br />
+        限制自己才能觀看的文字檔chmod 600 filename<br />
+        限制自己才能執行chmod 700 filename</p></th>
+    </tr>
+    <tr>
+      <th height="40" scope="row">文字編輯軟體</th>
+      <th scope="row">ve</th>
+      <th colspan="5" scope="row"><div align="left">類似BBS，易用</div></th>
+    </tr>
+    <tr>
+      <th height="40" scope="row">文字編輯軟體</th>
+      <th scope="row">joe</th>
+      <th colspan="5" scope="row"><p align="left">速度快，功能強大，很多人使用<br />
+        <br />
+        存檔：ctrl +k 然後按 x<br />
+        不存檔離開：ctrl +c<br />
+        搜尋：ctrl +k 然後按f<br />
+        第一次搜尋/找下一個:ctrl +l<br />
+        跳到指定行數：ctrl+k然後按 l<br />
+        詳細中文說明：ctrl +k 然後按h<br />
+        關閉中文說明：同上</p></th>
+    </tr>
+    <tr>
+      <th height="40" scope="row">文字編輯軟體</th>
+      <th scope="row">ee</th>
+      <th colspan="5" scope="row"><div align="left">使用esc鍵</div></th>
+    </tr>
+    <tr>
+      <th height="40" scope="row"> </th>
+      <th scope="row">telnet</th>
+      <th colspan="5" scope="row"><div align="left">telnet [ip] [port]<br />
+        ex:telnet bbs.ntou.edu.tw<br />
+        ex: telnet 127.0.0.1 25 <br />
+        強制跳出：ctrl +]<br />
+        離開：quit</div></th>
+    </tr>
+    <tr>
+      <th height="40" scope="row">抓取網址檔案</th>
+      <th scope="row">wget</th>
+      <th colspan="5" scope="row"><div align="left">ex: wget http://ind.ntou.edu.tw/test.exe</div></th>
+    </tr>
+    <tr>
+      <th height="40" scope="row"> </th>
+      <th scope="row">ftp</th>
+      <th colspan="5" scope="row"><div align="left">登出：ctrl +d , exit<br />
+        切換目錄：cd [dir] <br />
+        切換本地目錄：lcd [dir] <br />
+        下載檔案：get [filename]<br />
+        上傳檔案：put [filename]<br />
+        目錄或檔案補完：[TAB]</div></th>
+    </tr>
+    <tr>
+      <th height="40" scope="row">指令檔案補完</th>
+      <th scope="row">[TAB]</th>
+      <th colspan="5" scope="row"> </th>
+    </tr>
+    <tr>
+      <th height="40" scope="row">登出<br />
+        logout</th>
+      <th scope="row">[CTRL + D ]</th>
+      <th colspan="5" scope="row"> </th>
+    </tr>
+    <tr>
+      <th height="40" scope="row">看現在有多少使用者</th>
+      <th scope="row">w</th>
+      <th colspan="5" scope="row"><div align="left">= who</div></th>
+    </tr>
+    <tr>
+      <th height="40" scope="row">察看容量使用</th>
+      <th scope="row">quota</th>
+      <th colspan="5" scope="row"> </th>
+    </tr>
+    <tr>
+      <th height="40" scope="row">丟水球給某人</th>
+      <th scope="row">write [ID]</th>
+      <th colspan="5" scope="row"> </th>
+    </tr>
+    <tr>
+      <th height="40" scope="row">調查某人</th>
+      <th scope="row">finger</th>
+      <th colspan="5" scope="row"> </th>
+    </tr>
+    <tr>
+      <th height="40" scope="row">c程式編譯</th>
+      <th scope="row">gcc,g++</th>
+      <th colspan="5" scope="row"><div align="left">編譯：gcc test.cpp 預設執行檔a.out<br />
+        gcc test.cpp -o output 指定執行檔output<br />
+        gcc test.cpp -o output -l xxx.lib</div></th>
+    </tr>
+    <tr>
+      <th height="40" scope="row">目錄相關</th>
+      <th scope="row"> </th>
+      <th colspan="5" scope="row"><p align="left">現在目錄 .<br />
+        上一個目錄 ..<br />
+        執行現在目錄的檔案 ./filename<br />
+        執行非現在目錄的檔案 /other/test/filename<br />
+        執行前一目錄的檔案 ../filename<br />
+        開啟上兩層目錄的檔案joe ../../filename</p></th>
+    </tr>
+    <tr>
+      <th height="40" scope="row">看process</th>
+      <th scope="row">ps</th>
+      <th colspan="5" scope="row"> </th>
+    </tr>
+    <tr>
+      <th height="40" scope="row">詳細看看process</th>
+      <th scope="row">ps -aux</th>
+      <th colspan="5" scope="row"><div align="left">第一欄是 執行者 ex: root , user <br />
+        第二欄是 pid = process id<br />
+        最後一欄是執行的指令或程式</div></th>
+    </tr>
+    <tr>
+      <th height="40" scope="row">尋找</th>
+      <th scope="row">grep</th>
+      <th colspan="5" scope="row"><div align="left">找所有*.cpp 中含有test字串的檔案」 <br />
+        ex: grep test *.cpp <br />
+        多重符合(含有a or 含有 b ) grep -e a -e b *<br />
+        詳細：man grep</div></th>
+    </tr>
+    <tr>
+      <th height="40" scope="row">壓縮/解壓縮.tar.gz檔案<br />
+        類似winzip</th>
+      <th scope="row">tar</th>
+      <th colspan="5" scope="row"><div align="left">壓縮：tar zcf target.tar.gz sourcefile<br />
+        解壓縮：tar zxf target.tar.gz</div></th>
+    </tr>
+    <tr>
+      <th height="40" scope="row">解壓縮.bz2 .bz檔案</th>
+      <th scope="row">bzip2</th>
+      <th colspan="5" scope="row"><div align="left">bzip2 -d file.bz2</div></th>
+    </tr>
+    <tr>
+      <th height="40" scope="row">cat 壓縮的檔案</th>
+      <th scope="row">zcat</th>
+      <th colspan="5" scope="row"><div align="left">zcat + file.gz <br />
+        zcat +file</div></th>
+    </tr>
+    <tr>
+      <th height="40" scope="row">grep 壓縮的檔案</th>
+      <th scope="row">zgrep</th>
+      <th colspan="5" scope="row"><div align="left">zgrep filename.gz</div></th>
+    </tr>
+    <tr>
+      <th height="40" scope="row"> </th>
+      <th scope="row">top</th>
+      <th colspan="5" scope="row"><div align="left">= windows 的 工作管理員</div></th>
+    </tr>
+    <tr>
+      <th height="40" scope="row">砍除某pid的程序</th>
+      <th scope="row">kill +[pid]</th>
+      <th colspan="5" scope="row"><div align="left">pid 用ps -aux 查詢 第2欄就是pid</div></th>
+    </tr>
+    <tr>
+      <th height="35" scope="row">導管<br />
+        pipe</th>
+      <th scope="row">|</th>
+      <th colspan="5" scope="row"><div align="left">A | B 意思是A的output 給B當作inout<br />
+        ex:ls | more <br />
+        把ls 結果用more 來分頁印出<br />
+        用法同 ls &gt;test ; more test ; rm -f test</div></th>
+    </tr>
+    <tr>
+      <th height="35" scope="row">附加</th>
+      <th scope="row">&gt;&gt;</th>
+      <th colspan="5" scope="row"><div align="left">A &gt;&gt;B 把A的輸出結果附加入到檔案B<br />
+        ex: ps -aux &gt;&gt; ps.log</div></th>
+    </tr>
+    <tr>
+      <th height="35" scope="row">轉出</th>
+      <th scope="row">&gt;</th>
+      <th colspan="5" scope="row"><div align="left">A &gt;B 把A的輸出結果寫入到檔案B<br />
+        ex: ps -aux &gt; ps.log</div></th>
+    </tr>
+    <tr>
+      <th height="35" scope="row">打入背景</th>
+      <th colspan="6" scope="row"><div align="left">./program &amp; 把 program放入背景執行</div></th>
+    </tr>
+    <tr>
+      <th height="35" scope="row">連續執行</th>
+      <th colspan="6" scope="row"><div align="left">./a ; ./b ; ./c ; ls ; mkdir a;</div></th>
+    </tr>
+    <tr>
+      <th height="35" scope="row">常用組合</th>
+      <th colspan="6" scope="row"><div align="left">ls | more <br />
+        ls | more &gt;test<br />
+        ps -aux | grep root &gt;test<br />
+        ./back.pl &gt;&gt; test</div></th>
+    </tr>
+    <tr>
+      <th height="35" scope="row">查指令用法</th>
+      <th scope="row">man</th>
+      <th colspan="5" scope="row"><div align="left">ex: man ls<br />
+        ex: man cp</div></th>
+    </tr>
+    <tr>
+      <th height="35" scope="row"><p>登出<br />
+        logout</p></th>
+      <th scope="row">exit</th>
+      <th colspan="5" scope="row"><div align="left">離開系統或是使用者登出</div></th>
+    </tr>
+    <tr>
+      <th height="35" colspan="7" scope="row"><div align="left">到最後熟悉後 把以上都背起來吧-- 然後要非常熟練</div></th>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

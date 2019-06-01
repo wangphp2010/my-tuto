@@ -1,0 +1,385 @@
+.thisis_ceshi{font-family:Verdana, Arial, Helvetica;font-family: "Times New Roman", Times, serif;}
+.daohanli{ position:relative; height:20px; line-height:20px; display:block; float:left;}
+.daohanli div{ padding:5px;position:absolute; border:#eeeeee 1px solid;top:20;left:0; display:none; width:160px}
+.daohanli:hover div{ padding:5px;display:block; background-color:#ffffff;top:20px;left:0px;}
+
+
+.fail{text-decoration:underline;}
+/*ville show*/
+
+.ville{ position:relative; height:22px; display:block; line-height:20px;}
+#ville{height:22px; width:250px}
+#tishi{ display:none; border:#CCCCCC 1px solid;position:absolute; top:27px;left:21px; width:245px; background-color:#FFFFFF; color:green; padding:5px 0 5px 5px;}
+.ville:hover #tishi{ display:block;position:absolute; top:27px;left:21px; width:245px; }
+.cshiname{
+font-family: "Courier New", Courier, monospace;
+font-size:12px;
+font-weight:bold;
+cursor:hand;
+cursor:pointer;
+list-style:none;
+background-color:#ffffff;
+ 
+ 
+  }
+.cshiname:hover{background-color: #cccccc;
+ }
+
+-->
+/*villshow*/
+
+
+
+.a3:link{color:#000000;font-family: "Times New Roman", Times, serif;font-size: 15px}
+.a3:visited{color:#000000;font-family: "Times New Roman", Times, serif;font-size: 15px}
+.a3:hover{text-decoration:none;color:#666666;font-family: "Times New Roman", Times, serif;font-size: 15px} 
+
+.a3-s:link{color:#850506 ;font-family: "Times New Roman", Times, serif;font-size: 15px}
+.a3-s:visited{color:#850506;font-family: "Times New Roman", Times, serif;font-size: 15px}
+.a3-s:hover{text-decoration:none;color:#666666;font-family: "Times New Roman", Times, serif;font-size: 15px} 
+
+.a3s:link{text-shadow:2px 2px 3px #999999;color:#000000;font-family: "Times New Roman", Times, serif;font-size: 15px}
+.a3s:visited{text-shadow:2px 2px 3px #999999;color:#000000;font-family: "Times New Roman", Times, serif;font-size: 15px}
+.a3s:hover{text-shadow:2px 2px 5px #999999;text-decoration:none;color:#666666;font-family: "Times New Roman", Times, serif;font-size: 15px} 
+
+
+.offre:link{text-shadow:2px 2px 3px #999999;text-decoration:none;color:#D50000;font-family: "Times New Roman", Times, serif;font-size: 32px}
+.offre:visited{text-shadow:2px 2px 3px #999999;text-decoration:none;color:#D50000;font-family: "Times New Roman", Times, serif;font-size: 32px}
+.offre:hover{text-shadow:2px 2px 10px #999999;text-decoration: underline;color:#820405;font-family: "Times New Roman", Times, serif;font-size: 32px} 
+
+.fond:link{text-shadow:2px 2px 3px #999999;color:#D50000;font-family: "Times New Roman", Times, serif;font-size: 25px}
+.fond:visited{text-shadow:2px 2px 3px #999999;color:#D50000;font-family: "Times New Roman", Times, serif;font-size: 25px}
+.fond:hover{text-shadow:2px 2px 10px #999999;text-decoration:none;color:#820405;font-family: "Times New Roman", Times, serif;font-size: 25px} 
+
+.ildefrance:link{color:#d50000;font-family: "Times New Roman", Times, serif;font-size: 15px}
+.ildefrance:visited{color:#d50000;font-family: "Times New Roman", Times, serif;font-size: 15px}
+.ildefrance:hover{text-decoration:none;color:#820405;font-family: "Times New Roman", Times, serif;font-size: 15px} 
+
+
+.a320:link{color:#000000;font-family: "Times New Roman", Times, serif;font-size: 15px}
+.a320:visited{color:#000000;font-family: "Times New Roman", Times, serif;font-size: 15px}
+.a320:hover{text-decoration:none;color:#666666;font-family: "Times New Roman", Times, serif;font-size: 15px} 
+
+.a3h1:link{text-shadow:2px 1px 3px #999999;color:#000000;font-family: "Times New Roman", Times, serif;font-size:25px}
+.a3h1:visited{text-shadow:2px 1px 3px #999999;color:#000000;font-family: "Times New Roman", Times, serif;font-size:25px}
+.a3h1:hover{text-shadow:2px 1px 10px #999999;text-decoration:none;color:#666666;font-family: "Times New Roman", Times, serif;font-size:25px} 
+
+.a3h2:link{text-shadow:2px 2px 5px #000000;color:#ffffff;font-family: "Times New Roman", Times, serif;font-size:25px}
+.a3h2:visited{text-shadow:2px 2px 5px #000000;color:#ffffff;font-family: "Times New Roman", Times, serif;font-size:25px}
+.a3h2:hover{text-shadow:2px 1px 10px #000000;text-decoration:none;color: #FDD9E2;font-family: "Times New Roman", Times, serif;font-size:25px} 
+
+
+.a5h1:link{text-decoration:none;color:#000000;font-family: "Times New Roman", Times, serif;font-size:30px}
+.a5h1:visited{text-decoration:none;color:#000000;font-family: "Times New Roman", Times, serif;font-size:30px}
+.a5h1:hover{text-decoration: underline;color:#820405;font-family: "Times New Roman", Times, serif;font-size:30px}
+
+.a4:link{color:#000000}
+.a4:visited{color:#000000}
+.a4:hover{text-decoration:none;color:#D50000} 
+
+.a4s:link{text-decoration:none;color:#000000}
+.a4s:visited{text-decoration:none;color:#000000}
+.a4s:hover{text-decoration:underline;color:#D50000} 
+
+
+.a4h:link{text-decoration:none;color:#000000;font-size:30px; font-weight:bold;font-family: "Times New Roman", Times, serif;}
+.a4h:visited{text-decoration:none;color:#000000;font-size:30px;font-weight:bold;font-family: "Times New Roman", Times, serif;}
+.a4h:hover{text-decoration: underline;color:#D50000;font-size:30px;font-weight:bold;font-family: "Times New Roman", Times, serif;} 
+
+.a4hs:link{text-shadow:2px 1px 3px #999999;text-decoration:none;color:#000000;font-size:30px; font-weight:bold;font-family: "Times New Roman", Times, serif;}
+.a4hs:visited{text-shadow:2px 1px 3px #999999;text-decoration:none;color:#000000;font-size:30px;font-weight:bold;font-family: "Times New Roman", Times, serif;}
+.a4hs:hover{text-shadow:2px 1px 10px #999999;text-decoration: underline;color:#D50000;font-size:30px;font-weight:bold;font-family: "Times New Roman", Times, serif;}
+
+
+.a5:link{text-decoration:none;color:#000000;font-family: "Times New Roman", Times, serif;font-size: 15px}
+.a5:visited{text-decoration:none;color:#000000;font-family: "Times New Roman", Times, serif;font-size: 15px}
+.a5:hover{text-decoration:none;color:#820405;font-family: "Times New Roman", Times, serif;font-size: 15px}
+
+.a6:link{color:#820405}
+.a6:visited{color:#820405}
+.a6:hover{text-decoration:none;color:#D50000} 
+
+.a7:link{color:#000000;font-family: "Times New Roman", Times, serif;}
+.a7:visited{color:#000000;font-family: "Times New Roman", Times, serif;}
+.a7:hover{text-decoration:none;color:#D50000;font-family: "Times New Roman", Times, serif;} 
+
+.a10:link{color:#666666;font-family: "Times New Roman", Times, serif;font-size: 15px}
+.a10:visited{color:#666666;font-family: "Times New Roman", Times, serif;font-size: 15px}
+.a10:hover{text-decoration:none;color:#999999;font-family: "Times New Roman", Times, serif;font-size: 15px} 
+
+
+
+
+.border1{border:#CCCCCC 2px solid; margin-right:5px;}
+.border2{border-left:#CCCCCC 1px dashed;}
+
+
+.beijin {background-color: #dddddd;}
+
+
+
+
+.beijin2 {background-color: #EAEAEA;	border-bottom:2px #b7b8ba dashed;}
+.beijin3 {	background-color:#F6F6F6; border-bottom:2px #b7b8ba dashed;}
+.beijinneirong {	background-color:#F3F3F3;}
+.beijinneirong2 {	background-color:#F3F3F3; border-bottom:2px #b7b8ba dashed;}
+
+.commentaire {
+font-family: "Times New Roman", Times, serif;font-size: 15px;
+
+	color:#999999;
+}
+
+.page2{
+	width: 99%;
+ 	border: 1px #b7b8ba solid;
+	line-height: 1.5em;
+	float: left;
+
+}
+
+.page2 a{ 
+text-decoration:none;
+border:#eeeeee solid 1px;
+color:#000000;
+font-weight:bold; 
+padding:0px 7px 0px 7px;
+text-align:center;
+font-family: Geneva, Arial, Helvetica, sans-serif;}
+.page2 a:hover { background-color:#eeeeee;}
+
+.page2 .cuti {font-family: Geneva, Arial, Helvetica, sans-serif;text-align:center;
+color: #820405;border:#eeeeee solid 1px;padding:0px 7px 0px 7px;background-color:#cccccc;
+}
+
+
+.liuyankuang{
+	width: 99%;
+	margin: 5px 0 5px 0;
+	border: 1px #b7b8ba solid;
+	line-height: 1.5em;
+	float: left;
+
+}
+.liuyankuang2{
+	width: 99%;
+	margin: 5px 0 5px 0;
+	border: 1px #000 solid;
+	line-height: 1.5em;
+	float: left;
+}
+
+.liuyankuang3{
+font-family: "Times New Roman", Times, serif;font-size: 15px;
+	width: 50%;
+	margin: 5px 0 5px 0;
+	border: 1px #b7b8ba solid;
+	
+}
+.liuyankuang4{
+font-family: "Times New Roman", Times, serif;font-size: 15px;
+	
+	border: 1px #b7b8ba solid;
+	 padding:5px;
+	
+}
+
+.liuyankuang5{
+font-family: "Times New Roman", Times, serif;font-size: 15px; color:#999999;
+
+	border: 1px #b7b8ba solid;
+	 padding:15px;
+	
+}
+.divborder4{
+	border: 5px #b7b8ba solid;
+	
+}
+.wenbenyu{
+font-family: "Times New Roman", Times, serif;font-size: 15px; 
+ 
+	
+}
+
+.STYLE1 {font-family: "Times New Roman", Times, serif;font-size: 15px}
+.STYLE2 {font-family: "Times New Roman", Times, serif;}
+
+
+.l {color:#000000;text-decoration:underline;cursor:pointer;cursor:hand;}
+.ll {cursor:pointer;cursor:hand;background-color:#ffffff;
+}
+.ll:hover{background-color:#eeeeee;
+ }
+
+.a3lien:link{color:#000000;font-family: "Times New Roman", Times, serif;font-size: 20px}
+.a3lien:visited{color:#000000;font-family: "Times New Roman", Times, serif;font-size: 20px}
+.a3lien:hover{text-decoration:none;color:#666666;font-family: "Times New Roman", Times, serif;font-size: 20px} 
+.neirong {color: #666666;font-family: "Times New Roman", Times, serif;font-size: 20px}
+.STYLE11 {font-family: "Times New Roman", Times, serif;font-size: 17px ;  color:#820405}
+.STYLE111 {font-family: "Times New Roman", Times, serif;font-size: 17px}
+.STYLE12 {font-family: "Times New Roman", Times, serif;font-size: 25px ; }
+
+.tijiaoanniuziti {color:#850506;font-family: "Times New Roman", Times, serif;font-size: 15px}
+
+.STYLE3 {font-family: "Times New Roman", Times, serif;font-size: 10px}
+.STYLE4 {font-family: "Times New Roman", Times, serif;}
+
+.STYLE5 {font-size: 36px}
+
+.STYLE6 {color: #820405;font-weight: bold;}
+.STYLE7 {font-size: 36px;font-weight: bold;}
+
+em{color: #FC1B47;font-weight: bold;font-size: 20px}
+
+.STYLE12 {font-size: 20px}
+
+.STYLE113 {
+	color: #999999;
+	font-size: 9px;
+}
+.STYLE114 {
+	color: #999999;
+	font-size: 15px;
+}
+
+.STYLE115 {color: #999999}
+.STYLE116 {color: #999999;
+	font-family: "Times New Roman", Times, serif;
+	font-size:12px;}
+.STYLE17 {font-family: "Times New Roman", Times, serif;font-size: 18px}
+
+
+.tdcss{border:1px solid  #CCCCCC;padding:5px;}
+
+	
+	
+/*鼠标经过图片弹出文字开始*/	
+/*Tooltips*/
+.tooltips{
+position:relative; /*这个是关键*/
+z-index:2;
+
+}
+.tooltips:hover{
+z-index:3;
+background:none; /*没有这个在IE中不可用*/
+
+}
+.tooltips span{
+display: none;
+}
+.tooltips:hover span{ /*span 标签仅在 :hover 状态时显示*/
+opacity: 0.7;
+display:block;
+position:absolute;
+top:20px;
+left:1px;
+width:15em; 
+border: 2px solid #999999;
+background-color:#FFFFD5;FILTER:alpha(opacity=70), /*弹出框在ie中的设置*/progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#FFFFD5,endColorStr=#FFFFD5);
+color:#6A6A6A;
+font-family: "Courier New", Courier, monospace;
+font-size:14px;
+padding:10px;
+font-weight:bold;
+}
+/*鼠标经过图片弹出文字结束*/
+
+
+
+
+
+
+.gris { 
+	color:#999999;
+}
+
+
+
+
+.time{color: #999999;
+	font-style: italic;
+	font-family: "Times New Roman", Times, serif;}
+.titre {color: #820405;font-weight: bold;font-size: 36px}
+.cuti {color: #820405;}
+
+
+.soucuotiaojianyanse {color: #820405}
+.gros{font-weight:bold;color: #820405}
+
+.imageborder2{
+border: 2px solid #000;
+padding: 2px;
+background: #fff;
+}
+.borderboom{border-bottom:solid 1px #CCCCCC;}
+.borderboom2{border-bottom:#CCCCCC dashed 1px;}
+
+
+
+
+.imageborder{
+border: 1px solid #fff;
+-moz-box-shadow:3px 3px 4px #000;-webkit-box-shadow:3px 3px 4px #000;box-shadow:3px 3px 15px #505050;
+}
+
+
+.imageborder2{
+border: 2px solid #000;
+padding: 2px;
+background: #fff;
+}
+.imageborder3{
+border: 1px solid #000;
+padding: 3px;
+background: #fff;
+}
+
+
+
+.shadow{
+border: 1px solid #000000;
+padding: 8px;
+background: #ffffff;
+-moz-box-shadow:3px 3px 4px #000;-webkit-box-shadow:3px 3px 4px #000;box-shadow:3px 3px 15px #505050;}
+
+.td-pad{ padding:7px;
+border:1px #CCCCCC solid;}
+
+.sup{color: #000000;cursor:pointer;cursor:hand;}
+.sup:hover{color: #AC041E;cursor:pointer;cursor:hand;}
+
+.ajt{
+background-color:#5bb75b; padding:5px; color:#FFFFFF; border:solid 1px #CCCCCC;cursor:pointer;cursor:hand;
+}
+.ajt:hover{
+background-color:#5bb75b; padding:5px; color:#FFFFFF; border:solid 1px #CCCCCC;cursor:pointer;cursor:hand;
+}
+
+
+::selection{background:#068A69; color: white; /* Safari */}
+::-moz-selection{background:#068A69; color: white; /* Firefox */ }
+
+.googlead2-border{border:#CCCCCC double medium;}
+
+/*404*/
+    #page{
+	        font-family: 'Trebuchet MS', sans-serif;
+
+	border:#CCCCCC 5px  solid;
+        background-color: #FFFFFF;
+        width: 60%;
+        margin: 24px auto;
+        padding: 12px;
+    }
+    #header {
+        padding: 6px ;
+        text-align: center;
+    }
+    .status4xx { background-color: #C55042; color: #FFFFFF; }
+    #content {       
+	 font-family: "Times New Roman", Times, serif;
+     padding: 4px 5px 24px 5px;/*top right bottom left*/
+    }
+
+

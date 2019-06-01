@@ -1,0 +1,42 @@
+<?php
+ define("MAX_WIDTH_PIXEL", 600);
+ define("MAX_HEIGHT_PIXEL", 240);
+ //发送标头信息
+ header("Content-type: image/gif");
+
+ //建立图像
+ $img = imagecreate(MAX_WIDTH_PIXEL, MAX_HEIGHT_PIXEL);
+
+ //设定颜色
+ $bgcolor = imagecolorallocate($img, 0xff, 0xe9, 0xe9);
+ $red = imagecolorallocate($img, 255, 0, 0);
+ $blue = imagecolorallocate($img, 0, 0, 255);
+ $brown = imagecolorallocate($img, 100, 0, 0);
+ $black = imagecolorallocate($img, 0, 0, 0);
+
+ $width  = MAX_WIDTH_PIXEL/2;    //宽度
+ $height = MAX_HEIGHT_PIXEL/2;    //高度
+
+ //建立坐标轴
+ imageline($img, $width, 0, $width, MAX_HEIGHT_PIXEL, $black);//y轴
+ imageline($img, 0, $height, MAX_WIDTH_PIXEL, $height, $black);//x轴
+
+ //通过循环来实现函数图形的描绘
+ for($i=0; $i<=MAX_WIDTH_PIXEL; $i++)
+ {
+  $y1 = 100 * sin($i/100 * M_PI);//3.1415926535897932384常量名
+  imagesetpixel($img, $i, $height+$y1, $blue);
+
+  $y2 = 100 * sin($i/300 * M_PI);
+  imagesetpixel($img, $i, $height+$y2, $red);
+
+  $y3 = 100 * sin($i/300 * M_PI);
+  imagesetpixel($img, $i, $height-$y3, $brown);
+ }
+
+ //显示图形
+ imagegif($img);
+
+ //释放资源
+ imagedestroy($img);
+ ?>

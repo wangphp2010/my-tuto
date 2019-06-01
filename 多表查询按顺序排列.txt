@@ -1,0 +1,1 @@
+SELECT * FROM `ville`,`reigon` WHERE 1 ORDER BY nom 

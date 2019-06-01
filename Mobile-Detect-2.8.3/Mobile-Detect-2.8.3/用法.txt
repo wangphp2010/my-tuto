@@ -1,0 +1,33 @@
+    // Include and instantiate the class.
+    require_once 'Mobile_Detect.php';
+    $detect = new Mobile_Detect;
+     
+    // Any mobile device (phones or tablets).
+    if ( $detect->isMobile() ) {
+     echo 'mobile ou tablet<br />';
+    }
+     
+    // Any tablet device.
+    if( $detect->isTablet() ){
+          echo 'tablet<br />';
+
+    }
+     
+    // Exclude tablets.
+    if( $detect->isMobile() && !$detect->isTablet() ){
+          echo 'cest mobilephone,mais pas tablet<br />';
+
+    }
+     
+    // Check for a specific platform with the help of the magic methods:
+    if( $detect->isiOS() ){
+          echo 'ios systeme<br />';
+
+    }
+     
+    if( $detect->isAndroidOS() ){
+               echo 'android systeme<br />';
+
+    }
+     if( $detect->isWindowsPhoneOS()) {
+}

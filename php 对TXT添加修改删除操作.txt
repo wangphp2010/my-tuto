@@ -1,0 +1,55 @@
+﻿<?php
+/*写入*/
+if ($_POST[Submit]) {
+$fp=fopen("db.txt","a");
+fwrite($fp,$_POST[user]."|".$_POST[pass]."|".time()."\r\n"); //写入数据，中间用|隔开
+fclose($fp);
+}
+/*读取*/
+$lines=file("db.txt");
+foreach ($lines as $value) {
+$line=explode("|",$value);
+echo "no1:$line[0]--no2:$line[1]---time:$line[2]--<a href=gaga.php?act=del&time=$line[2]>删除</a>--<a href=gaga.php?act=mod&time=$line[2]>修改</a><br>";
+}
+/*删除*/
+if ($_GET[act]=="del") {
+$time=trim($_GET[time]);
+foreach ($lines as $key=>$value) {
+$line=explode("|",$value);
+if (trim($line[2])==$time) { //遍历数组，定位符合条件的key，并删除改行
+unset($lines[$key]);
+break;
+}
+}
+unlink("db.txt");
+$fp=fopen("db.txt","w");
+foreach ($lines as $value) {
+fwrite($fp,$value); //写入删除后的新数组
+}
+fclose($fp);
+echo "<script>location.href='gaga.php';</script>";
+}
+/*修改*/
+if ($_GET[act]=="mod") {
+$m1="修改值1";
+$m2="修改值2";
+$m3=time();//修改时间
+$time=trim($_GET[time]);
+foreach ($lines as $key=>$value) {
+$line=explode("|",$value);//女装品牌排行榜
+if (trim($line[2])==$time) { //遍历数组，定位符合条件的key，并修改改行
+$lines[$key]=$m1."|".$m2."|".$m3."\r\n";
+break;
+}
+}
+unlink("db.txt");
+$fp=fopen("db.txt","w");
+foreach ($lines as $value) {
+fwrite($fp,$value); //写入修改后的新数组
+}
+fclose($fp);
+echo "<script>location.href='gaga.php';</script>";
+}
+//print_r("<pre>");
+//print_r($lines);
+?>

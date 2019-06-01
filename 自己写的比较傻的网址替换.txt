@@ -1,0 +1,68 @@
+<?php
+
+
+
+
+
+
+$reg_exUrl = "#(http\:\/\/|https\:\/\/|ftp\:\/\/|ftps\:\/\/)?(www\.)?(\w\-?)+(\.\w+)+(\/*\S*)?#";
+$http='/http\:\/\//';
+$https='/https\:\/\//';
+$ftp='/ftp\:\/\//';
+$ftps='/ftps\:\/\//';
+$www='/www\./';
+
+
+$gb_array['neirong'] = "voici le site<br><br>
+/monpub.com/deposer.html
+h://monpub.com/deposer.html
+://www.monpub.com/deposer.html
+s://monpub.com/deposer.html
+//www.monpub.com/deposer.html
+p://monpub.com/deposer.html
+";
+
+
+
+if(preg_match_all($reg_exUrl, $gb_array['neirong'], $url)) {
+     $s=count($url[0])-1;
+    
+    
+      
+      for($x=0;$x<=$s;$x++){
+$y=$x+1;
+     $position=strpos($gb_array['neirong'],$url[0][$x]);
+     $leng=strlen($url[0][$x]);
+    $gb_array['neirong']=substr_replace($gb_array['neirong'],"-asdf".$y."zxcv-",$position,$leng);
+    $tou[$x]='';
+    if(preg_match($http, $url[0][$x]))$tou[$x]='http://';
+    if(preg_match($https, $url[0][$x]))$tou[$x]='https://';
+    if(preg_match($ftp,$url[0][$x]))$tou[$x]='ftp://';
+    if(preg_match($ftps,$url[0][$x]))$tou[$x]='ftps://';
+    if(preg_match($www,$url[0][$x]))$toutou[$x]='www.';else $toutou[$x]='';
+     if($tou[$x]=='')$tou[$x]='http://';
+       }
+      
+
+       for($a=0;$a<=$s;$a++){
+      
+       $te=preg_replace("/(http\:\/\/|https\:\/\/|ftp\:\/\/|ftps\:\/\/)?(www\.)?/","",$url[0][$a]);
+
+       $b=$a+1;
+       $c="-asdf".$b."zxcv-";
+       $gb_array['neirong']=str_replace($c,"<a href=".$tou[$a].$toutou[$a].$te.">".$url[0][$a]."</a><br />",$gb_array['neirong']);
+       }
+      
+    
+    
+      
+} else{
+}
+  echo  $gb_array['neirong'];
+  
+  
+  
+  
+
+
+?>
