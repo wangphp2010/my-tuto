@@ -1,0 +1,15 @@
+e.preventdefault() 点击a时 不会跳转
+
+$('#id').click(function(e){
+	e.preventdefault();
+	....
+
+});
+
+
+或
+$('#id').click( e=>{
+	e.preventdefault();
+	....
+
+});
