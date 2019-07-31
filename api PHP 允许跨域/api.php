@@ -1,5 +1,6 @@
 <?php
 session_start();
+ 
 if (isset($_SESSION['LAST_CALL'])) {
     $last =  $_SESSION['LAST_CALL'] ;
     $curr = time() ;
@@ -24,7 +25,14 @@ $allow_origin = array(
  
  
 //跨域访问的时候才会存在此字段
+/*
+header('Access-Control-Allow-Origin: *');
 
+header('Access-Control-Allow-Methods: GET, POST');
+
+header("Access-Control-Allow-Headers: X-Requested-With");
+
+*/
 
 $origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';  
 if (in_array($origin, $allow_origin)) {
