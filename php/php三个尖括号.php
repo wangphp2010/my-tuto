@@ -2,10 +2,11 @@
 <?php
 function checkbox(string $name , string $value   ) : string 
 {
-	//<<<后面接的大写字母 只是告诉我们用的html格式的
+	//<<<后面接的大写字母 只是告诉我们用的html格式的,最后的HTML要靠最左边
 	return <<<HTML
 	<input type="checkbox" name="{$name}[]" value="{$value}">
-	HTML;
+HTML;
+
 }
 
 $parfums = [
