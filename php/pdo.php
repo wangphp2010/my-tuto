@@ -2,6 +2,17 @@
 
 	 //dirname(__DIR__)
 
+	 /*
+	 $dsn = 'mysql:dbname=test;host=127.0.0.1';
+    $user = 'root';
+    $password = 'root';
+
+    try{
+            $dbh = new PDO($dsn, $user, $password);
+    }catch(PDOException $e){
+            echo "Connection failed: " . $e->getMessage();
+    }
+	*/
 	 $pdo = new PDO("sqlite:C:\sqlite\data.db", null , null , [
 		PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
 	 ]);
@@ -36,7 +47,7 @@
 	print_r( $posts );
 	
 	 echo '</pre>' ;
-	*/
+	*//*
 	?>
 	
 	
@@ -56,8 +67,8 @@
 	
 	
 	<?php
-	
-	
+	*/
+	/*
 	
 	#防止注入攻击等
 	$id = $pdo->quote( $_GET['id'] );
@@ -120,10 +131,21 @@
 	$pdo->rollback();# 取消操作
 	//$pdo->commit() ; #确认操作
 	
-	
+	*/
 	?>
 	
+	<?php
 	
+	
+		$query = $pdo->prepare("INSERT INTO  posts (name , content)VALUES( :name , :content ) ");
+		$query->execute([
+		 'name'=>"title ",
+		 'content' =>" content "
+		]);
+		
+		var_dump(get_class_methods($pdo));
+		 echo $pdo->lastInsertId();
+		?>
 	
 	
 	
